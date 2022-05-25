@@ -14,7 +14,7 @@ public class Anfibio extends Animal{
 	private TipoOrden tipoOrden;
 	private TipoAmbiente tipoAmbiente;
 	
-	public Anfibio(int id, LocalDate fechaNacimiento, String nombre, TipoRaza raza, ArrayList<Cuidados> cuidados,
+	public Anfibio(String id, LocalDate fechaNacimiento, String nombre, TipoRaza raza, ArrayList<Cuidados> cuidados,
 			MotivoAlta motivoAlta, MotivoBaja motivoBaja, LocalDate fechaAlta, LocalDate fechaBaja, Dieta dieta,
 			TipoOrden tipoOrden, TipoAmbiente tipoAmbiente) {
 		super(id, fechaNacimiento, nombre, raza, cuidados, motivoAlta, motivoBaja, fechaAlta, fechaBaja, dieta);

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import Enums.MotivoAlta;
 import Enums.MotivoBaja;
 import Enums.TipoRaza;
+import Superclases.EntidadConIdFechaYNombre;
 
 public class Animal extends EntidadConIdFechaYNombre{
 
@@ -18,7 +19,7 @@ public class Animal extends EntidadConIdFechaYNombre{
 	private Dieta dieta;
 	
 	
-	public Animal(int id, LocalDate fechaNacimiento, String nombre, TipoRaza raza, ArrayList<Cuidados> cuidados,
+	public Animal(String id, LocalDate fechaNacimiento, String nombre, TipoRaza raza, ArrayList<Cuidados> cuidados,
 			MotivoAlta motivoAlta, MotivoBaja motivoBaja, LocalDate fechaAlta, LocalDate fechaBaja, Dieta dieta) {
 		super(id, fechaNacimiento, nombre);
 		this.raza = raza;

@@ -1,5 +1,7 @@
 package Clases;
 
+import Superclases.EntidadConNombre;
+
 public class Cuidados extends EntidadConNombre{
 
 	private String descripcionTratamiento;

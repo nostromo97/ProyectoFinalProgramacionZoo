@@ -1,4 +1,4 @@
-package Clases;
+package Superclases;
 
 public class EntidadConNombre {
 

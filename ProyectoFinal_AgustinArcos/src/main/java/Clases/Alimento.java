@@ -1,6 +1,7 @@
 package Clases;
 
 import Enums.TipoAlimento;
+import Superclases.EntidadConNombre;
 
 public class Alimento extends EntidadConNombre{
 	

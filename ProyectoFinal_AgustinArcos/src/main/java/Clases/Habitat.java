@@ -1,5 +1,7 @@
 package Clases;
 
+import Superclases.EntidadConNombre;
+
 public class Habitat extends EntidadConNombre{
 
 	private String tipo;

@@ -1,24 +1,23 @@
-package Clases;
+package Superclases;
 
 import java.time.LocalDate;
 
-public class EntidadConIdFechaYNombre {
+public class  EntidadConIdFechaYNombre  {
 	
-	private int id;
+	private String id;
 	private LocalDate fechaNacimiento;
 	private String nombre;
 	
-	
-	public EntidadConIdFechaYNombre(int id, LocalDate fechaNacimiento, String nombre) {
+	public EntidadConIdFechaYNombre(String id, LocalDate fechaNacimiento, String nombre) {
 		super();
 		this.id = id;
 		this.fechaNacimiento = fechaNacimiento;
 		this.nombre = nombre;
 	}
-	public int getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public LocalDate getFechaNacimiento() {
