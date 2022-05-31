@@ -8,6 +8,10 @@ import Enums.MotivoBaja;
 import Enums.TipoAmbiente;
 import Enums.TipoOrden;
 import Enums.TipoRaza;
+import Excepciones.IdInvalidoException;
+import Excepciones.IdVacioException;
+import Excepciones.NombreInvalidoException;
+import Excepciones.NombreVacioException;
 
 public class Anfibio extends Animal{
 
@@ -16,7 +20,7 @@ public class Anfibio extends Animal{
 	
 	public Anfibio(String id, LocalDate fechaNacimiento, String nombre, TipoRaza raza, ArrayList<Cuidados> cuidados,
 			MotivoAlta motivoAlta, MotivoBaja motivoBaja, LocalDate fechaAlta, LocalDate fechaBaja, Dieta dieta,
-			TipoOrden tipoOrden, TipoAmbiente tipoAmbiente) {
+			TipoOrden tipoOrden, TipoAmbiente tipoAmbiente) throws NombreVacioException, NombreInvalidoException, IdInvalidoException, IdVacioException {
 		super(id, fechaNacimiento, nombre, raza, cuidados, motivoAlta, motivoBaja, fechaAlta, fechaBaja, dieta);
 		this.tipoOrden = tipoOrden;
 		this.tipoAmbiente = tipoAmbiente;

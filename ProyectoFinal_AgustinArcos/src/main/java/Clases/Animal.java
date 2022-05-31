@@ -6,6 +6,10 @@ import java.util.ArrayList;
 import Enums.MotivoAlta;
 import Enums.MotivoBaja;
 import Enums.TipoRaza;
+import Excepciones.IdInvalidoException;
+import Excepciones.IdVacioException;
+import Excepciones.NombreInvalidoException;
+import Excepciones.NombreVacioException;
 import Superclases.EntidadConIdFechaYNombre;
 
 public class Animal extends EntidadConIdFechaYNombre{
@@ -20,7 +24,8 @@ public class Animal extends EntidadConIdFechaYNombre{
 	
 	
 	public Animal(String id, LocalDate fechaNacimiento, String nombre, TipoRaza raza, ArrayList<Cuidados> cuidados,
-			MotivoAlta motivoAlta, MotivoBaja motivoBaja, LocalDate fechaAlta, LocalDate fechaBaja, Dieta dieta) {
+			MotivoAlta motivoAlta, MotivoBaja motivoBaja, LocalDate fechaAlta, LocalDate fechaBaja, Dieta dieta) 
+					throws NombreVacioException, NombreInvalidoException, IdInvalidoException, IdVacioException {
 		super(id, fechaNacimiento, nombre);
 		this.raza = raza;
 		this.cuidados = cuidados;
