@@ -1,5 +1,7 @@
 package Clases;
 
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
 
 import Excepciones.ContrasenaInvalidaException;
@@ -36,27 +38,23 @@ public class Usuario extends EntidadConIdFechaYNombre{
 	}
 
 	public void setContrasena(String contrasena) throws ContrasenaInvalidaException, NombreVacioException, ContrasenaLargaException{
-		if (contrasena == "") {
+		if (this.contrasena == "") {
 			throw new NombreVacioException ("Error. El campo contraseña no puede estar vacío.");
 		}else {
 			this.contrasena = contrasena;
 		}
 		
-		if(contrasena.length() > 20 ) {
+		if(this.contrasena.length() > 20 ) {
 			throw new ContrasenaLargaException ("Error. Contraseña muy larga. Máximo 20 caracteres.");
 		}else {
 			this.contrasena=contrasena;
 			
-		}if(contrasena != contrasena) {
+		}if(this.contrasena != contrasena) {
 			throw new ContrasenaInvalidaException ("Error. Las contraseñas no coinciden");
 		}else {
 			this.contrasena=contrasena;
-		}
-		
-		
+		}		
 	}
 	
-	
-	
-	
+		
 }

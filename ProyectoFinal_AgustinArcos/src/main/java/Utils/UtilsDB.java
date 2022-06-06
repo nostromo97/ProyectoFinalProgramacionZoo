@@ -6,9 +6,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public abstract class UtilsDB {
-	private static final String cadenaConexion = "jdbc:mysql://127.0.0.1:3306/bd1dam";
+	private static final String cadenaConexion = "jdbc:mysql://127.0.0.1:3306/baseDatosZoologico";
 	private static final String usuarioBD = "root";
-	private static final String contrasenaBD = "admin";
+	private static final String contrasenaBD = "";
 	private static Connection conexion;
 
 	public static Statement conectarBD() {

@@ -5,6 +5,9 @@ import java.util.ArrayList;
 public class Refugio {
 
 	private String nombreRefugio;
+	/*
+	 * cambiar arraylist en hashset de habitat
+	 */
 	private ArrayList<Animal> animales;
 	private ArrayList<Habitat> habitats;
 	
