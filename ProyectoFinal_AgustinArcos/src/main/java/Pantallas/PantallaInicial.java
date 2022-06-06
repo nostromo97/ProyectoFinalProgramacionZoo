@@ -22,6 +22,15 @@ public class PantallaInicial extends JPanel{
 				ventana.cambiarPantalla("login");
 			}
 		});
+		
+		JButton btnSalir = new JButton("SALIR");
+		btnSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				salir();
+			}
+		});
+		btnSalir.setBounds(356, 294, 89, 23);
+		add(btnSalir);
 		botonLogin.setBounds(314, 382, 173, 40);
 		add(botonLogin);
 		
@@ -39,5 +48,10 @@ public class PantallaInicial extends JPanel{
 		background.setIcon(new ImageIcon("C:\\Users\\carol\\Documents\\Eclipse-WORKSPACE\\ProyectoFinalProgramacionZoo\\ProyectoFinal_AgustinArcos\\fotos\\login_pantalla.jpg"));
 		background.setBounds(0, 0, 800, 600);
 		add(background);
+	}
+
+	protected void salir() {
+		System.exit(0);
+		
 	}
 }

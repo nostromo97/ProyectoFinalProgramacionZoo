@@ -10,7 +10,7 @@ public class Ventana extends JFrame{
 	
 	public Ventana() {
 		
-		this.setLocationRelativeTo(null);
+		
 		this.setSize(800, 600);
 		this.setTitle("Zoológico Mundo Natural");
 		this.setIconImage(new ImageIcon("./fotos/icono.png").getImage());
@@ -18,6 +18,7 @@ public class Ventana extends JFrame{
 		this.pantallaActual = new PantallaInicial(this);
 		this.setContentPane(pantallaActual);
 		this.setResizable(false);
+		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 		
 		

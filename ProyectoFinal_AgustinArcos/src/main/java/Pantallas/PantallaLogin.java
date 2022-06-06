@@ -5,10 +5,20 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import Pantallas.Ventana;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.SwingConstants;
+
+import Clases.Usuario;
+import Excepciones.ContrasenaInvalidaException;
+import Excepciones.FechaFormatoException;
+import Excepciones.NombreInvalidoException;
+import Excepciones.NombreVacioException;
+
 import javax.swing.ImageIcon;
 import java.awt.Color;
 import javax.swing.JPasswordField;
@@ -26,18 +36,12 @@ public class PantallaLogin extends JPanel{
 		setLayout(null);
 		setSize (800,600);
 		
-		JButton botonIngresar = new JButton("INGRESAR");
-		botonIngresar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ventana.cambiarPantalla("menu");
-			}
-		});
+		
 		
 		campoContrasena = new JPasswordField();
 		campoContrasena.setBounds(326, 444, 141, 20);
 		add(campoContrasena);
-		botonIngresar.setBounds(247, 474, 308, 32);
-		add(botonIngresar);
+
 		
 		JLabel textoLogin = new JLabel("LOGIN");
 		textoLogin.setFont(new Font("Arial Black", Font.BOLD, 20));
@@ -49,6 +53,8 @@ public class PantallaLogin extends JPanel{
 		JButton botonAtras = new JButton("ATR\u00C1S");
 		botonAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				
 				ventana.cambiarPantalla("atras");
 			}
 		});
@@ -73,6 +79,35 @@ public class PantallaLogin extends JPanel{
 		contraseña.setFont(new Font("Arial", Font.BOLD, 14));
 		contraseña.setBounds(356, 419, 103, 14);
 		add(contraseña);
+		
+		
+		JButton botonIngresar = new JButton("INGRESAR");
+		botonIngresar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				String nombre = campoUsuario.getText();
+				String contrasena = new String (campoContrasena.getPassword());
+				try {
+					Usuario user1 = new Usuario (nombre,contrasena);
+					JOptionPane.showMessageDialog(null, "Login correcto", "Éxito", JOptionPane.OK_OPTION);
+					ventana.cambiarPantalla("menu");
+				} catch (NombreVacioException e1) {
+					JOptionPane.showMessageDialog(null, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+					e1.printStackTrace();
+				} catch (NombreInvalidoException e1) {
+					JOptionPane.showMessageDialog(null, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+					e1.printStackTrace();
+				} catch (SQLException e1) {
+					JOptionPane.showMessageDialog(null, "Error al conectar a la base de datos.", "Error", JOptionPane.ERROR_MESSAGE);
+					e1.printStackTrace();
+				} catch (ContrasenaInvalidaException e1) {
+					JOptionPane.showMessageDialog(null, "Contraseña no válida", "Error", JOptionPane.ERROR_MESSAGE);
+					e1.printStackTrace();
+				}
+			}
+		});
+		botonIngresar.setBounds(247, 474, 308, 32);
+		add(botonIngresar);
 		
 		JLabel background = new JLabel("");
 		background.setHorizontalAlignment(SwingConstants.CENTER);

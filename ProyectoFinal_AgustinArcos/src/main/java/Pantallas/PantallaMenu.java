@@ -25,11 +25,20 @@ public class PantallaMenu extends JPanel{
 				ventana.cambiarPantalla("alimentos");	
 			}
 		});
-		botonAlimentos.setBounds(464, 422, 107, 42);
+		
+		JButton btnSalir = new JButton("Salir");
+		btnSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				salir();
+			}
+		});
+		btnSalir.setBounds(70, 481, 89, 23);
+		add(btnSalir);
+		botonAlimentos.setBounds(407, 367, 107, 42);
 		add(botonAlimentos);
 		
 		JButton botonRefugio = new JButton("REFUGIO");
-		botonRefugio.setBounds(205, 424, 108, 40);
+		botonRefugio.setBounds(234, 368, 108, 40);
 		add(botonRefugio);
 		
 		JComboBox comboBaja = new JComboBox();
@@ -65,5 +74,10 @@ public class PantallaMenu extends JPanel{
 		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\carol\\Documents\\Eclipse-WORKSPACE\\ProyectoFinalProgramacionZoo\\ProyectoFinal_AgustinArcos\\fotos\\BACKGROUND.jpg"));
 		lblNewLabel.setBounds(0, 0, 800, 600);
 		add(lblNewLabel);
+	}
+
+	protected void salir() {
+		System.exit(0);
+		
 	}
 }

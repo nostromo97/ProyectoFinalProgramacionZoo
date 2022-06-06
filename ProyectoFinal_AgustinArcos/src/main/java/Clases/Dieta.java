@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import Enums.MotivoAlta;
 import Enums.MotivoBaja;
 import Enums.TipoRaza;
+import Excepciones.FechaFormatoException;
 import Excepciones.IdInvalidoException;
 import Excepciones.IdVacioException;
 import Excepciones.NombreInvalidoException;
@@ -25,7 +26,7 @@ public class Dieta extends Animal{
 			MotivoAlta motivoAlta, MotivoBaja motivoBaja, LocalDate fechaAlta, LocalDate fechaBaja, Dieta dieta,
 			ArrayList<Alimento> dietaLunes, ArrayList<Alimento> dietaMartes, ArrayList<Alimento> dietaMiércoles,
 			ArrayList<Alimento> dietaJueves, ArrayList<Alimento> dietaViernes, ArrayList<Alimento> dietaSábado,
-			ArrayList<Alimento> dietaDomingo) throws NombreVacioException, NombreInvalidoException, IdInvalidoException, IdVacioException {
+			ArrayList<Alimento> dietaDomingo) throws NombreVacioException, NombreInvalidoException, IdInvalidoException, IdVacioException, FechaFormatoException {
 		super(id, fechaNacimiento, nombre, raza, cuidados, motivoAlta, motivoBaja, fechaAlta, fechaBaja, dieta);
 		this.dietaLunes = dietaLunes;
 		this.dietaMartes = dietaMartes;

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import Enums.MotivoAlta;
 import Enums.MotivoBaja;
 import Enums.TipoRaza;
+import Excepciones.FechaFormatoException;
 import Excepciones.IdInvalidoException;
 import Excepciones.IdVacioException;
 import Excepciones.NombreInvalidoException;
@@ -25,7 +26,7 @@ public class Animal extends EntidadConIdFechaYNombre{
 	
 	public Animal(short id, LocalDate fechaNacimiento, String nombre, TipoRaza raza, Cuidados cuidados,
 			MotivoAlta motivoAlta, MotivoBaja motivoBaja, LocalDate fechaAlta, LocalDate fechaBaja, Dieta dieta) 
-					throws NombreVacioException, NombreInvalidoException, IdInvalidoException, IdVacioException {
+					throws NombreVacioException, NombreInvalidoException, IdInvalidoException, IdVacioException, FechaFormatoException {
 		super(id, fechaNacimiento, nombre);
 		this.raza = raza;
 		this.cuidados = cuidados;
@@ -39,7 +40,7 @@ public class Animal extends EntidadConIdFechaYNombre{
 	//alta de animal
 	public Animal(short id, String nombre, LocalDate fechaNacimiento, Cuidados cuidados,
 			MotivoAlta motivoAlta, LocalDate fechaAlta, Dieta dieta) 
-					throws NombreVacioException, NombreInvalidoException, IdInvalidoException, IdVacioException {
+					throws NombreVacioException, NombreInvalidoException, IdInvalidoException, IdVacioException, FechaFormatoException {
 		super(id, fechaNacimiento, nombre);
 		this.cuidados = cuidados;
 		this.motivoAlta = motivoAlta;
@@ -50,7 +51,7 @@ public class Animal extends EntidadConIdFechaYNombre{
 	//BAJA de animal
 		public Animal(short id, String nombre, LocalDate fechaNacimiento, Cuidados cuidados,
 				MotivoBaja motivoBaja, LocalDate fechaBaja, Dieta dieta) 
-						throws NombreVacioException, NombreInvalidoException, IdInvalidoException, IdVacioException {
+						throws NombreVacioException, NombreInvalidoException, IdInvalidoException, IdVacioException, FechaFormatoException {
 			super(id, fechaNacimiento, nombre);
 			this.cuidados = cuidados;
 			this.dieta = dieta;

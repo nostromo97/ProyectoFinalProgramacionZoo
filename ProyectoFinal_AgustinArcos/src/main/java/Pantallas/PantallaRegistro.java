@@ -7,10 +7,24 @@ import Pantallas.Ventana;
 import Utils.UtilsDB;
 
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.SwingConstants;
+
+import Clases.Usuario;
+import Excepciones.FechaFormatoException;
+import Excepciones.IdInvalidoException;
+import Excepciones.IdVacioException;
+import Excepciones.NombreInvalidoException;
+import Excepciones.NombreVacioException;
+
 import javax.swing.ImageIcon;
 import java.awt.Color;
 import javax.swing.JPasswordField;
@@ -99,15 +113,37 @@ public class PantallaRegistro extends JPanel{
 		JButton btnRegistro = new JButton("REGISTRAR");
 		btnRegistro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
 				String nombreUsuario = campoUsuario.getText();
-				String apelllidosUsuario = campoApellidos.getText();
-				String contrasena = campoContrasena.getPassword().toString();
-
+				String apellidosUsuario = campoApellidos.getText();
+				String contrasena = new String (campoContrasena.getPassword());
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+				LocalDate fechaNacimiento = LocalDate.parse(textFechaNacimiento.getText(),formatter);
 				
+			
+					Usuario user1 = new Usuario(nombreUsuario,apellidosUsuario,contrasena,fechaNacimiento);
+					//JOPTION PANE QUE DIGA REGISTRO EXITOSO DE TIPO OK_MESSAGE
+					JOptionPane.showMessageDialog(ventana, "Registro exitoso", "Éxito", JOptionPane.YES_NO_OPTION);
+					//IR A PANTALLA METER ANIMALES
+					ventana.cambiarPantalla("atras");
+				} catch (NombreVacioException e1) {
+					JOptionPane.showMessageDialog(null, "Nombre Vacio", "Error", JOptionPane.WARNING_MESSAGE);
+				} catch (NombreInvalidoException e1) {
+					JOptionPane.showMessageDialog(null, "El nombre no puede contener números.", "Error", JOptionPane.ERROR_MESSAGE);
+					e1.printStackTrace();
+				} catch (SQLException e1) {
+					JOptionPane.showMessageDialog(null, "Error SQL", "Error", JOptionPane.ERROR_MESSAGE);
+				} catch (FechaFormatoException e1) {
+					JOptionPane.showMessageDialog(null, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+				} catch(DateTimeParseException e1) {
+					JOptionPane.showMessageDialog(null, "Error. Introduce la fecha en un formato: dd-MM-YYYY (día, mes, año)", "Error", JOptionPane.ERROR_MESSAGE);
+				}
+
+				 
 				
 			}
 		});
-		btnRegistro.setBounds(259, 508, 276, 38);
+		btnRegistro.setBounds(264, 508, 276, 38);
 		add(btnRegistro);
 		
 		JLabel background = new JLabel("");

@@ -7,6 +7,7 @@ import Enums.MotivoAlta;
 import Enums.MotivoBaja;
 import Enums.TipoPiel;
 import Enums.TipoRaza;
+import Excepciones.FechaFormatoException;
 import Excepciones.IdInvalidoException;
 import Excepciones.IdVacioException;
 import Excepciones.NombreInvalidoException;
@@ -18,7 +19,7 @@ public class Reptil extends Animal{
 
 	public Reptil(short id, LocalDate fechaNacimiento, String nombre, TipoRaza raza, Cuidados cuidados,
 			MotivoAlta motivoAlta, MotivoBaja motivoBaja, LocalDate fechaAlta, LocalDate fechaBaja, Dieta dieta,
-			TipoPiel tipoPiel) throws NombreVacioException, NombreInvalidoException, IdInvalidoException, IdVacioException {
+			TipoPiel tipoPiel) throws NombreVacioException, NombreInvalidoException, IdInvalidoException, IdVacioException, FechaFormatoException {
 		super(id, fechaNacimiento, nombre, raza, cuidados, motivoAlta, motivoBaja, fechaAlta, fechaBaja, dieta);
 		this.tipoPiel = tipoPiel;
 	}
@@ -28,7 +29,7 @@ public class Reptil extends Animal{
 	//alta reptil
 	public Reptil(short id, String nombre, LocalDate fechaNacimiento, Cuidados cuidados,
 			MotivoAlta motivoAlta, LocalDate fechaAlta, Dieta dieta)
-			throws NombreVacioException, NombreInvalidoException, IdInvalidoException, IdVacioException {
+			throws NombreVacioException, NombreInvalidoException, IdInvalidoException, IdVacioException, FechaFormatoException {
 		super(id, nombre, fechaNacimiento, cuidados, motivoAlta, fechaAlta, dieta);
 		this.tipoPiel = tipoPiel;
 	}
@@ -38,7 +39,7 @@ public class Reptil extends Animal{
 	//baja reptil
 	public Reptil(short id, String nombre, LocalDate fechaNacimiento, Cuidados cuidados,
 			MotivoBaja motivoBaja, LocalDate fechaBaja, Dieta dieta)
-			throws NombreVacioException, NombreInvalidoException, IdInvalidoException, IdVacioException {
+			throws NombreVacioException, NombreInvalidoException, IdInvalidoException, IdVacioException, FechaFormatoException {
 		super(id, nombre, fechaNacimiento, cuidados, motivoBaja, fechaBaja, dieta);
 		this.tipoPiel = tipoPiel;
 	}
