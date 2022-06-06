@@ -11,13 +11,14 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
 import java.awt.Color;
+import javax.swing.JPasswordField;
 
 public class PantallaLogin extends JPanel{
 
 	
 	private Ventana ventana;
-	private JTextField textUsuario;
-	private JTextField textContrasena;
+	private JTextField campoUsuario;
+	private JPasswordField campoContrasena;
 	
 	
 	public PantallaLogin(Ventana v) {
@@ -31,6 +32,10 @@ public class PantallaLogin extends JPanel{
 				ventana.cambiarPantalla("menu");
 			}
 		});
+		
+		campoContrasena = new JPasswordField();
+		campoContrasena.setBounds(326, 444, 141, 20);
+		add(campoContrasena);
 		botonIngresar.setBounds(247, 474, 308, 32);
 		add(botonIngresar);
 		
@@ -50,11 +55,11 @@ public class PantallaLogin extends JPanel{
 		botonAtras.setBounds(48, 419, 103, 49);
 		add(botonAtras);
 		
-		textUsuario = new JTextField();
-		textUsuario.setHorizontalAlignment(SwingConstants.LEFT);
-		textUsuario.setBounds(287, 376, 217, 20);
-		add(textUsuario);
-		textUsuario.setColumns(10);
+		campoUsuario = new JTextField();
+		campoUsuario.setHorizontalAlignment(SwingConstants.LEFT);
+		campoUsuario.setBounds(287, 376, 217, 20);
+		add(campoUsuario);
+		campoUsuario.setColumns(10);
 		
 		JLabel usuario = new JLabel("Usuario");
 		usuario.setForeground(Color.WHITE);
@@ -68,12 +73,6 @@ public class PantallaLogin extends JPanel{
 		contraseña.setFont(new Font("Arial", Font.BOLD, 14));
 		contraseña.setBounds(356, 419, 103, 14);
 		add(contraseña);
-		
-		textContrasena = new JTextField();
-		textContrasena.setHorizontalAlignment(SwingConstants.LEFT);
-		textContrasena.setBounds(315, 444, 158, 20);
-		add(textContrasena);
-		textContrasena.setColumns(10);
 		
 		JLabel background = new JLabel("");
 		background.setHorizontalAlignment(SwingConstants.CENTER);

@@ -12,18 +12,47 @@ import Excepciones.IdVacioException;
 import Excepciones.NombreInvalidoException;
 import Excepciones.NombreVacioException;
 import Superclases.EntidadConIdFechaYNombre;
+import Utils.UtilsDB;
+
 
 public class Usuario extends EntidadConIdFechaYNombre{
 	
 	private String apellidos;
 	private String contrasena;
 	
-	public Usuario(String nombre, String apellidos, String id, String contrasena,LocalDate fechaNacimiento) throws ContrasenaVaciaException, ContrasenaLargaException,
+	public Usuario(String nombre, String apellidos, short id, String contrasena,LocalDate fechaNacimiento) throws ContrasenaVaciaException, ContrasenaLargaException,
 	ContrasenaInvalidaException, NombreInvalidoException, IdInvalidoException, NombreVacioException, IdVacioException{
 		super(id, fechaNacimiento, nombre);
 		this.apellidos = apellidos;
 		this.setContrasena(contrasena);
 	}
+	
+
+	
+
+
+
+	public Usuario(LocalDate fechaNacimiento, String nombre, String apellidos, String contrasena)
+			throws NombreVacioException, NombreInvalidoException, IdInvalidoException, IdVacioException, SQLException {
+		super(fechaNacimiento, nombre);
+		
+		Statement query = UtilsDB.conectarBD();
+		
+		if(query.executeUpdate("insert into usuarios values('"+nombre+"','"+apellidos+"','"+fechaNacimiento+"','"+contrasena+"'"+")")>0)
+		//"insert into mascota values('"+numeroChip+"','"+raza+"','"+nombre+"','"+humano.getNombre()+"'"+")")>0
+			{
+			this.apellidos = apellidos;
+			this.contrasena = contrasena;		
+		}else {
+			throw new SQLException("No se ha podido insertar la mascota.");
+		}
+	}
+	
+
+
+
+
+
 
 	public String getApellidos() {
 		return apellidos;

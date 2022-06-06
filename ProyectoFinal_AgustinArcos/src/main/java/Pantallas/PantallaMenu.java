@@ -19,16 +19,24 @@ public class PantallaMenu extends JPanel{
 		setLayout(null);
 		setSize (800,600);
 		
+		JButton botonAlimentos = new JButton("ALIMENTOS");
+		botonAlimentos.setBounds(464, 422, 107, 42);
+		add(botonAlimentos);
+		
+		JButton botonRefugio = new JButton("REFUGIO");
+		botonRefugio.setBounds(205, 424, 108, 40);
+		add(botonRefugio);
+		
 		JComboBox comboBaja = new JComboBox();
-		comboBaja.setModel(new DefaultComboBoxModel(new String[] {"Anfibio", "Primate", "Reptil"}));
-		comboBaja.setMaximumRowCount(3);
+		comboBaja.setModel(new DefaultComboBoxModel(new String[] {"...", "Anfibio", "Primate", "Reptil"}));
+		comboBaja.setMaximumRowCount(4);
 		comboBaja.setBounds(217, 257, 144, 22);
 		add(comboBaja);
 		
 		JComboBox comboAlta = new JComboBox();
-		comboAlta.setModel(new DefaultComboBoxModel(new String[] {"Anfibio", "Primate", "Reptil"}));
+		comboAlta.setModel(new DefaultComboBoxModel(new String[] {"...", "Anfibio", "Primate", "Reptil"}));
 		comboAlta.setToolTipText("");
-		comboAlta.setMaximumRowCount(3);
+		comboAlta.setMaximumRowCount(4);
 		comboAlta.setBounds(213, 178, 145, 22);
 		add(comboAlta);
 		
@@ -37,7 +45,7 @@ public class PantallaMenu extends JPanel{
 		bakcground.setBounds(45, 252, 139, 33);
 		add(bakcground);
 		
-		JButton btnNewButton = new JButton("DAR DE ALTA ANIAML");
+		JButton btnNewButton = new JButton("DAR DE ALTA ANIMAL");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				

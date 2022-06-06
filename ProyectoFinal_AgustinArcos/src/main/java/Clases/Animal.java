@@ -15,7 +15,7 @@ import Superclases.EntidadConIdFechaYNombre;
 public class Animal extends EntidadConIdFechaYNombre{
 
 	private TipoRaza raza;
-	private ArrayList <Cuidados> cuidados;
+	private Cuidados cuidados;
 	private MotivoAlta motivoAlta;
 	private MotivoBaja motivoBaja;
 	private LocalDate fechaAlta;
@@ -23,7 +23,7 @@ public class Animal extends EntidadConIdFechaYNombre{
 	private Dieta dieta;
 	
 	
-	public Animal(String id, LocalDate fechaNacimiento, String nombre, TipoRaza raza, ArrayList<Cuidados> cuidados,
+	public Animal(short id, LocalDate fechaNacimiento, String nombre, TipoRaza raza, Cuidados cuidados,
 			MotivoAlta motivoAlta, MotivoBaja motivoBaja, LocalDate fechaAlta, LocalDate fechaBaja, Dieta dieta) 
 					throws NombreVacioException, NombreInvalidoException, IdInvalidoException, IdVacioException {
 		super(id, fechaNacimiento, nombre);
@@ -35,8 +35,30 @@ public class Animal extends EntidadConIdFechaYNombre{
 		this.fechaBaja = fechaBaja;
 		this.dieta = dieta;
 	}
-
-
+	
+	//alta de animal
+	public Animal(short id, String nombre, LocalDate fechaNacimiento, Cuidados cuidados,
+			MotivoAlta motivoAlta, LocalDate fechaAlta, Dieta dieta) 
+					throws NombreVacioException, NombreInvalidoException, IdInvalidoException, IdVacioException {
+		super(id, fechaNacimiento, nombre);
+		this.cuidados = cuidados;
+		this.motivoAlta = motivoAlta;
+		this.fechaAlta = fechaAlta;
+		this.dieta = dieta;
+	}
+	
+	//BAJA de animal
+		public Animal(short id, String nombre, LocalDate fechaNacimiento, Cuidados cuidados,
+				MotivoBaja motivoBaja, LocalDate fechaBaja, Dieta dieta) 
+						throws NombreVacioException, NombreInvalidoException, IdInvalidoException, IdVacioException {
+			super(id, fechaNacimiento, nombre);
+			this.cuidados = cuidados;
+			this.dieta = dieta;
+		}
+		
+		
+		
+		
 	public TipoRaza getRaza() {
 		return raza;
 	}
@@ -47,12 +69,12 @@ public class Animal extends EntidadConIdFechaYNombre{
 	}
 
 
-	public ArrayList<Cuidados> getCuidados() {
+	public Cuidados getCuidados() {
 		return cuidados;
 	}
 
 
-	public void setCuidados(ArrayList<Cuidados> cuidados) {
+	public void setCuidados(Cuidados cuidados) {
 		this.cuidados = cuidados;
 	}
 

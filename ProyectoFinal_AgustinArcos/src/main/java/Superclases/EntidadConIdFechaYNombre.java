@@ -10,33 +10,36 @@ import Excepciones.NombreVacioException;
 
 public class  EntidadConIdFechaYNombre  {
 	
-	private String id;
+	private short id;
 	private LocalDate fechaNacimiento;
 	private String nombre;
 	
-	public EntidadConIdFechaYNombre(String id, LocalDate fechaNacimiento, String nombre) 
+	public EntidadConIdFechaYNombre(short id, LocalDate fechaNacimiento, String nombre) 
 			throws NombreVacioException,NombreInvalidoException, IdInvalidoException, IdVacioException{
 		super();
 		this.setId(id);
 		this.fechaNacimiento = fechaNacimiento;
 		this.setNombre(nombre);
 	}
-	public String getId() {
+	
+	
+	
+	public EntidadConIdFechaYNombre(LocalDate fechaNacimiento, String nombre) {
+		super();
+		this.fechaNacimiento = fechaNacimiento;
+		this.nombre = nombre;
+	}
+
+
+
+	public short getId() {
 		return id;
 	}
-	public void setId(String id) throws IdVacioException, IdInvalidoException{
-		if(id == "") {
-			throw new IdVacioException ("Error. ID no puede estar vacío.");
-		}else {
-			this.id = id;
-		}
-		if(id != id) {
-			throw new IdInvalidoException ("Error. ID incorrecto.");
-		}else {
+	public void setId(short id) throws IdVacioException, IdInvalidoException{
+		
 			this.id=id;
 		}
 		
-	}
 	public LocalDate getFechaNacimiento() {
 		return fechaNacimiento;
 	}

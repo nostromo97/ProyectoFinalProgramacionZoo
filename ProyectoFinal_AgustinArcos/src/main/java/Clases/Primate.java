@@ -15,16 +15,38 @@ public class Primate extends Animal{
 
 	private boolean genero;
 
-	public Primate(String id, LocalDate fechaNacimiento, String nombre, TipoRaza raza, ArrayList<Cuidados> cuidados,
+	public Primate(short id, LocalDate fechaNacimiento, String nombre, TipoRaza raza, Cuidados cuidados,
 			MotivoAlta motivoAlta, MotivoBaja motivoBaja, LocalDate fechaAlta, LocalDate fechaBaja, Dieta dieta,
 			boolean genero) throws NombreVacioException, NombreInvalidoException, IdInvalidoException, IdVacioException {
 		super(id, fechaNacimiento, nombre, raza, cuidados, motivoAlta, motivoBaja, fechaAlta, fechaBaja, dieta);
 		this.genero = genero;
 	}
+	//alta primate
+	public Primate(short id, String nombre, LocalDate fechaNacimiento, Cuidados cuidados,
+			MotivoAlta motivoAlta, LocalDate fechaAlta, Dieta dieta)
+			throws NombreVacioException, NombreInvalidoException, IdInvalidoException, IdVacioException {
+		super(id, nombre, fechaNacimiento, cuidados, motivoAlta, fechaAlta, dieta);
+		// TODO Auto-generated constructor stub
+	}
+
+
+	//baja primate
+	public Primate(short id, String nombre, LocalDate fechaNacimiento, Cuidados cuidados,
+			MotivoBaja motivoBaja, LocalDate fechaBaja, Dieta dieta)
+			throws NombreVacioException, NombreInvalidoException, IdInvalidoException, IdVacioException {
+		super(id, nombre, fechaNacimiento, cuidados, motivoBaja, fechaBaja, dieta);
+		// TODO Auto-generated constructor stub
+	}	
+
+	
 
 	public boolean isGenero() {
 		return genero;
 	}
+
+
+
+
 
 	public void setGenero(boolean genero) {
 		this.genero = genero;
