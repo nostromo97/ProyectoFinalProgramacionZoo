@@ -20,6 +20,11 @@ public class PantallaMenu extends JPanel{
 		setSize (800,600);
 		
 		JButton botonAlimentos = new JButton("ALIMENTOS");
+		botonAlimentos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ventana.cambiarPantalla("alimentos");	
+			}
+		});
 		botonAlimentos.setBounds(464, 422, 107, 42);
 		add(botonAlimentos);
 		
