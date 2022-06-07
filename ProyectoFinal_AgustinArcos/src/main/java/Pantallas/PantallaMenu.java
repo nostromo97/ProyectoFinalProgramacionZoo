@@ -2,6 +2,7 @@ package Pantallas;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Color;
@@ -44,31 +45,52 @@ public class PantallaMenu extends JPanel{
 		JComboBox comboBaja = new JComboBox();
 		comboBaja.setModel(new DefaultComboBoxModel(new String[] {"...", "Anfibio", "Primate", "Reptil"}));
 		comboBaja.setMaximumRowCount(4);
-		comboBaja.setBounds(217, 257, 144, 22);
+		comboBaja.setBounds(369, 257, 144, 22);
 		add(comboBaja);
 		
-		JComboBox comboAlta = new JComboBox();
+		final JComboBox comboAlta = new JComboBox();
 		comboAlta.setModel(new DefaultComboBoxModel(new String[] {"...", "Anfibio", "Primate", "Reptil"}));
+		
 		comboAlta.setToolTipText("");
 		comboAlta.setMaximumRowCount(4);
-		comboAlta.setBounds(213, 178, 145, 22);
+		comboAlta.setBounds(369, 178, 145, 22);
 		add(comboAlta);
 		
-		JButton bakcground = new JButton("DAR DE BAJA ANIMAL");
-		bakcground.setBackground(Color.RED);
-		bakcground.setBounds(45, 252, 139, 33);
-		add(bakcground);
+
 		
-		JButton btnNewButton = new JButton("DAR DE ALTA ANIMAL");
-		btnNewButton.addActionListener(new ActionListener() {
+		
+		JButton botonBaja = new JButton("DAR DE BAJA ANIMAL");
+		botonBaja.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(comboAlta.getSelectedItem().equals("...")) {
+					JOptionPane.showMessageDialog(ventana, "Selecciona un animal", "Error", JOptionPane.ERROR_MESSAGE);
+				}
 				
 			}
 		});
-		btnNewButton.setBackground(Color.GREEN);
-		btnNewButton.setForeground(Color.BLACK);
-		btnNewButton.setBounds(45, 173, 139, 33);
-		add(btnNewButton);
+		botonBaja.setBackground(Color.RED);
+		botonBaja.setBounds(89, 252, 234, 33);
+		add(botonBaja); 
+		
+		JButton botonAlta = new JButton("DAR DE ALTA ANIMAL");
+		botonAlta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(comboAlta.getSelectedItem().equals("Anfibio")) {
+					ventana.cambiarPantalla("altaAnfibio");
+				}else if(comboAlta.getSelectedItem().equals("Primate")) {
+					ventana.cambiarPantalla("altaPrimate");
+				}else if(comboAlta.getSelectedItem().equals("Reptil")) {
+					ventana.cambiarPantalla("altaReptil");
+				}else if(comboAlta.getSelectedItem().equals("...")) {
+					JOptionPane.showMessageDialog(ventana, "Selecciona un animal", "Error", JOptionPane.ERROR_MESSAGE);
+				}
+				
+			}
+		});
+		botonAlta.setBackground(Color.GREEN);
+		botonAlta.setForeground(Color.BLACK);
+		botonAlta.setBounds(89, 173, 234, 33);
+		add(botonAlta);
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\carol\\Documents\\Eclipse-WORKSPACE\\ProyectoFinalProgramacionZoo\\ProyectoFinal_AgustinArcos\\fotos\\BACKGROUND.jpg"));

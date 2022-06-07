@@ -1,5 +1,7 @@
 package Clases;
 
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -13,13 +15,14 @@ import Excepciones.IdInvalidoException;
 import Excepciones.IdVacioException;
 import Excepciones.NombreInvalidoException;
 import Excepciones.NombreVacioException;
+import Utils.UtilsDB;
 
 public class Anfibio extends Animal{
 
 	private TipoOrden tipoOrden;
 	private TipoAmbiente tipoAmbiente;
 	
-	public Anfibio(short id, LocalDate fechaNacimiento, String nombre, TipoRaza raza, Cuidados cuidados,
+	public Anfibio(short id, LocalDate fechaNacimiento, String nombre, TipoRaza raza, String cuidados,
 			MotivoAlta motivoAlta, MotivoBaja motivoBaja, LocalDate fechaAlta, LocalDate fechaBaja, Dieta dieta,
 			TipoOrden tipoOrden, TipoAmbiente tipoAmbiente) throws NombreVacioException, NombreInvalidoException, IdInvalidoException, IdVacioException, FechaFormatoException {
 		super(id, fechaNacimiento, nombre, raza, cuidados, motivoAlta, motivoBaja, fechaAlta, fechaBaja, dieta);
@@ -28,35 +31,26 @@ public class Anfibio extends Animal{
 	}
 	
 	
-	
-	
+	public Anfibio (String nombre, LocalDate fechaNacimiento, MotivoAlta motivoAlta, LocalDate fechaAlta, boolean genero,
+			String cuidados) throws NombreVacioException, NombreInvalidoException, FechaFormatoException, SQLException {
+		super(nombre, fechaNacimiento, motivoAlta, fechaAlta, cuidados);
+		
+		Statement query = UtilsDB.conectarBD();
 
+		if (query.executeUpdate("insert into usuarios values(null,'" + nombre + "','" + fechaNacimiento + "','"
+				+ motivoAlta + "','" + fechaAlta + "'" + "','" + tipoOrden + "'" + "','" + tipoAmbiente + "'"+"','" + cuidados + "'" +")") > 0)
 
-
-
-
-	public Anfibio(short id, String nombre, LocalDate fechaNacimiento, Cuidados cuidados,
-			MotivoAlta motivoAlta, LocalDate fechaAlta, Dieta dieta, TipoOrden tipoOrden, TipoAmbiente tipoAmbiente)
-			throws NombreVacioException, NombreInvalidoException, IdInvalidoException, IdVacioException, FechaFormatoException {
-		super(id, nombre, fechaNacimiento, cuidados, motivoAlta, fechaAlta, dieta);
-		this.tipoAmbiente = tipoAmbiente;
-		this.tipoOrden = tipoOrden;
-	}
-
-
-
-
-
-
-
-
-
-	public Anfibio(short id, String nombre, LocalDate fechaNacimiento, Cuidados cuidados,
-			MotivoBaja motivoBaja, LocalDate fechaBaja, Dieta dieta,TipoOrden tipoOrden, TipoAmbiente tipoAmbiente)
-			throws NombreVacioException, NombreInvalidoException, IdInvalidoException, IdVacioException, FechaFormatoException {
-		super(id, nombre, fechaNacimiento, cuidados, motivoBaja, fechaBaja, dieta);
-		this.tipoAmbiente = tipoAmbiente;
-		this.tipoOrden = tipoOrden;
+		{
+			this.tipoOrden = tipoOrden;
+			this.tipoAmbiente = tipoAmbiente;
+		} else {
+			throw new SQLException("No se ha podido insertar el usuario");
+		}
+		UtilsDB.desconectarBD();
+		
+		
+		
+		
 	}
 
 

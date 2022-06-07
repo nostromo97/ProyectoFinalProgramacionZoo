@@ -45,6 +45,24 @@ public class Ventana extends JFrame{
 		case "alimentos":
 			this.pantallaActual = new PantallaAlimentos(this);
 			break;
+		case "altaPrimate":
+			this.pantallaActual = new PantallaAltaPrimate(this);
+			break;
+		case "bajaPrimate":
+			this.pantallaActual = new PantallaBajaPrimate(this);
+			break;
+		case "altaAnfibio":
+			this.pantallaActual = new PantallaAltaAnfibio(this);
+			break;
+		case "bajaAnfibio":
+			this.pantallaActual = new PantallaBajaAnfibio(this);
+			break;
+		case "altaReptil":
+			this.pantallaActual = new PantallaAltaReptil(this);
+			break;
+		case "bajaReptil":
+			this.pantallaActual = new PantallaBajaReptil(this);
+			break;
 		}
 		this.pantallaActual.setVisible(true);
 		this.setContentPane(pantallaActual);

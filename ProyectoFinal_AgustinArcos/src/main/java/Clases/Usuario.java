@@ -106,23 +106,6 @@ public class Usuario extends EntidadConIdFechaYNombre {
 			this.contrasena = contrasena;
 		}
 	}
-	/*
-	 * public Usuario obtenerUsuario(Usuario usu) { Usuario usuario = null;
-	 * 
-	 * Connection con = null; PreparedStatement pst = null; ResultSet rs = null; try
-	 * {
-	 * 
-	 * con=(Connection) UtilsDB.conectarBD(); String sql
-	 * ="select*from usuarios where usuarios = ? and contrasena = ?"; pst =
-	 * con.prepareStatement(sql); pst.setString(1, usu.getNombre());
-	 * pst.setString(2, usu.getContrasena());
-	 * 
-	 * rs = pst.executeQuery();
-	 * 
-	 * while(rs.next()) { usuario = new Usuario(sql, sql, id, sql, fechaNacimiento);
-	 * } } catch(Exception e) {
-	 * 
-	 * } return usuario; }
-	 */
+
 
 }

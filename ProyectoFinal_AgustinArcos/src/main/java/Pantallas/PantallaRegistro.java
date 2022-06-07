@@ -123,7 +123,7 @@ public class PantallaRegistro extends JPanel{
 			
 					Usuario user1 = new Usuario(nombreUsuario,apellidosUsuario,contrasena,fechaNacimiento);
 					//JOPTION PANE QUE DIGA REGISTRO EXITOSO DE TIPO OK_MESSAGE
-					JOptionPane.showMessageDialog(ventana, "Registro exitoso", "Éxito", JOptionPane.YES_NO_OPTION);
+					JOptionPane.showMessageDialog(ventana, "Registro exitoso", "Éxito", JOptionPane.INFORMATION_MESSAGE);
 					//IR A PANTALLA METER ANIMALES
 					ventana.cambiarPantalla("atras");
 				} catch (NombreVacioException e1) {

@@ -22,7 +22,7 @@ public class Dieta extends Animal{
 	private ArrayList<Alimento> dietaSábado;
 	private ArrayList<Alimento> dietaDomingo;
 	
-	public Dieta(short id, LocalDate fechaNacimiento, String nombre, TipoRaza raza, Cuidados cuidados,
+	public Dieta(short id, LocalDate fechaNacimiento, String nombre, TipoRaza raza, String cuidados,
 			MotivoAlta motivoAlta, MotivoBaja motivoBaja, LocalDate fechaAlta, LocalDate fechaBaja, Dieta dieta,
 			ArrayList<Alimento> dietaLunes, ArrayList<Alimento> dietaMartes, ArrayList<Alimento> dietaMiércoles,
 			ArrayList<Alimento> dietaJueves, ArrayList<Alimento> dietaViernes, ArrayList<Alimento> dietaSábado,

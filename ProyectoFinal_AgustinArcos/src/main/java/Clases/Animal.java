@@ -16,15 +16,17 @@ import Superclases.EntidadConIdFechaYNombre;
 public class Animal extends EntidadConIdFechaYNombre{
 
 	private TipoRaza raza;
-	private Cuidados cuidados;
+	//private Cuidados cuidados;
+	private String cuidados;
 	private MotivoAlta motivoAlta;
 	private MotivoBaja motivoBaja;
 	private LocalDate fechaAlta;
 	private LocalDate fechaBaja;
 	private Dieta dieta;
+	private boolean genero;
 	
 	
-	public Animal(short id, LocalDate fechaNacimiento, String nombre, TipoRaza raza, Cuidados cuidados,
+	public Animal(short id, LocalDate fechaNacimiento, String nombre, TipoRaza raza, String cuidados,
 			MotivoAlta motivoAlta, MotivoBaja motivoBaja, LocalDate fechaAlta, LocalDate fechaBaja, Dieta dieta) 
 					throws NombreVacioException, NombreInvalidoException, IdInvalidoException, IdVacioException, FechaFormatoException {
 		super(id, fechaNacimiento, nombre);
@@ -37,29 +39,37 @@ public class Animal extends EntidadConIdFechaYNombre{
 		this.dieta = dieta;
 	}
 	
-	//alta de animal
-	public Animal(short id, String nombre, LocalDate fechaNacimiento, Cuidados cuidados,
-			MotivoAlta motivoAlta, LocalDate fechaAlta, Dieta dieta) 
-					throws NombreVacioException, NombreInvalidoException, IdInvalidoException, IdVacioException, FechaFormatoException {
-		super(id, fechaNacimiento, nombre);
-		this.cuidados = cuidados;
-		this.motivoAlta = motivoAlta;
-		this.fechaAlta = fechaAlta;
-		this.dieta = dieta;
-	}
 	
-	//BAJA de animal
-		public Animal(short id, String nombre, LocalDate fechaNacimiento, Cuidados cuidados,
-				MotivoBaja motivoBaja, LocalDate fechaBaja, Dieta dieta) 
-						throws NombreVacioException, NombreInvalidoException, IdInvalidoException, IdVacioException, FechaFormatoException {
-			super(id, fechaNacimiento, nombre);
-			this.cuidados = cuidados;
-			this.dieta = dieta;
-		}
-		
-		
-		
-		
+	//ALTA animal
+public Animal(String nombre,LocalDate fechaNacimiento,  MotivoAlta motivoAlta, LocalDate fechaAlta, String cuidados
+		) throws NombreVacioException, NombreInvalidoException, FechaFormatoException {
+	super(fechaNacimiento, nombre);
+	this.cuidados = cuidados;
+	this.motivoAlta = motivoAlta;
+	this.fechaAlta = fechaAlta;
+}
+
+	public Animal(String nombre, LocalDate fechaNacimiento, Cuidados cuidados, MotivoAlta motivoAlta, LocalDate fechaAlta, boolean genero) throws NombreVacioException, NombreInvalidoException, FechaFormatoException {
+		super(fechaNacimiento,nombre);
+		this.genero=genero;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	public TipoRaza getRaza() {
 		return raza;
 	}
@@ -70,12 +80,12 @@ public class Animal extends EntidadConIdFechaYNombre{
 	}
 
 
-	public Cuidados getCuidados() {
+	public String getCuidados() {
 		return cuidados;
 	}
 
 
-	public void setCuidados(Cuidados cuidados) {
+	public void setCuidados(String cuidados) {
 		this.cuidados = cuidados;
 	}
 

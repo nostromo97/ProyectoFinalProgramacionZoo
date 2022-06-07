@@ -12,6 +12,7 @@ import javax.swing.DefaultComboBoxModel;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.JRadioButton;
 
 public class PantallaAltaAnfibio extends JPanel{
 	
@@ -33,6 +34,42 @@ public class PantallaAltaAnfibio extends JPanel{
 				
 			}
 		});
+		
+		JButton btnAtras = new JButton("Volver");
+		btnAtras.setBackground(Color.ORANGE);
+		btnAtras.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ventana.cambiarPantalla("menu");
+			}
+		});
+		
+		JButton btnMotivoAlta = new JButton("Seleccionar");
+		btnMotivoAlta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		btnMotivoAlta.setBounds(451, 259, 97, 23);
+		add(btnMotivoAlta);
+		
+		JRadioButton rdbtnAmbiente2 = new JRadioButton("Seco");
+		rdbtnAmbiente2.setBounds(78, 498, 67, 23);
+		add(rdbtnAmbiente2);
+		
+		JRadioButton rdbtnAmbiente1 = new JRadioButton("Acu\u00E1tico");
+		rdbtnAmbiente1.setBounds(78, 472, 67, 23);
+		add(rdbtnAmbiente1);
+		
+		JRadioButton rdbtnOrden1 = new JRadioButton("Anura");
+		rdbtnOrden1.setBounds(72, 359, 91, 23);
+		add(rdbtnOrden1);
+		
+		JRadioButton rdbtnOrden2 = new JRadioButton("Caudata");
+		rdbtnOrden2.setBounds(72, 385, 91, 23);
+		add(rdbtnOrden2);
+		btnAtras.setForeground(Color.BLACK);
+		btnAtras.setBounds(629, 53, 89, 77);
+		add(btnAtras);
 		
 		textField_1 = new JTextField();
 		textField_1.setBounds(273, 486, 86, 20);
@@ -60,28 +97,20 @@ public class PantallaAltaAnfibio extends JPanel{
 		lblCuidados.setBounds(232, 362, 67, 14);
 		add(lblCuidados);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"...", "ACU\u00C1TICO", "SECO"}));
-		comboBox.setMaximumRowCount(3);
-		comboBox.setBounds(24, 465, 121, 22);
-		add(comboBox);
+		JRadioButton rdbtnNewRadioButton = new JRadioButton("Gymnophiona");
+		rdbtnNewRadioButton.setBounds(72, 411, 91, 23);
+		add(rdbtnNewRadioButton);
 		
 		JLabel txtAmbiente = new JLabel("AMBIENTE:");
 		txtAmbiente.setFont(new Font("Arial", Font.BOLD, 12));
 		txtAmbiente.setForeground(Color.WHITE);
-		txtAmbiente.setBounds(28, 446, 67, 14);
+		txtAmbiente.setBounds(78, 454, 67, 14);
 		add(txtAmbiente);
-		
-		JComboBox comboOrden = new JComboBox();
-		comboOrden.setModel(new DefaultComboBoxModel(new String[] {"...", "ANURA", "CAUDATA", "GYMNOPHIONA"}));
-		comboOrden.setMaximumRowCount(4);
-		comboOrden.setBounds(21, 403, 127, 22);
-		add(comboOrden);
 		
 		JLabel txtOrden = new JLabel("ORDEN:");
 		txtOrden.setForeground(Color.WHITE);
 		txtOrden.setFont(new Font("Arial", Font.BOLD, 12));
-		txtOrden.setBounds(29, 388, 46, 14);
+		txtOrden.setBounds(81, 343, 46, 14);
 		add(txtOrden);
 		
 		txtFechaAlta = new JTextField();
@@ -110,11 +139,11 @@ public class PantallaAltaAnfibio extends JPanel{
 		JLabel txtAnfibio = new JLabel("ANFIBIO");
 		txtAnfibio.setForeground(Color.WHITE);
 		txtAnfibio.setFont(new Font("Arial Black", Font.BOLD, 20));
-		txtAnfibio.setBounds(559, 245, 127, 42);
+		txtAnfibio.setBounds(604, 245, 127, 42);
 		add(txtAnfibio);
 		
 		JButton botonDieta = new JButton("DIETA");
-		botonDieta.setBounds(505, 384, 89, 23);
+		botonDieta.setBounds(614, 308, 89, 23);
 		add(botonDieta);
 		
 		JLabel txtFechaNacimiento = new JLabel("FECHA NACIMIENTO:");

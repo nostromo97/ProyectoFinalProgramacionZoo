@@ -12,6 +12,7 @@ import javax.swing.DefaultComboBoxModel;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.JRadioButton;
 
 public class PantallaAltaReptil extends JPanel{
 	
@@ -34,10 +35,30 @@ public class PantallaAltaReptil extends JPanel{
 			}
 		});
 		
+		JRadioButton rdbtnPiel2 = new JRadioButton("Caparaz\u00F3n");
+		rdbtnPiel2.setBounds(58, 414, 89, 23);
+		add(rdbtnPiel2);
+		
+		JRadioButton rdbtnPiel1 = new JRadioButton("Escamas");
+		rdbtnPiel1.setBounds(58, 385, 89, 23);
+		add(rdbtnPiel1);
+		
 		JLabel lblDuracion = new JLabel("Duraci\u00F3n:");
 		lblDuracion.setForeground(Color.WHITE);
 		lblDuracion.setBounds(219, 489, 55, 14);
 		add(lblDuracion);
+		
+		
+		JButton btnAtras = new JButton("Volver");
+		btnAtras.setBackground(Color.ORANGE);
+		btnAtras.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ventana.cambiarPantalla("menu");
+			}
+		});
+		btnAtras.setForeground(Color.BLACK);
+		btnAtras.setBounds(629, 53, 89, 77);
+		add(btnAtras);
 		
 		textDuracion = new JTextField();
 		textDuracion.setBounds(278, 486, 86, 20);
@@ -60,16 +81,10 @@ public class PantallaAltaReptil extends JPanel{
 		lblCuidados.setBounds(226, 388, 75, 14);
 		add(lblCuidados);
 		
-		JComboBox comboOrden = new JComboBox();
-		comboOrden.setModel(new DefaultComboBoxModel(new String[] {"...", "ESCAMA", "CAPARAZ\u00D3N"}));
-		comboOrden.setMaximumRowCount(3);
-		comboOrden.setBounds(21, 403, 127, 22);
-		add(comboOrden);
-		
 		JLabel txtOrden = new JLabel("PIEL:");
 		txtOrden.setForeground(Color.WHITE);
 		txtOrden.setFont(new Font("Arial", Font.BOLD, 12));
-		txtOrden.setBounds(29, 388, 46, 14);
+		txtOrden.setBounds(88, 368, 46, 14);
 		add(txtOrden);
 		
 		txtFechaAlta = new JTextField();

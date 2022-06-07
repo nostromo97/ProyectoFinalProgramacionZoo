@@ -89,7 +89,7 @@ public class PantallaLogin extends JPanel{
 				String contrasena = new String (campoContrasena.getPassword());
 				try {
 					Usuario user1 = new Usuario (nombre,contrasena);
-					JOptionPane.showMessageDialog(null, "Login correcto", "Éxito", JOptionPane.OK_OPTION);
+					JOptionPane.showMessageDialog(null, "Login correcto", "Éxito", JOptionPane.INFORMATION_MESSAGE);
 					ventana.cambiarPantalla("menu");
 				} catch (NombreVacioException e1) {
 					JOptionPane.showMessageDialog(null, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);

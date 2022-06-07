@@ -2,52 +2,65 @@ package Pantallas;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Color;
 import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.EnumSet;
 import java.awt.event.ActionEvent;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import Clases.Primate;
+import Clases.Usuario;
+import Excepciones.FechaFormatoException;
+import Excepciones.NombreInvalidoException;
+import Excepciones.NombreVacioException;
+
+import javax.swing.JRadioButton;
+
 public class PantallaAltaPrimate extends JPanel{
 	
 	private Ventana ventana;
 	private JTextField campoNombre;
 	private JTextField campoFechaNacimiento;
-	private JTextField txtFechaAlta;
-	private JTextField textDescripcion;
-	private JTextField textDuracion;
+	private JTextField campoFechaAlta;
+	private JTextField campoDescripcion;
 	
 	public PantallaAltaPrimate(Ventana v) {
 		this.ventana=v;
 		setLayout(null);
 		setSize (800,600);
 		
-		JButton botonDarAlta = new JButton("DAR DE ALTA PRIMATE");
-		botonDarAlta.addActionListener(new ActionListener() {
+		JButton btnAtras = new JButton("Volver");
+		btnAtras.setBackground(Color.ORANGE);
+		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				ventana.cambiarPantalla("menu");
 			}
 		});
 		
-		JLabel lblDuracion = new JLabel("Duraci\u00F3n:");
-		lblDuracion.setForeground(Color.WHITE);
-		lblDuracion.setBounds(241, 477, 46, 14);
-		add(lblDuracion);
 		
-		textDuracion = new JTextField();
-		textDuracion.setBounds(292, 474, 86, 20);
-		add(textDuracion);
-		textDuracion.setColumns(10);
+		JRadioButton rdbtnFemenino = new JRadioButton("Femenino");
+		rdbtnFemenino.setBounds(57, 420, 89, 23);
+		add(rdbtnFemenino);
 		
-		textDescripcion = new JTextField();
-		textDescripcion.setBounds(292, 372, 172, 94);
-		add(textDescripcion);
-		textDescripcion.setColumns(10);
+		JRadioButton rdbtnMasculino = new JRadioButton("Masculino");
+		rdbtnMasculino.setBounds(57, 392, 90, 23);
+		add(rdbtnMasculino);
+		
+		campoDescripcion = new JTextField();
+		campoDescripcion.setBounds(292, 372, 172, 94);
+		add(campoDescripcion);
+		campoDescripcion.setColumns(10);
 		
 		JLabel lblDescripcion = new JLabel("Descripci\u00F3n:");
 		lblDescripcion.setForeground(Color.WHITE);
@@ -60,26 +73,44 @@ public class PantallaAltaPrimate extends JPanel{
 		lblCuidados.setBounds(220, 360, 78, 14);
 		add(lblCuidados);
 		
-		JComboBox comboGenero = new JComboBox();
-		comboGenero.setModel(new DefaultComboBoxModel(new String[] {"...", "MASCULINO", "FEMENINO"}));
-		comboGenero.setMaximumRowCount(3);
-		comboGenero.setBounds(29, 392, 127, 22);
-		add(comboGenero);
-		
 		JLabel txtGenero = new JLabel("G\u00C9NERO:");
+		txtGenero.setHorizontalAlignment(SwingConstants.CENTER);
 		txtGenero.setForeground(Color.WHITE);
 		txtGenero.setFont(new Font("Arial", Font.BOLD, 13));
-		txtGenero.setBounds(34, 375, 78, 14);
+		txtGenero.setBounds(57, 360, 78, 26);
 		add(txtGenero);
 		
-		txtFechaAlta = new JTextField();
-		txtFechaAlta.setBounds(232, 309, 215, 20);
-		add(txtFechaAlta);
-		txtFechaAlta.setColumns(10);
+		campoFechaAlta = new JTextField();
+		campoFechaAlta.setBounds(232, 309, 215, 20);
+		add(campoFechaAlta);
+		campoFechaAlta.setColumns(10);
 		
-		JComboBox comboAlta = new JComboBox();
+		final JComboBox comboAlta = new JComboBox();
+		comboAlta.setModel(new DefaultComboBoxModel(new String[] {"...", "Nacimiento", "Translado"}));
+		comboAlta.setMaximumRowCount(3);
 		comboAlta.setBounds(232, 259, 215, 22);
 		add(comboAlta);
+		
+		JButton btnMotivoAlta = new JButton("Seleccionar");
+		btnMotivoAlta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(comboAlta.getSelectedItem().equals("...")) {
+					JOptionPane.showMessageDialog(ventana, "Selecciona un motivo", "Error", JOptionPane.ERROR_MESSAGE);
+					
+				}else if(comboAlta.getSelectedItem().equals("Nacimiento")) {
+					Enums.MotivoAlta.valueOf(getName());
+				}else if(comboAlta.getSelectedItem().equals("Llegada")) {
+					Enums.MotivoAlta.valueOf(getName());
+				}
+			
+			}
+		});
+		btnMotivoAlta.setBounds(452, 258, 89, 23);
+		add(btnMotivoAlta);
+		btnAtras.setForeground(Color.BLACK);
+		btnAtras.setBounds(629, 53, 89, 77);
+		add(btnAtras);
+		
 		
 		JLabel txFechaAlta = new JLabel("FECHA ALTA:");
 		txFechaAlta.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -98,11 +129,11 @@ public class PantallaAltaPrimate extends JPanel{
 		JLabel txtPrimate = new JLabel("PRIMATE");
 		txtPrimate.setForeground(Color.WHITE);
 		txtPrimate.setFont(new Font("Arial Black", Font.BOLD, 20));
-		txtPrimate.setBounds(559, 245, 127, 42);
+		txtPrimate.setBounds(615, 245, 127, 42);
 		add(txtPrimate);
 		
 		JButton botonDieta = new JButton("DIETA");
-		botonDieta.setBounds(521, 392, 89, 23);
+		botonDieta.setBounds(485, 392, 89, 23);
 		add(botonDieta);
 		
 		JLabel txtFechaNacimiento = new JLabel("FECHA NACIMIENTO:");
@@ -121,7 +152,41 @@ public class PantallaAltaPrimate extends JPanel{
 		txtNombre.setFont(new Font("Arial", Font.BOLD, 14));
 		txtNombre.setBounds(158, 177, 67, 14);
 		add(txtNombre);
-		
+		JButton botonDarAlta = new JButton("DAR DE ALTA PRIMATE");
+		botonDarAlta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					String nombrePrimate = campoNombre.getText();
+					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+					LocalDate fechaNacimiento = LocalDate.parse(campoFechaNacimiento.getText(),formatter);
+					LocalDate fechaAlta = LocalDate.parse(campoFechaAlta.getText(),formatter);
+					String tratamientoDescripcion = campoDescripcion.getText();
+					
+					
+				
+						Primate primate1 = new Primate(nombrePrimate,fechaNacimiento,null, fechaAlta,getAutoscrolls(), tratamientoDescripcion);
+						//JOPTION PANE QUE DIGA REGISTRO EXITOSO DE TIPO OK_MESSAGE
+						JOptionPane.showMessageDialog(ventana, "Registro exitoso", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+						//IR A PANTALLA METER ANIMALES
+						ventana.cambiarPantalla("atras");
+					} catch (NombreVacioException e1) {
+						JOptionPane.showMessageDialog(null, "Nombre Vacio", "Error", JOptionPane.WARNING_MESSAGE);
+					} catch (NombreInvalidoException e1) {
+						JOptionPane.showMessageDialog(null, "El nombre no puede contener números.", "Error", JOptionPane.ERROR_MESSAGE);
+						e1.printStackTrace();
+					} catch (SQLException e1) {
+						JOptionPane.showMessageDialog(null, "Error SQL", "Error", JOptionPane.ERROR_MESSAGE);
+					} catch (FechaFormatoException e1) {
+						JOptionPane.showMessageDialog(null, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+					} catch(DateTimeParseException e1) {
+						JOptionPane.showMessageDialog(null, "Error. Introduce la fecha en un formato: dd-MM-YYYY (día, mes, año)", "Error", JOptionPane.ERROR_MESSAGE);
+					}
+				
+				 
+				
+				
+			}
+		});
 		campoNombre = new JTextField();
 		campoNombre.setBounds(230, 174, 217, 20);
 		add(campoNombre);
