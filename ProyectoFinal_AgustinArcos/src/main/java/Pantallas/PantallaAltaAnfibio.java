@@ -112,6 +112,8 @@ public class PantallaAltaAnfibio extends JPanel{
 		campoFechaAlta.setColumns(10);
 		
 		final JComboBox comboAlta = new JComboBox();
+		comboAlta.setModel(new DefaultComboBoxModel(new String[] {"...", "Nacimiento", "Llegada"}));
+		comboAlta.setMaximumRowCount(3);
 		comboAlta.setBounds(232, 259, 215, 22);
 		add(comboAlta);
 		

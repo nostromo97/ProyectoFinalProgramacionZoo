@@ -37,7 +37,7 @@ public class Anfibio extends Animal{
 		
 		Statement query = UtilsDB.conectarBD();
 
-		if(query.executeUpdate("insert into altaReptil values(null,'"+nombre+"','"+fechaNacimiento+"','"+motivoAlta+"','"+fechaAlta+"',"+tipoOrden+",'"+tipoAmbiente+"','"+cuidados+"')")>0)
+		if(query.executeUpdate("insert into altaAnfibio values(null,'"+nombre+"','"+fechaNacimiento+"','"+motivoAlta+"','"+fechaAlta+"',"+tipoOrden+","+tipoAmbiente+",'"+cuidados+"')")>0)
 		{
 			this.tipoOrden = tipoOrden;
 			this.tipoAmbiente = tipoAmbiente;
