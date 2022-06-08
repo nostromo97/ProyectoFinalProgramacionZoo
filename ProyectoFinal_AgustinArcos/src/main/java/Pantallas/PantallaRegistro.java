@@ -19,6 +19,7 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 
 import Clases.Usuario;
+import Excepciones.ContrasenaVaciaException;
 import Excepciones.FechaFormatoException;
 import Excepciones.IdInvalidoException;
 import Excepciones.IdVacioException;
@@ -137,6 +138,9 @@ public class PantallaRegistro extends JPanel{
 					JOptionPane.showMessageDialog(null, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 				} catch(DateTimeParseException e1) {
 					JOptionPane.showMessageDialog(null, "Error. Introduce la fecha en un formato: dd-MM-YYYY (día, mes, año)", "Error", JOptionPane.ERROR_MESSAGE);
+				} catch (ContrasenaVaciaException e1) {
+					JOptionPane.showMessageDialog(null, "La contraseña no puede estar vacía.","Error",JOptionPane.ERROR_MESSAGE);
+					e1.printStackTrace();
 				}
 
 				 

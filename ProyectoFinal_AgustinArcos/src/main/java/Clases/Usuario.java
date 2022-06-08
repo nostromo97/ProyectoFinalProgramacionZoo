@@ -34,7 +34,7 @@ public class Usuario extends EntidadConIdFechaYNombre {
 
 //Insertar usuario en la base de datos.
 	public Usuario(String nombre, String apellidos, String contrasena, LocalDate fechaNacimiento)
-			throws NombreVacioException, NombreInvalidoException, SQLException, FechaFormatoException {
+			throws NombreVacioException, NombreInvalidoException, SQLException, FechaFormatoException, ContrasenaVaciaException {
 		super(fechaNacimiento, nombre);
 
 		Statement query = UtilsDB.conectarBD();
@@ -52,7 +52,7 @@ public class Usuario extends EntidadConIdFechaYNombre {
 	}
 
 	public Usuario(String nombre, String contrasena)
-			throws NombreVacioException, NombreInvalidoException, SQLException, ContrasenaInvalidaException {
+			throws NombreVacioException, NombreInvalidoException, SQLException, ContrasenaInvalidaException, ContrasenaVaciaException {
 		super(nombre);
 		Scanner sc = new Scanner(System.in);
 		Statement smt = UtilsDB.conectarBD();
@@ -87,9 +87,9 @@ public class Usuario extends EntidadConIdFechaYNombre {
 	}
 
 	public void setContrasena(String contrasena)
-			throws ContrasenaInvalidaException, NombreVacioException, ContrasenaLargaException {
-		if (this.contrasena == "") {
-			throw new NombreVacioException("Error. El campo contraseña no puede estar vacío.");
+			throws ContrasenaInvalidaException, NombreVacioException, ContrasenaLargaException, ContrasenaVaciaException {
+		if (this.contrasena.isEmpty()) {
+			throw new ContrasenaVaciaException("Error. El campo contraseña no puede estar vacío.");
 		} else {
 			this.contrasena = contrasena;
 		}

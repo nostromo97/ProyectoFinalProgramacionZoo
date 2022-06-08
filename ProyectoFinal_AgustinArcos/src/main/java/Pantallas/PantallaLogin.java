@@ -15,6 +15,7 @@ import javax.swing.SwingConstants;
 
 import Clases.Usuario;
 import Excepciones.ContrasenaInvalidaException;
+import Excepciones.ContrasenaVaciaException;
 import Excepciones.FechaFormatoException;
 import Excepciones.NombreInvalidoException;
 import Excepciones.NombreVacioException;
@@ -102,6 +103,9 @@ public class PantallaLogin extends JPanel{
 					e1.printStackTrace();
 				} catch (ContrasenaInvalidaException e1) {
 					JOptionPane.showMessageDialog(null, "Contraseña no válida", "Error", JOptionPane.ERROR_MESSAGE);
+					e1.printStackTrace();
+				} catch (ContrasenaVaciaException e1) {
+					JOptionPane.showMessageDialog(null, "La contraseña no puede estar vacía", "Error", JOptionPane.ERROR_MESSAGE);
 					e1.printStackTrace();
 				}
 			}
