@@ -21,7 +21,7 @@ public class  EntidadConIdFechaYNombre  {
 			throws NombreVacioException,NombreInvalidoException, FechaFormatoException{
 		super();
 		this.setId(id);
-		this.fechaNacimiento = fechaNacimiento;
+		this.setFechaNacimiento(fechaNacimiento);
 		this.setNombre(nombre);
 	}
 	
@@ -29,7 +29,7 @@ public class  EntidadConIdFechaYNombre  {
 	
 	public EntidadConIdFechaYNombre(LocalDate fechaNacimiento, String nombre) throws NombreVacioException, NombreInvalidoException, FechaFormatoException {
 		super();
-		this.fechaNacimiento = fechaNacimiento;
+		this.setFechaNacimiento(fechaNacimiento);
 		this.setNombre(nombre);
 	}
 

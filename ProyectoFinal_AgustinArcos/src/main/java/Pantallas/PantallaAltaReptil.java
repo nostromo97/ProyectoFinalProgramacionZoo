@@ -8,6 +8,8 @@ import java.awt.Color;
 import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
+import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.Font;
 import javax.swing.JTextField;
@@ -34,14 +36,22 @@ public class PantallaAltaReptil extends JPanel{
 				
 			}
 		});
+	
+			
+		 
 		
-		JRadioButton rdbtnPiel2 = new JRadioButton("Caparaz\u00F3n");
+
+		final JRadioButton rdbtnPiel2 = new JRadioButton("Caparaz\u00F3n");
 		rdbtnPiel2.setBounds(58, 414, 89, 23);
 		add(rdbtnPiel2);
 		
-		JRadioButton rdbtnPiel1 = new JRadioButton("Escamas");
+		final JRadioButton rdbtnPiel1 = new JRadioButton("Escamas");
 		rdbtnPiel1.setBounds(58, 385, 89, 23);
 		add(rdbtnPiel1);
+		
+		final ButtonGroup grupoPiel = new ButtonGroup();
+		grupoPiel.add(rdbtnPiel1);
+		grupoPiel.add(rdbtnPiel2);
 		
 		JLabel lblDuracion = new JLabel("Duraci\u00F3n:");
 		lblDuracion.setForeground(Color.WHITE);

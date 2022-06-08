@@ -35,13 +35,13 @@ public class Primate extends Animal{
 		Scanner sc = new Scanner(System.in);
 		Statement query = UtilsDB.conectarBD();
 
-		if (query.executeUpdate("insert into altaPrimate values(null,'" + nombre + "','" + fechaNacimiento + "','"
-				+ motivoAlta.toString() + "','" + fechaAlta + "'" + "','" + genero + "'"+"','" + cuidados + "'" +")") > 0)
-
+		//if (query.executeUpdate("insert into altaPrimate values(null,'" + nombre + "','" + fechaNacimiento + "','"
+				//+ motivoAlta.toString() + "','" + fechaAlta + "'" + "'," + genero +"','" + cuidados + "'" +")") > 0)
+		if(query.executeUpdate("insert into altaPrimate values(null,'"+nombre+"','"+fechaNacimiento+"','"+motivoAlta+"','"+fechaAlta+"',"+genero+",'"+cuidados+"')")>0)
 		{
 			this.genero = genero;
 		} else {
-			throw new SQLException("No se ha podido insertar el usuario");
+			throw new SQLException("No se ha podido insertar el primate.");
 		}
 		UtilsDB.desconectarBD();		
 	}

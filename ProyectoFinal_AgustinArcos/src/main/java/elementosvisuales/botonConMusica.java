@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.util.Timer;
 import java.util.TimerTask;
-
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -40,9 +39,7 @@ public botonConMusica(String m) {
 				play();
 
 				setEnabled(false);
-
 			}
-
 		});
 
 	}

@@ -14,6 +14,8 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.EnumSet;
 import java.awt.event.ActionEvent;
+
+import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.Font;
 import javax.swing.JTextField;
@@ -21,6 +23,7 @@ import javax.swing.SwingConstants;
 
 import Clases.Primate;
 import Clases.Usuario;
+import Enums.MotivoAlta;
 import Excepciones.FechaFormatoException;
 import Excepciones.NombreInvalidoException;
 import Excepciones.NombreVacioException;
@@ -49,13 +52,18 @@ public class PantallaAltaPrimate extends JPanel{
 		});
 		
 		
-		JRadioButton rdbtnFemenino = new JRadioButton("Femenino");
-		rdbtnFemenino.setBounds(57, 420, 89, 23);
-		add(rdbtnFemenino);
+		final JRadioButton campoFemenino = new JRadioButton("Femenino");
+		campoFemenino.setBounds(57, 420, 89, 23);
+		add(campoFemenino);
 		
-		JRadioButton rdbtnMasculino = new JRadioButton("Masculino");
-		rdbtnMasculino.setBounds(57, 392, 90, 23);
-		add(rdbtnMasculino);
+		final JRadioButton campoMasculino = new JRadioButton("Masculino");
+		campoMasculino.setBounds(57, 392, 90, 23);
+		add(campoMasculino);
+		
+		
+		 final ButtonGroup grupoGenero = new ButtonGroup();
+		grupoGenero.add(campoMasculino);
+		grupoGenero.add(campoFemenino);
 		
 		campoDescripcion = new JTextField();
 		campoDescripcion.setBounds(292, 372, 172, 94);
@@ -95,16 +103,14 @@ public class PantallaAltaPrimate extends JPanel{
 		btnMotivoAlta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(comboAlta.getSelectedItem().equals("...")) {
-					JOptionPane.showMessageDialog(ventana, "Selecciona un motivo", "Error", JOptionPane.ERROR_MESSAGE);
-					
-				}else if(comboAlta.getSelectedItem().equals("Nacimiento")) {
-					Enums.MotivoAlta.valueOf(getName());
-				}else if(comboAlta.getSelectedItem().equals("Llegada")) {
-					Enums.MotivoAlta.valueOf(getName());
+					JOptionPane.showMessageDialog(ventana, "Selecciona un motivo", "Error", JOptionPane.ERROR_MESSAGE);	
 				}
 			
 			}
 		});
+		
+		
+		
 		btnMotivoAlta.setBounds(452, 258, 89, 23);
 		add(btnMotivoAlta);
 		btnAtras.setForeground(Color.BLACK);
@@ -163,10 +169,23 @@ public class PantallaAltaPrimate extends JPanel{
 					LocalDate fechaNacimiento = LocalDate.parse(campoFechaNacimiento.getText(),formatter);
 					LocalDate fechaAlta = LocalDate.parse(campoFechaAlta.getText(),formatter);
 					String tratamientoDescripcion = campoDescripcion.getText();
+					MotivoAlta motivoAlta=null;
 					
+							if(comboAlta.getSelectedItem().equals("Nacimiento")) {
+								motivoAlta=MotivoAlta.NACIMIENTO;
+							}else if (comboAlta.getSelectedItem().equals("Translado")) {
+								motivoAlta=MotivoAlta.LLEGADA;
+							}
+					
+					boolean genero=true;
+					if(campoMasculino.isSelected()) {
+						genero=true;
+					}else if(campoFemenino.isSelected()) {
+						genero=false;
+					}
 					
 				
-						Primate primate1 = new Primate(nombrePrimate,fechaNacimiento,null, fechaAlta,getAutoscrolls(), tratamientoDescripcion);
+						Primate primate1 = new Primate(nombrePrimate, fechaNacimiento, motivoAlta, fechaAlta, genero, tratamientoDescripcion);
 						//JOPTION PANE QUE DIGA REGISTRO EXITOSO DE TIPO OK_MESSAGE
 						JOptionPane.showMessageDialog(ventana, "Registro exitoso", "Éxito", JOptionPane.INFORMATION_MESSAGE);
 						//IR A PANTALLA METER ANIMALES
