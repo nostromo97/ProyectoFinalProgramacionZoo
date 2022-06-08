@@ -2,16 +2,32 @@ package Pantallas;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Color;
 import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.awt.event.ActionEvent;
+
+import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+
+import Clases.Anfibio;
+import Clases.Primate;
+import Enums.MotivoAlta;
+import Enums.TipoOrden;
+import Excepciones.FechaFormatoException;
+import Excepciones.NombreInvalidoException;
+import Excepciones.NombreVacioException;
+
 import javax.swing.JRadioButton;
 
 public class PantallaAltaAnfibio extends JPanel{
@@ -19,21 +35,15 @@ public class PantallaAltaAnfibio extends JPanel{
 	private Ventana ventana;
 	private JTextField campoNombre;
 	private JTextField campoFechaNacimiento;
-	private JTextField txtFechaAlta;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField campoFechaAlta;
+	private JTextField campoDescripcion;
 	
 	public PantallaAltaAnfibio(Ventana v) {
 		this.ventana=v;
 		setLayout(null);
 		setSize (800,600);
 		
-		JButton botonDarAlta = new JButton("DAR DE ALTA ANFIBIO");
-		botonDarAlta.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-			}
-		});
+		
 		
 		JButton btnAtras = new JButton("Volver");
 		btnAtras.setBackground(Color.ORANGE);
@@ -43,48 +53,35 @@ public class PantallaAltaAnfibio extends JPanel{
 			}
 		});
 		
-		JButton btnMotivoAlta = new JButton("Seleccionar");
-		btnMotivoAlta.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-			}
-		});
-		btnMotivoAlta.setBounds(451, 259, 97, 23);
-		add(btnMotivoAlta);
+		final JComboBox comboOrden = new JComboBox();
+		comboOrden.setModel(new DefaultComboBoxModel(new String[] {"...", "ANURA", "CAUDATA", "GYMNOPHIONA"}));
+		comboOrden.setMaximumRowCount(4);
+		comboOrden.setBounds(60, 359, 121, 22);
+		add(comboOrden);
+
 		
-		JRadioButton rdbtnAmbiente2 = new JRadioButton("Seco");
-		rdbtnAmbiente2.setBounds(78, 498, 67, 23);
+		
+		final JRadioButton rdbtnAmbiente2 = new JRadioButton("Seco");
+		rdbtnAmbiente2.setBounds(78, 468, 102, 23);
 		add(rdbtnAmbiente2);
 		
-		JRadioButton rdbtnAmbiente1 = new JRadioButton("Acu\u00E1tico");
-		rdbtnAmbiente1.setBounds(78, 472, 67, 23);
+		final JRadioButton rdbtnAmbiente1 = new JRadioButton("Acu\u00E1tico");
+		rdbtnAmbiente1.setBounds(78, 442, 102, 23);
 		add(rdbtnAmbiente1);
-		
-		JRadioButton rdbtnOrden1 = new JRadioButton("Anura");
-		rdbtnOrden1.setBounds(72, 359, 91, 23);
-		add(rdbtnOrden1);
-		
-		JRadioButton rdbtnOrden2 = new JRadioButton("Caudata");
-		rdbtnOrden2.setBounds(72, 385, 91, 23);
-		add(rdbtnOrden2);
 		btnAtras.setForeground(Color.BLACK);
 		btnAtras.setBounds(629, 53, 89, 77);
 		add(btnAtras);
+			
+		final ButtonGroup grupoAmbiente = new ButtonGroup();
+		grupoAmbiente.add(rdbtnAmbiente1);
+		grupoAmbiente.add(rdbtnAmbiente2);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(273, 486, 86, 20);
-		add(textField_1);
-		textField_1.setColumns(10);
 		
-		JLabel lblDuracion = new JLabel("Duraci\u00F3n:");
-		lblDuracion.setForeground(Color.WHITE);
-		lblDuracion.setBounds(224, 486, 46, 14);
-		add(lblDuracion);
 		
-		textField = new JTextField();
-		textField.setBounds(272, 385, 175, 86);
-		add(textField);
-		textField.setColumns(10);
+		campoDescripcion = new JTextField();
+		campoDescripcion.setBounds(272, 385, 175, 86);
+		add(campoDescripcion);
+		campoDescripcion.setColumns(10);
 		
 		JLabel lblDescripción = new JLabel("Descripci\u00F3n:");
 		lblDescripción.setForeground(Color.WHITE);
@@ -97,14 +94,10 @@ public class PantallaAltaAnfibio extends JPanel{
 		lblCuidados.setBounds(232, 362, 67, 14);
 		add(lblCuidados);
 		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("Gymnophiona");
-		rdbtnNewRadioButton.setBounds(72, 411, 91, 23);
-		add(rdbtnNewRadioButton);
-		
 		JLabel txtAmbiente = new JLabel("AMBIENTE:");
 		txtAmbiente.setFont(new Font("Arial", Font.BOLD, 12));
 		txtAmbiente.setForeground(Color.WHITE);
-		txtAmbiente.setBounds(78, 454, 67, 14);
+		txtAmbiente.setBounds(78, 421, 67, 14);
 		add(txtAmbiente);
 		
 		JLabel txtOrden = new JLabel("ORDEN:");
@@ -113,14 +106,18 @@ public class PantallaAltaAnfibio extends JPanel{
 		txtOrden.setBounds(81, 343, 46, 14);
 		add(txtOrden);
 		
-		txtFechaAlta = new JTextField();
-		txtFechaAlta.setBounds(232, 309, 215, 20);
-		add(txtFechaAlta);
-		txtFechaAlta.setColumns(10);
+		campoFechaAlta = new JTextField();
+		campoFechaAlta.setBounds(232, 309, 215, 20);
+		add(campoFechaAlta);
+		campoFechaAlta.setColumns(10);
 		
-		JComboBox comboAlta = new JComboBox();
+		final JComboBox comboAlta = new JComboBox();
 		comboAlta.setBounds(232, 259, 215, 22);
 		add(comboAlta);
+		
+		
+		
+		
 		
 		JLabel txFechaAlta = new JLabel("FECHA ALTA:");
 		txFechaAlta.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -142,10 +139,6 @@ public class PantallaAltaAnfibio extends JPanel{
 		txtAnfibio.setBounds(604, 245, 127, 42);
 		add(txtAnfibio);
 		
-		JButton botonDieta = new JButton("DIETA");
-		botonDieta.setBounds(614, 308, 89, 23);
-		add(botonDieta);
-		
 		JLabel txtFechaNacimiento = new JLabel("FECHA NACIMIENTO:");
 		txtFechaNacimiento.setFont(new Font("Arial", Font.BOLD, 14));
 		txtFechaNacimiento.setForeground(Color.WHITE);
@@ -156,6 +149,70 @@ public class PantallaAltaAnfibio extends JPanel{
 		campoFechaNacimiento.setBounds(232, 214, 215, 20);
 		add(campoFechaNacimiento);
 		campoFechaNacimiento.setColumns(10);
+		
+		JButton botonDarAlta = new JButton("DAR DE ALTA ANFIBIO");
+		botonDarAlta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					String nombreAnfibio = campoNombre.getText();
+					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+					LocalDate fechaNacimiento = LocalDate.parse(campoFechaNacimiento.getText(),formatter);
+					LocalDate fechaAlta = LocalDate.parse(campoFechaAlta.getText(),formatter);
+					String tratamientoDescripcion = campoDescripcion.getText();
+					TipoOrden tipoOrden=null;
+					MotivoAlta motivoAlta=null;
+							
+					
+							if(comboAlta.getSelectedItem().equals("Nacimiento")) {
+								motivoAlta=MotivoAlta.NACIMIENTO;
+							}else if (comboAlta.getSelectedItem().equals("Llegada")) {
+								motivoAlta=MotivoAlta.LLEGADA;
+							}else {
+								JOptionPane.showMessageDialog(null, "HAS DEJADO EL MOTIVO DE ALTA VACÍO", "AVISO", JOptionPane.INFORMATION_MESSAGE);
+							}
+							
+							if(comboOrden.getSelectedItem().equals("Anura")) {
+								tipoOrden = TipoOrden.ANURA;
+							}else if (comboOrden.getSelectedItem().equals("Caudata")) {
+								tipoOrden = TipoOrden.CAUDATA;
+							}else if (comboOrden.getSelectedItem().equals("Gymnophiona")) {
+								tipoOrden = TipoOrden.GYMNOPHIONA;
+							}
+							
+							
+					
+					boolean tipoAmbiente=true;
+					if(rdbtnAmbiente1.isSelected()) {
+						tipoAmbiente=true;
+					}else if(rdbtnAmbiente2.isSelected()) {
+						tipoAmbiente=false;
+					}
+					
+				
+						Anfibio anfibio1 = new Anfibio(nombreAnfibio, fechaNacimiento, motivoAlta, fechaAlta, tipoOrden,tipoAmbiente, tratamientoDescripcion);
+						//JOPTION PANE QUE DIGA REGISTRO EXITOSO DE TIPO OK_MESSAGE
+						JOptionPane.showMessageDialog(ventana, "Registro exitoso", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+						//IR A PANTALLA METER ANIMALES
+						ventana.cambiarPantalla("menu");
+					} catch (NombreVacioException e1) {
+						JOptionPane.showMessageDialog(null, "Nombre Vacio", "Error", JOptionPane.WARNING_MESSAGE);
+					} catch (NombreInvalidoException e1) {
+						JOptionPane.showMessageDialog(null, "El nombre no puede contener números.", "Error", JOptionPane.ERROR_MESSAGE);
+						e1.printStackTrace();
+					} catch (SQLException e1) {
+						JOptionPane.showMessageDialog(null, "Error SQL", "Error", JOptionPane.ERROR_MESSAGE);
+					} catch (FechaFormatoException e1) {
+						JOptionPane.showMessageDialog(null, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+					} catch(DateTimeParseException e1) {
+						JOptionPane.showMessageDialog(null, "Error. Introduce la fecha en un formato: dd-MM-YYYY (día, mes, año)", "Error", JOptionPane.ERROR_MESSAGE);
+					}
+				
+				
+				
+				
+				
+			}
+		});
 		
 		JLabel txtNombre = new JLabel("NOMBRE:");
 		txtNombre.setForeground(Color.WHITE);

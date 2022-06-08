@@ -18,23 +18,22 @@ import Utils.UtilsDB;
 
 public class Reptil extends Animal{
 
-	private TipoPiel tipoPiel;
+	private boolean tipoPiel;
 
 	public Reptil(short id, LocalDate fechaNacimiento, String nombre, TipoRaza raza, String cuidados,
 			MotivoAlta motivoAlta, MotivoBaja motivoBaja, LocalDate fechaAlta, LocalDate fechaBaja, Dieta dieta,
-			TipoPiel tipoPiel) throws NombreVacioException, NombreInvalidoException, IdInvalidoException, IdVacioException, FechaFormatoException {
+			boolean tipoPiel) throws NombreVacioException, NombreInvalidoException, IdInvalidoException, IdVacioException, FechaFormatoException {
 		super(id, fechaNacimiento, nombre, raza, cuidados, motivoAlta, motivoBaja, fechaAlta, fechaBaja, dieta);
 		this.tipoPiel = tipoPiel;
 	}
 
-	public Reptil (String nombre, LocalDate fechaNacimiento, MotivoAlta motivoAlta, LocalDate fechaAlta, boolean genero,
+	public Reptil (String nombre, LocalDate fechaNacimiento, MotivoAlta motivoAlta, LocalDate fechaAlta, boolean tipoPiel,
 			String cuidados) throws NombreVacioException, NombreInvalidoException, FechaFormatoException, SQLException {
 		super(nombre, fechaNacimiento, motivoAlta, fechaAlta, cuidados);
 		
 		Statement query = UtilsDB.conectarBD();
 
-		if (query.executeUpdate("insert into usuarios values(null,'" + nombre + "','" + fechaNacimiento + "','"
-				+ motivoAlta + "','" + fechaAlta + "'" + "','" + tipoPiel + "'"+"','" + cuidados + "'" +")") > 0)
+		if(query.executeUpdate("insert into altaReptil values(null,'"+nombre+"','"+fechaNacimiento+"','"+motivoAlta+"','"+fechaAlta+"',"+tipoPiel+",'"+cuidados+"')")>0)
 
 		{
 			this.tipoPiel = tipoPiel;
@@ -52,11 +51,11 @@ public class Reptil extends Animal{
 
 
 
-	public TipoPiel getTipoPiel() {
+	public boolean getTipoPiel() {
 		return tipoPiel;
 	}
 
-	public void setTipoPiel(TipoPiel tipoPiel) {
+	public void setTipoPiel(boolean tipoPiel) {
 		this.tipoPiel = tipoPiel;
 	}
 	

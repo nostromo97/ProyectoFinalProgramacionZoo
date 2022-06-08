@@ -2,11 +2,16 @@ package Pantallas;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Color;
 import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.awt.event.ActionEvent;
 
 import javax.swing.ButtonGroup;
@@ -14,6 +19,15 @@ import javax.swing.DefaultComboBoxModel;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+
+import Clases.Primate;
+import Clases.Reptil;
+import Enums.MotivoAlta;
+import Enums.TipoPiel;
+import Excepciones.FechaFormatoException;
+import Excepciones.NombreInvalidoException;
+import Excepciones.NombreVacioException;
+
 import javax.swing.JRadioButton;
 
 public class PantallaAltaReptil extends JPanel{
@@ -21,26 +35,14 @@ public class PantallaAltaReptil extends JPanel{
 	private Ventana ventana;
 	private JTextField campoNombre;
 	private JTextField campoFechaNacimiento;
-	private JTextField txtFechaAlta;
-	private JTextField textDescripcion;
-	private JTextField textDuracion;
+	private JTextField campoFechaAlta;
+	private JTextField campoDescripcionCuidados;
 	
 	public PantallaAltaReptil(Ventana v) {
 		this.ventana=v;
 		setLayout(null);
 		setSize (800,600);
-		
-		JButton botonDarAlta = new JButton("DAR DE ALTA REPTIL");
-		botonDarAlta.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
 				
-			}
-		});
-	
-			
-		 
-		
-
 		final JRadioButton rdbtnPiel2 = new JRadioButton("Caparaz\u00F3n");
 		rdbtnPiel2.setBounds(58, 414, 89, 23);
 		add(rdbtnPiel2);
@@ -52,11 +54,6 @@ public class PantallaAltaReptil extends JPanel{
 		final ButtonGroup grupoPiel = new ButtonGroup();
 		grupoPiel.add(rdbtnPiel1);
 		grupoPiel.add(rdbtnPiel2);
-		
-		JLabel lblDuracion = new JLabel("Duraci\u00F3n:");
-		lblDuracion.setForeground(Color.WHITE);
-		lblDuracion.setBounds(219, 489, 55, 14);
-		add(lblDuracion);
 		
 		
 		JButton btnAtras = new JButton("Volver");
@@ -70,15 +67,10 @@ public class PantallaAltaReptil extends JPanel{
 		btnAtras.setBounds(629, 53, 89, 77);
 		add(btnAtras);
 		
-		textDuracion = new JTextField();
-		textDuracion.setBounds(278, 486, 86, 20);
-		add(textDuracion);
-		textDuracion.setColumns(10);
-		
-		textDescripcion = new JTextField();
-		textDescripcion.setBounds(276, 404, 171, 78);
-		add(textDescripcion);
-		textDescripcion.setColumns(10);
+		campoDescripcionCuidados = new JTextField();
+		campoDescripcionCuidados.setBounds(276, 404, 171, 78);
+		add(campoDescripcionCuidados);
+		campoDescripcionCuidados.setColumns(10);
 		
 		JLabel lblDescripcion = new JLabel("Descripci\u00F3n:");
 		lblDescripcion.setForeground(Color.WHITE);
@@ -97,12 +89,14 @@ public class PantallaAltaReptil extends JPanel{
 		txtOrden.setBounds(88, 368, 46, 14);
 		add(txtOrden);
 		
-		txtFechaAlta = new JTextField();
-		txtFechaAlta.setBounds(232, 309, 215, 20);
-		add(txtFechaAlta);
-		txtFechaAlta.setColumns(10);
+		campoFechaAlta = new JTextField();
+		campoFechaAlta.setBounds(232, 309, 215, 20);
+		add(campoFechaAlta);
+		campoFechaAlta.setColumns(10);
 		
-		JComboBox comboAlta = new JComboBox();
+		final JComboBox comboAlta = new JComboBox();
+		comboAlta.setModel(new DefaultComboBoxModel(new String[] {"...", "Nacimiento", "Llegada"}));
+		comboAlta.setMaximumRowCount(3);
 		comboAlta.setBounds(232, 259, 215, 22);
 		add(comboAlta);
 		
@@ -146,7 +140,55 @@ public class PantallaAltaReptil extends JPanel{
 		txtNombre.setFont(new Font("Arial", Font.BOLD, 14));
 		txtNombre.setBounds(158, 177, 67, 14);
 		add(txtNombre);
+		JButton botonDarAlta = new JButton("DAR DE ALTA REPTIL");
+		botonDarAlta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					String nombreReptil = campoNombre.getText();
+					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+					LocalDate fechaNacimiento = LocalDate.parse(campoFechaNacimiento.getText(),formatter);
+					LocalDate fechaAlta = LocalDate.parse(campoFechaAlta.getText(),formatter);
+					String tratamientoDescripcion = campoDescripcionCuidados.getText();
+					MotivoAlta motivoAlta=null;
+					
+							if(comboAlta.getSelectedItem().equals("Nacimiento")) {
+								motivoAlta=MotivoAlta.NACIMIENTO;
+							}else if (comboAlta.getSelectedItem().equals("Llegada")) {
+								motivoAlta=MotivoAlta.LLEGADA;
+							}else {
+								JOptionPane.showMessageDialog(null, "Motivo de alta vacío", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+							}
+					
+					boolean tipoPiel=true;
+					if(rdbtnPiel1.isSelected()) {
+						tipoPiel=true;
+					}else if(rdbtnPiel2.isSelected()) {
+						tipoPiel=false;
+					}
+					
+				
+						Reptil reptil1 = new Reptil(nombreReptil, fechaNacimiento, motivoAlta, fechaAlta, tipoPiel, tratamientoDescripcion);
+						//JOPTION PANE QUE DIGA REGISTRO EXITOSO DE TIPO OK_MESSAGE
+						JOptionPane.showMessageDialog(ventana, "Registro exitoso", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+						//IR A PANTALLA METER ANIMALES
+						ventana.cambiarPantalla("menu");
+					} catch (NombreVacioException e1) {
+						JOptionPane.showMessageDialog(null, "Nombre Vacio", "Error", JOptionPane.WARNING_MESSAGE);
+					} catch (NombreInvalidoException e1) {
+						JOptionPane.showMessageDialog(null, "El nombre no puede contener números.", "Error", JOptionPane.ERROR_MESSAGE);
+						e1.printStackTrace();
+					} catch (SQLException e1) {
+						JOptionPane.showMessageDialog(null, "Error SQL", "Error", JOptionPane.ERROR_MESSAGE);
+					} catch (FechaFormatoException e1) {
+						JOptionPane.showMessageDialog(null, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+					} catch(DateTimeParseException e1) {
+						JOptionPane.showMessageDialog(null, "Error. Introduce la fecha en un formato: dd-MM-YYYY (día, mes, año)", "Error", JOptionPane.ERROR_MESSAGE);
+					}
+								
+			}
+		});
 		
+					
 		campoNombre = new JTextField();
 		campoNombre.setBounds(230, 174, 217, 20);
 		add(campoNombre);

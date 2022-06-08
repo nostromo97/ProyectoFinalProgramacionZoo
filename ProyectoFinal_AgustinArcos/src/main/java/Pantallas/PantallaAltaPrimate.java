@@ -99,24 +99,8 @@ public class PantallaAltaPrimate extends JPanel{
 		comboAlta.setBounds(232, 259, 215, 22);
 		add(comboAlta);
 		
-		JButton btnMotivoAlta = new JButton("Seleccionar");
-		btnMotivoAlta.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(comboAlta.getSelectedItem().equals("...")) {
-					JOptionPane.showMessageDialog(ventana, "Selecciona un motivo", "Error", JOptionPane.ERROR_MESSAGE);	
-				}
-			
-			}
-		});
 		
-		
-		
-		btnMotivoAlta.setBounds(452, 258, 89, 23);
-		add(btnMotivoAlta);
-		btnAtras.setForeground(Color.BLACK);
-		btnAtras.setBounds(629, 53, 89, 77);
-		add(btnAtras);
-		
+
 		
 		JLabel txFechaAlta = new JLabel("FECHA ALTA:");
 		txFechaAlta.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -137,10 +121,6 @@ public class PantallaAltaPrimate extends JPanel{
 		txtPrimate.setFont(new Font("Arial Black", Font.BOLD, 20));
 		txtPrimate.setBounds(615, 245, 127, 42);
 		add(txtPrimate);
-		
-		JButton botonDieta = new JButton("DIETA");
-		botonDieta.setBounds(485, 392, 89, 23);
-		add(botonDieta);
 		
 		JLabel txtFechaNacimiento = new JLabel("FECHA NACIMIENTO:");
 		txtFechaNacimiento.setFont(new Font("Arial", Font.BOLD, 14));
@@ -170,12 +150,17 @@ public class PantallaAltaPrimate extends JPanel{
 					LocalDate fechaAlta = LocalDate.parse(campoFechaAlta.getText(),formatter);
 					String tratamientoDescripcion = campoDescripcion.getText();
 					MotivoAlta motivoAlta=null;
+							
 					
 							if(comboAlta.getSelectedItem().equals("Nacimiento")) {
 								motivoAlta=MotivoAlta.NACIMIENTO;
-							}else if (comboAlta.getSelectedItem().equals("Translado")) {
+							}else if (comboAlta.getSelectedItem().equals("Llegada")) {
 								motivoAlta=MotivoAlta.LLEGADA;
+							}else {
+								JOptionPane.showMessageDialog(null, "HAS DEJADO EL MOTIVO DE ALTA VACÍO", "AVISO", JOptionPane.INFORMATION_MESSAGE);
 							}
+							
+							
 					
 					boolean genero=true;
 					if(campoMasculino.isSelected()) {
@@ -189,7 +174,7 @@ public class PantallaAltaPrimate extends JPanel{
 						//JOPTION PANE QUE DIGA REGISTRO EXITOSO DE TIPO OK_MESSAGE
 						JOptionPane.showMessageDialog(ventana, "Registro exitoso", "Éxito", JOptionPane.INFORMATION_MESSAGE);
 						//IR A PANTALLA METER ANIMALES
-						ventana.cambiarPantalla("atras");
+						ventana.cambiarPantalla("menu");
 					} catch (NombreVacioException e1) {
 						JOptionPane.showMessageDialog(null, "Nombre Vacio", "Error", JOptionPane.WARNING_MESSAGE);
 					} catch (NombreInvalidoException e1) {

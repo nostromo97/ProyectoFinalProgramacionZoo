@@ -18,28 +18,26 @@ import Excepciones.NombreVacioException;
 import Utils.UtilsDB;
 
 public class Anfibio extends Animal{
-
-	private TipoOrden tipoOrden;
-	private TipoAmbiente tipoAmbiente;
 	
-	public Anfibio(short id, LocalDate fechaNacimiento, String nombre, TipoRaza raza, String cuidados,
+	private TipoOrden tipoOrden;
+	private boolean tipoAmbiente;
+	
+	public Anfibio(short id,String nombre, LocalDate fechaNacimiento,  TipoRaza raza, String cuidados,
 			MotivoAlta motivoAlta, MotivoBaja motivoBaja, LocalDate fechaAlta, LocalDate fechaBaja, Dieta dieta,
-			TipoOrden tipoOrden, TipoAmbiente tipoAmbiente) throws NombreVacioException, NombreInvalidoException, IdInvalidoException, IdVacioException, FechaFormatoException {
+			TipoOrden tipoOrden, boolean tipoAmbiente) throws NombreVacioException, NombreInvalidoException, IdInvalidoException, IdVacioException, FechaFormatoException {
 		super(id, fechaNacimiento, nombre, raza, cuidados, motivoAlta, motivoBaja, fechaAlta, fechaBaja, dieta);
 		this.tipoOrden = tipoOrden;
 		this.tipoAmbiente = tipoAmbiente;
 	}
 	
 	
-	public Anfibio (String nombre, LocalDate fechaNacimiento, MotivoAlta motivoAlta, LocalDate fechaAlta, boolean genero,
+	public Anfibio (String nombre, LocalDate fechaNacimiento, MotivoAlta motivoAlta, LocalDate fechaAlta, TipoOrden tipoOrden,boolean tipoAmbiente,
 			String cuidados) throws NombreVacioException, NombreInvalidoException, FechaFormatoException, SQLException {
 		super(nombre, fechaNacimiento, motivoAlta, fechaAlta, cuidados);
 		
 		Statement query = UtilsDB.conectarBD();
 
-		if (query.executeUpdate("insert into usuarios values(null,'" + nombre + "','" + fechaNacimiento + "','"
-				+ motivoAlta + "','" + fechaAlta + "'" + "','" + tipoOrden + "'" + "','" + tipoAmbiente + "'"+"','" + cuidados + "'" +")") > 0)
-
+		if(query.executeUpdate("insert into altaReptil values(null,'"+nombre+"','"+fechaNacimiento+"','"+motivoAlta+"','"+fechaAlta+"',"+tipoOrden+",'"+tipoAmbiente+"','"+cuidados+"')")>0)
 		{
 			this.tipoOrden = tipoOrden;
 			this.tipoAmbiente = tipoAmbiente;
@@ -67,10 +65,10 @@ public class Anfibio extends Animal{
 	public void setTipoOrden(TipoOrden tipoOrden) {
 		this.tipoOrden = tipoOrden;
 	}
-	public TipoAmbiente getTipoAmbiente() {
+	public boolean getTipoAmbiente() {
 		return tipoAmbiente;
 	}
-	public void setTipoAmbiente(TipoAmbiente tipoAmbiente) {
+	public void setTipoAmbiente(boolean tipoAmbiente) {
 		this.tipoAmbiente = tipoAmbiente;
 	}
 	
