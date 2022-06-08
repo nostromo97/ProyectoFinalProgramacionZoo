@@ -36,6 +36,10 @@ public class PantallaMenu extends JPanel{
 				salir();
 			}
 		});
+		
+		JButton btnUsuario = new JButton("Usuario");
+		btnUsuario.setBounds(570, 55, 89, 23);
+		add(btnUsuario);
 		btnSalir.setBounds(70, 481, 89, 23);
 		add(btnSalir);
 		botonAlimentos.setBounds(407, 367, 107, 42);
