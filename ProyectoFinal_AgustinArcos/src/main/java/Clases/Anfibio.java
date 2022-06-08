@@ -4,7 +4,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
-
 import Enums.MotivoAlta;
 import Enums.MotivoBaja;
 import Enums.TipoAmbiente;
@@ -28,8 +27,7 @@ public class Anfibio extends Animal{
 		super(id, fechaNacimiento, nombre, raza, cuidados, motivoAlta, motivoBaja, fechaAlta, fechaBaja, dieta);
 		this.tipoOrden = tipoOrden;
 		this.tipoAmbiente = tipoAmbiente;
-	}
-	
+	}	
 	
 	public Anfibio (String nombre, LocalDate fechaNacimiento, MotivoAlta motivoAlta, LocalDate fechaAlta, TipoOrden tipoOrden,boolean tipoAmbiente,
 			String cuidados) throws NombreVacioException, NombreInvalidoException, FechaFormatoException, SQLException {
@@ -46,18 +44,7 @@ public class Anfibio extends Animal{
 		}
 		UtilsDB.desconectarBD();
 		
-		
-		
-		
 	}
-
-
-
-
-
-
-
-
 
 	public TipoOrden getTipoOrden() {
 		return tipoOrden;
@@ -71,7 +58,4 @@ public class Anfibio extends Animal{
 	public void setTipoAmbiente(boolean tipoAmbiente) {
 		this.tipoAmbiente = tipoAmbiente;
 	}
-	
-	
-	
 }

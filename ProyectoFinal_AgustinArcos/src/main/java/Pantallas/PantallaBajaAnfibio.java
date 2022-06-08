@@ -16,79 +16,80 @@ import javax.swing.SwingConstants;
 public class PantallaBajaAnfibio extends JPanel{
 	
 	private Ventana ventana;
-	private JTextField campoNombre;
-	private JTextField campoFechaNacimiento;
-	private JTextField campoFechaBaja;
+	private JTextField campoIdBaja;
+	private JTextField textAnfibioAlta;
+	private JTextField textAnfibioBaja;
 	
 	public PantallaBajaAnfibio(Ventana v) {
 		this.ventana=v;
 		setLayout(null);
 		setSize (800,600);
 		
-		JButton botonDarAlta = new JButton("DAR DE BAJA ANFIBIO");
+		JButton botonDarAlta = new JButton("Introducir ID");
 		botonDarAlta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 			}
 		});
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(232, 259, 215, 22);
-		add(comboBox);
+		JButton btnVolver = new JButton("Volver");
+		btnVolver.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ventana.cambiarPantalla("menu");				
+			}
+		});
+		btnVolver.setBackground(Color.ORANGE);
+		btnVolver.setBounds(629, 18, 89, 37);
+		add(btnVolver);
 		
-		campoFechaBaja = new JTextField();
-		campoFechaBaja.setBounds(232, 307, 215, 20);
-		add(campoFechaBaja);
-		campoFechaBaja.setColumns(10);
+		textAnfibioBaja = new JTextField();
+		textAnfibioBaja.setEditable(false);
+		textAnfibioBaja.setColumns(10);
+		textAnfibioBaja.setBounds(76, 360, 573, 186);
+		add(textAnfibioBaja);
 		
-		JLabel lblFechaBaja = new JLabel("FECHA BAJA:");
-		lblFechaBaja.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblFechaBaja.setForeground(Color.WHITE);
-		lblFechaBaja.setFont(new Font("Arial", Font.BOLD, 14));
-		lblFechaBaja.setBounds(117, 312, 106, 14);
-		add(lblFechaBaja);
+		JLabel lblListaBaja = new JLabel("LISTA DE BAJAS DE ANFIBIO");
+		lblListaBaja.setForeground(Color.WHITE);
+		lblListaBaja.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblListaBaja.setBounds(257, 334, 231, 28);
+		add(lblListaBaja);
 		
-		JLabel txtMotivoBaja = new JLabel("MOTIVO BAJA:");
-		txtMotivoBaja.setHorizontalAlignment(SwingConstants.RIGHT);
-		txtMotivoBaja.setFont(new Font("Arial", Font.BOLD, 14));
-		txtMotivoBaja.setForeground(Color.WHITE);
-		txtMotivoBaja.setBounds(101, 262, 120, 14);
-		add(txtMotivoBaja);
+		textAnfibioAlta = new JTextField();
+		textAnfibioAlta.setEditable(false);
+		textAnfibioAlta.setBounds(76, 74, 573, 175);
+		add(textAnfibioAlta);
+		textAnfibioAlta.setColumns(10);
+		
+		JLabel lblListaAlta = new JLabel("LISTA DE ALTAS DE ANFIBIOS");
+		lblListaAlta.setForeground(Color.WHITE);
+		lblListaAlta.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblListaAlta.setBounds(245, 49, 250, 28);
+		add(lblListaAlta);
 		
 		JLabel txtAnfibio = new JLabel("ANFIBIO");
 		txtAnfibio.setForeground(Color.WHITE);
 		txtAnfibio.setFont(new Font("Arial Black", Font.BOLD, 20));
-		txtAnfibio.setBounds(559, 245, 127, 42);
+		txtAnfibio.setBounds(76, 11, 127, 42);
 		add(txtAnfibio);
 		
-		JLabel txtFechaNacimiento = new JLabel("FECHA NACIMIENTO:");
-		txtFechaNacimiento.setFont(new Font("Arial", Font.BOLD, 14));
-		txtFechaNacimiento.setForeground(Color.WHITE);
-		txtFechaNacimiento.setBounds(81, 217, 148, 14);
-		add(txtFechaNacimiento);
+		campoIdBaja = new JTextField();
+		campoIdBaja.setBounds(353, 292, 46, 20);
+		add(campoIdBaja);
+		campoIdBaja.setColumns(10);
 		
-		campoFechaNacimiento = new JTextField();
-		campoFechaNacimiento.setBounds(232, 214, 215, 20);
-		add(campoFechaNacimiento);
-		campoFechaNacimiento.setColumns(10);
-		
-		JLabel txtNombre = new JLabel("NOMBRE:");
-		txtNombre.setForeground(Color.WHITE);
-		txtNombre.setFont(new Font("Arial", Font.BOLD, 14));
-		txtNombre.setBounds(158, 177, 67, 14);
-		add(txtNombre);
-		
-		campoNombre = new JTextField();
-		campoNombre.setBounds(230, 174, 217, 20);
-		add(campoNombre);
-		campoNombre.setColumns(10);
+		JLabel lblIdBaja = new JLabel("ID de animal a dar de baja:");
+		lblIdBaja.setBackground(Color.GREEN);
+		lblIdBaja.setForeground(Color.WHITE);
+		lblIdBaja.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 14));
+		lblIdBaja.setBounds(162, 286, 195, 28);
+		add(lblIdBaja);
 		botonDarAlta.setBackground(Color.RED);
 		botonDarAlta.setForeground(Color.BLACK);
-		botonDarAlta.setBounds(290, 496, 202, 60);
+		botonDarAlta.setBounds(410, 288, 106, 28);
 		add(botonDarAlta);
 		
 		JLabel background = new JLabel("");
-		background.setIcon(new ImageIcon("C:\\Users\\carol\\Documents\\Eclipse-WORKSPACE\\ProyectoFinalProgramacionZoo\\ProyectoFinal_AgustinArcos\\fotos\\BACKGROUND.jpg"));
+		background.setIcon(new ImageIcon("C:\\Users\\carol\\Documents\\Eclipse-WORKSPACE\\ProyectoFinalProgramacionZoo\\ProyectoFinal_AgustinArcos\\fotos\\BACKGROUND_sinlogo.jpg"));
 		background.setBounds(0, 0, 800, 600);
 		add(background);
 		

@@ -45,7 +45,7 @@ public class PantallaMenu extends JPanel{
 		botonRefugio.setBounds(234, 368, 108, 40);
 		add(botonRefugio);
 		
-		JComboBox comboBaja = new JComboBox();
+		final JComboBox comboBaja = new JComboBox();
 		comboBaja.setModel(new DefaultComboBoxModel(new String[] {"...", "Anfibio", "Primate", "Reptil"}));
 		comboBaja.setMaximumRowCount(4);
 		comboBaja.setBounds(369, 257, 144, 22);
@@ -68,7 +68,13 @@ public class PantallaMenu extends JPanel{
 		JButton botonBaja = new JButton("DAR DE BAJA ANIMAL");
 		botonBaja.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(comboAlta.getSelectedItem().equals("...")) {
+				if(comboBaja.getSelectedItem().equals("Anfibio")) {
+					ventana.cambiarPantalla("bajaAnfibio");
+				}else if(comboBaja.getSelectedItem().equals("Primate")) {
+					ventana.cambiarPantalla("bajaPrimate");
+				}else if(comboBaja.getSelectedItem().equals("Reptil")) {
+					ventana.cambiarPantalla("bajaReptil");
+				}else if(comboBaja.getSelectedItem().equals("...")) {
 					JOptionPane.showMessageDialog(ventana, "Selecciona un animal", "Error", JOptionPane.ERROR_MESSAGE);
 				}
 				
