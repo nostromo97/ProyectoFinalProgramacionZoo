@@ -16,85 +16,89 @@ import javax.swing.SwingConstants;
 public class PantallaBajaPrimate extends JPanel{
 	
 	private Ventana ventana;
-	private JTextField campoNombre;
-	private JTextField campoFechaNacimiento;
-	private JTextField campoFechaBaja;
+	private JTextField campoIdBaja;
+	private JTextField textPrimateAlta;
+	private JTextField textPrimateBaja;
 	
 	public PantallaBajaPrimate(Ventana v) {
 		this.ventana=v;
 		setLayout(null);
 		setSize (800,600);
 		
-		JButton botonDarAlta = new JButton("DAR DE BAJA PRIMATE");
-		botonDarAlta.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-			}
-		});
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(232, 259, 215, 22);
-		add(comboBox);
+			
+			JButton botonDarAlta = new JButton("Introducir ID");
+			botonDarAlta.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					
+				}
+			});
+			
+			JButton btnVolver = new JButton("Volver");
+			btnVolver.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					ventana.cambiarPantalla("menu");				
+				}
+			});
+			btnVolver.setBackground(Color.ORANGE);
+			btnVolver.setBounds(629, 18, 89, 37);
+			add(btnVolver);
+			
+			textPrimateBaja = new JTextField();
+			textPrimateBaja.setEditable(false);
+			textPrimateBaja.setColumns(10);
+			textPrimateBaja.setBounds(76, 360, 573, 186);
+			add(textPrimateBaja);
+			
+			JLabel lblListaBaja = new JLabel("LISTA DE BAJAS DE PRIMATES");
+			lblListaBaja.setForeground(Color.WHITE);
+			lblListaBaja.setFont(new Font("Tahoma", Font.BOLD, 15));
+			lblListaBaja.setBounds(257, 334, 231, 28);
+			add(lblListaBaja);
+			
+			textPrimateAlta = new JTextField();
+			textPrimateAlta.setEditable(false);
+			textPrimateAlta.setBounds(76, 74, 573, 175);
+			add(textPrimateAlta);
+			textPrimateAlta.setColumns(10);
+			
+			JLabel lblListaAlta = new JLabel("LISTA DE ALTAS DE PRIMATES");
+			lblListaAlta.setForeground(Color.WHITE);
+			lblListaAlta.setFont(new Font("Tahoma", Font.BOLD, 15));
+			lblListaAlta.setBounds(245, 49, 250, 28);
+			add(lblListaAlta);
+			
+			JLabel txtPrimate = new JLabel("PRIMATE");
+			txtPrimate.setForeground(Color.WHITE);
+			txtPrimate.setFont(new Font("Arial Black", Font.BOLD, 20));
+			txtPrimate.setBounds(76, 11, 127, 42);
+			add(txtPrimate);
+			
+			campoIdBaja = new JTextField();
+			campoIdBaja.setBounds(353, 292, 46, 20);
+			add(campoIdBaja);
+			campoIdBaja.setColumns(10);
+			
+			JLabel lblIdBaja = new JLabel("ID de animal a dar de baja:");
+			lblIdBaja.setBackground(Color.GREEN);
+			lblIdBaja.setForeground(Color.WHITE);
+			lblIdBaja.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 14));
+			lblIdBaja.setBounds(162, 286, 195, 28);
+			add(lblIdBaja);
+			botonDarAlta.setBackground(Color.RED);
+			botonDarAlta.setForeground(Color.BLACK);
+			botonDarAlta.setBounds(410, 288, 106, 28);
+			add(botonDarAlta);
+			
+			JLabel background = new JLabel("");
+			background.setIcon(new ImageIcon("C:\\Users\\carol\\Documents\\Eclipse-WORKSPACE\\ProyectoFinalProgramacionZoo\\ProyectoFinal_AgustinArcos\\fotos\\BACKGROUND_sinlogo.jpg"));
+			background.setBounds(0, 0, 800, 600);
+			add(background);
+			
+			JLabel txtFechaBaja = new JLabel("New label");
+			txtFechaBaja.setFont(new Font("Arial", Font.BOLD, 14));
+			txtFechaBaja.setBounds(0, 0, 46, 14);
+			add(txtFechaBaja);
 		
-		campoFechaBaja = new JTextField();
-		campoFechaBaja.setBounds(232, 307, 215, 20);
-		add(campoFechaBaja);
-		campoFechaBaja.setColumns(10);
-		
-		JLabel lblFechaBaja = new JLabel("FECHA BAJA:");
-		lblFechaBaja.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblFechaBaja.setForeground(Color.WHITE);
-		lblFechaBaja.setFont(new Font("Arial", Font.BOLD, 14));
-		lblFechaBaja.setBounds(117, 312, 106, 14);
-		add(lblFechaBaja);
-		
-		JLabel txtMotivoBaja = new JLabel("MOTIVO BAJA:");
-		txtMotivoBaja.setHorizontalAlignment(SwingConstants.RIGHT);
-		txtMotivoBaja.setFont(new Font("Arial", Font.BOLD, 14));
-		txtMotivoBaja.setForeground(Color.WHITE);
-		txtMotivoBaja.setBounds(101, 262, 120, 14);
-		add(txtMotivoBaja);
-		
-		JLabel txtPrimate = new JLabel("PRIMATE");
-		txtPrimate.setForeground(Color.WHITE);
-		txtPrimate.setFont(new Font("Arial Black", Font.BOLD, 20));
-		txtPrimate.setBounds(559, 245, 127, 42);
-		add(txtPrimate);
-		
-		JLabel txtFechaNacimiento = new JLabel("FECHA NACIMIENTO:");
-		txtFechaNacimiento.setFont(new Font("Arial", Font.BOLD, 14));
-		txtFechaNacimiento.setForeground(Color.WHITE);
-		txtFechaNacimiento.setBounds(81, 217, 148, 14);
-		add(txtFechaNacimiento);
-		
-		campoFechaNacimiento = new JTextField();
-		campoFechaNacimiento.setBounds(232, 214, 215, 20);
-		add(campoFechaNacimiento);
-		campoFechaNacimiento.setColumns(10);
-		
-		JLabel txtNombre = new JLabel("NOMBRE:");
-		txtNombre.setForeground(Color.WHITE);
-		txtNombre.setFont(new Font("Arial", Font.BOLD, 14));
-		txtNombre.setBounds(158, 177, 67, 14);
-		add(txtNombre);
-		
-		campoNombre = new JTextField();
-		campoNombre.setBounds(230, 174, 217, 20);
-		add(campoNombre);
-		campoNombre.setColumns(10);
-		botonDarAlta.setBackground(Color.RED);
-		botonDarAlta.setForeground(Color.BLACK);
-		botonDarAlta.setBounds(290, 496, 202, 60);
-		add(botonDarAlta);
-		
-		JLabel background = new JLabel("");
-		background.setIcon(new ImageIcon("C:\\Users\\carol\\Documents\\Eclipse-WORKSPACE\\ProyectoFinalProgramacionZoo\\ProyectoFinal_AgustinArcos\\fotos\\BACKGROUND.jpg"));
-		background.setBounds(0, 0, 800, 600);
-		add(background);
-		
-		JLabel txtFechaBaja = new JLabel("New label");
-		txtFechaBaja.setFont(new Font("Arial", Font.BOLD, 14));
-		txtFechaBaja.setBounds(0, 0, 46, 14);
-		add(txtFechaBaja);
 	}
 }
