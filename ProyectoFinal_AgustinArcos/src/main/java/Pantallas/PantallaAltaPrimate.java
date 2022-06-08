@@ -152,6 +152,8 @@ public class PantallaAltaPrimate extends JPanel{
 		txtNombre.setFont(new Font("Arial", Font.BOLD, 14));
 		txtNombre.setBounds(158, 177, 67, 14);
 		add(txtNombre);
+		
+		//DATOS PRIMATE
 		JButton botonDarAlta = new JButton("DAR DE ALTA PRIMATE");
 		botonDarAlta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

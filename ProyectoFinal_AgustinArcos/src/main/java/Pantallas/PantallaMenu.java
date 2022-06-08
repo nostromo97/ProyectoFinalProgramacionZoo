@@ -1,6 +1,9 @@
 package Pantallas;
 
 import javax.swing.JPanel;
+
+import elementosvisuales.botonConMusica;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
@@ -56,7 +59,10 @@ public class PantallaMenu extends JPanel{
 		comboAlta.setBounds(369, 178, 145, 22);
 		add(comboAlta);
 		
-
+		JButton botonConMusica = new botonConMusica ("Música");
+		botonConMusica.setBackground(Color.ORANGE);
+		botonConMusica.setBounds(597, 448, 77, 56);
+		add(botonConMusica);
 		
 		
 		JButton botonBaja = new JButton("DAR DE BAJA ANIMAL");
@@ -91,6 +97,9 @@ public class PantallaMenu extends JPanel{
 		botonAlta.setForeground(Color.BLACK);
 		botonAlta.setBounds(89, 173, 234, 33);
 		add(botonAlta);
+		
+		
+		
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\carol\\Documents\\Eclipse-WORKSPACE\\ProyectoFinalProgramacionZoo\\ProyectoFinal_AgustinArcos\\fotos\\BACKGROUND.jpg"));
