@@ -46,6 +46,25 @@ public class Primate extends Animal{
 		UtilsDB.desconectarBD();		
 	}
 
+	//CONSTRUCTOR BAJA
+	public Primate (short id,String nombre, LocalDate fechaNacimiento, MotivoBaja motivoBaja, LocalDate fechaBaja, boolean genero,
+			String cuidados) throws NombreVacioException, NombreInvalidoException, FechaFormatoException, SQLException {
+		super(id, nombre, fechaNacimiento, motivoBaja, fechaBaja, cuidados);
+		Scanner sc = new Scanner(System.in);
+		Statement query = UtilsDB.conectarBD();
+
+		//if (query.executeUpdate("insert into altaPrimate values(null,'" + nombre + "','" + fechaNacimiento + "','"
+				//+ motivoAlta.toString() + "','" + fechaAlta + "'" + "'," + genero +"','" + cuidados + "'" +")") > 0)
+		if(query.executeUpdate("insert into bajaPrimate values(null,'"+nombre+"','"+fechaNacimiento+"','"+motivoBaja+"','"+fechaBaja+"',"+genero+",'"+cuidados+"')")>0) //insert en baja
+		{
+			this.genero=genero;
+			query.executeUpdate("delete from altaPrimate where id ="+id);
+		} else {
+			throw new SQLException("No se ha podido insertar el primate.");
+		}
+		UtilsDB.desconectarBD();		
+	}
+
 
 	
 

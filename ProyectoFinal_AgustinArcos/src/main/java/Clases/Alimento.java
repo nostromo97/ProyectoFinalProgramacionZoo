@@ -1,18 +1,37 @@
 package Clases;
 
-import Enums.TipoAlimento;
-import Superclases.EntidadConNombre;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Scanner;
 
-public class Alimento extends EntidadConNombre{
+import Enums.TipoAlimento;
+import Excepciones.NombreInvalidoException;
+import Excepciones.NombreVacioException;
+import Superclases.EntidadConIdFechaYNombre;
+import Utils.UtilsDB;
+
+
+public class Alimento extends EntidadConIdFechaYNombre{
+	
 	
 	private TipoAlimento tipoAlimento;
-	private float cantidadAlimentosKilos;
+	private float cantidadAlimento;
 	
-	public Alimento(String nombre, TipoAlimento tipoAlimento, float cantidadAlimentosKilos) {
+	
+	public Alimento(String nombre, TipoAlimento tipoAlimento, float cantidadAlimento) throws NombreVacioException, NombreInvalidoException, SQLException {
 		super(nombre);
+		Scanner sc = new Scanner(System.in);
+		Statement query = UtilsDB.conectarBD();
+				
+		if(query.executeUpdate("insert into alimento values(null,'"+nombre+"','"+tipoAlimento+"','"+cantidadAlimento+"')")>0)
 		this.tipoAlimento = tipoAlimento;
-		this.cantidadAlimentosKilos = cantidadAlimentosKilos;
+		this.cantidadAlimento = cantidadAlimento;
+		
+		UtilsDB.desconectarBD();	
 	}
+	
+	
+	
 
 	public TipoAlimento getTipoAlimento() {
 		return tipoAlimento;
@@ -22,12 +41,12 @@ public class Alimento extends EntidadConNombre{
 		this.tipoAlimento = tipoAlimento;
 	}
 
-	public float getCantidadAlimentosKilos() {
-		return cantidadAlimentosKilos;
+	public float getCantidadAlimento() {
+		return cantidadAlimento;
 	}
 
-	public void setCantidadAlimentosKilos(float cantidadAlimentosKilos) {
-		this.cantidadAlimentosKilos = cantidadAlimentosKilos;
+	public void setCantidadAlimento(float cantidadAlimento) {
+		this.cantidadAlimento = cantidadAlimento;
 	}
 	
 	

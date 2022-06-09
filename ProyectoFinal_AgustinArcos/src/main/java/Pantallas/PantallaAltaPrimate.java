@@ -43,6 +43,9 @@ public class PantallaAltaPrimate extends JPanel{
 		setLayout(null);
 		setSize (800,600);
 		
+		
+		
+		
 		JButton btnAtras = new JButton("Volver");
 		btnAtras.setBackground(Color.ORANGE);
 		btnAtras.addActionListener(new ActionListener() {
@@ -50,7 +53,6 @@ public class PantallaAltaPrimate extends JPanel{
 				ventana.cambiarPantalla("menu");
 			}
 		});
-		
 		
 		final JRadioButton campoFemenino = new JRadioButton("Femenino");
 		campoFemenino.setBounds(57, 420, 89, 23);
@@ -171,7 +173,7 @@ public class PantallaAltaPrimate extends JPanel{
 					
 				
 						Primate primate1 = new Primate(nombrePrimate, fechaNacimiento, motivoAlta, fechaAlta, genero, tratamientoDescripcion);
-						//JOPTION PANE QUE DIGA REGISTRO EXITOSO DE TIPO OK_MESSAGE
+						//JOPTION PANE QUE DIGA REGISTRO EXITOSO DE TIPO INFORMATION_MESSAGE.
 						JOptionPane.showMessageDialog(ventana, "Registro exitoso", "Éxito", JOptionPane.INFORMATION_MESSAGE);
 						//IR A PANTALLA METER ANIMALES
 						ventana.cambiarPantalla("menu");
@@ -188,11 +190,10 @@ public class PantallaAltaPrimate extends JPanel{
 						JOptionPane.showMessageDialog(null, "Error. Introduce la fecha en un formato: dd-MM-YYYY (día, mes, año)", "Error", JOptionPane.ERROR_MESSAGE);
 					}
 				
-				 
-				
-				
+				 			
 			}
 		});
+		
 		campoNombre = new JTextField();
 		campoNombre.setBounds(230, 174, 217, 20);
 		add(campoNombre);

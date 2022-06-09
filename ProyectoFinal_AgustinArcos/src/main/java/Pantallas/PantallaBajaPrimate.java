@@ -7,18 +7,33 @@ import javax.swing.JButton;
 import java.awt.Color;
 import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.awt.event.ActionEvent;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import Clases.Primate;
+import Enums.MotivoBaja;
+import Excepciones.FechaFormatoException;
+import Excepciones.NombreInvalidoException;
+import Excepciones.NombreVacioException;
+import Utils.UtilsDB;
+import javax.swing.JList;
+import javax.swing.JTable;
+import javax.swing.JTextPane;
+
 public class PantallaBajaPrimate extends JPanel{
 	
 	private Ventana ventana;
 	private JTextField campoIdBaja;
-	private JTextField textPrimateAlta;
-	private JTextField textPrimateBaja;
+	private JTextPane textPrimateAlta;
+	private JTextPane textPrimateBaja;
 	
 	public PantallaBajaPrimate(Ventana v) {
 		this.ventana=v;
@@ -26,13 +41,6 @@ public class PantallaBajaPrimate extends JPanel{
 		setSize (800,600);
 		
 		
-			
-			JButton botonDarAlta = new JButton("Introducir ID");
-			botonDarAlta.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					
-				}
-			});
 			
 			JButton btnVolver = new JButton("Volver");
 			btnVolver.addActionListener(new ActionListener() {
@@ -44,11 +52,16 @@ public class PantallaBajaPrimate extends JPanel{
 			btnVolver.setBounds(629, 18, 89, 37);
 			add(btnVolver);
 			
-			textPrimateBaja = new JTextField();
+		
+			textPrimateBaja = new JTextPane();
+			textPrimateBaja.setBackground(Color.LIGHT_GRAY);
+			textPrimateBaja.setFont(new Font("Tahoma", Font.BOLD, 12));
 			textPrimateBaja.setEditable(false);
-			textPrimateBaja.setColumns(10);
+			//textPrimateBaja.setColumns(10);
 			textPrimateBaja.setBounds(76, 360, 573, 186);
 			add(textPrimateBaja);
+			
+			
 			
 			JLabel lblListaBaja = new JLabel("LISTA DE BAJAS DE PRIMATES");
 			lblListaBaja.setForeground(Color.WHITE);
@@ -56,11 +69,14 @@ public class PantallaBajaPrimate extends JPanel{
 			lblListaBaja.setBounds(257, 334, 231, 28);
 			add(lblListaBaja);
 			
-			textPrimateAlta = new JTextField();
+			
+			textPrimateAlta = new JTextPane();
+			textPrimateAlta.setBackground(Color.ORANGE);
+			textPrimateAlta.setFont(new Font("Tahoma", Font.BOLD, 12));
 			textPrimateAlta.setEditable(false);
 			textPrimateAlta.setBounds(76, 74, 573, 175);
 			add(textPrimateAlta);
-			textPrimateAlta.setColumns(10);
+			//textPrimateAlta.setColumns(10);
 			
 			JLabel lblListaAlta = new JLabel("LISTA DE ALTAS DE PRIMATES");
 			lblListaAlta.setForeground(Color.WHITE);
@@ -85,10 +101,71 @@ public class PantallaBajaPrimate extends JPanel{
 			lblIdBaja.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 14));
 			lblIdBaja.setBounds(162, 286, 195, 28);
 			add(lblIdBaja);
-			botonDarAlta.setBackground(Color.RED);
-			botonDarAlta.setForeground(Color.BLACK);
-			botonDarAlta.setBounds(410, 288, 106, 28);
-			add(botonDarAlta);
+			
+			
+			
+			JButton botonDarBaja = new JButton("Introducir ID");
+			botonDarBaja.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					
+					//hacer select y si encuentra constructor baja
+					
+					Statement query = UtilsDB.conectarBD();
+					
+					short id = Short.parseShort(campoIdBaja.getText());
+					
+					try {
+						ResultSet cursor = query.executeQuery("select id, nombre, date_format(fechaNacimiento,'%d-%m-%Y') "
+								+ "as fechaNacimiento,motivoAlta,fechaAlta,genero,cuidados from altaPrimate where id="+id+";");
+						if(cursor.next()) {
+							
+							//public Primate (short id,String nombre, LocalDate fechaNacimiento, MotivoBaja motivoBaja, LocalDate fechaBaja, boolean genero,
+									//String cuidados)	
+							String nombre = cursor.getString("nombre");
+							DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+							LocalDate fechaNacimiento = LocalDate.parse(cursor.getString("fechaNacimiento"),formatter);		
+							LocalDate fechaBaja = LocalDate.now();
+							boolean genero = cursor.getBoolean("genero");
+							String cuidados = cursor.getString("cuidados");
+							
+							
+							// lo coge del usuario combobox
+							MotivoBaja motivoBaja = MotivoBaja.MUERTE;
+							
+							
+							Primate p = new Primate(id,nombre,fechaNacimiento,motivoBaja,fechaBaja,genero,cuidados);
+							mostrarPrimatesAlta();
+							mostrarPrimatesBaja();
+						}
+						else {
+							//JOPTIONPANE DE QUE NO ESTA LA ID
+						}
+						
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (NombreVacioException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (NombreInvalidoException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (FechaFormatoException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+						
+					
+					
+					UtilsDB.desconectarBD();
+					
+					
+				}
+			});
+			botonDarBaja.setBackground(Color.RED);
+			botonDarBaja.setForeground(Color.BLACK);
+			botonDarBaja.setBounds(410, 288, 106, 28);
+			add(botonDarBaja);
 			
 			JLabel background = new JLabel("");
 			background.setIcon(new ImageIcon("C:\\Users\\carol\\Documents\\Eclipse-WORKSPACE\\ProyectoFinalProgramacionZoo\\ProyectoFinal_AgustinArcos\\fotos\\BACKGROUND_sinlogo.jpg"));
@@ -99,6 +176,60 @@ public class PantallaBajaPrimate extends JPanel{
 			txtFechaBaja.setFont(new Font("Arial", Font.BOLD, 14));
 			txtFechaBaja.setBounds(0, 0, 46, 14);
 			add(txtFechaBaja);
+			
+			mostrarPrimatesAlta();
+			mostrarPrimatesBaja();
 		
+	}
+	
+	private void mostrarPrimatesAlta() {
+		Statement query = UtilsDB.conectarBD();
+		
+		String listaPrimates = "";
+		
+		ResultSet cursor;
+		try {
+			cursor = query.executeQuery("select * from altaPrimate");
+			
+			while(cursor.next()) {
+				String id = cursor.getString("id");
+				String nombre = cursor.getString("nombre");
+				listaPrimates +="●ID: "+ id +"     ●Nombre: "+ nombre + "\n";
+			}
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		textPrimateAlta.setText(listaPrimates);
+	}
+	
+	private void mostrarPrimatesBaja() {
+		Statement query = UtilsDB.conectarBD();
+		
+		String listaPrimates = "";
+		
+		ResultSet cursor;
+		try {
+			cursor = query.executeQuery("select * from bajaPrimate");
+			
+			while(cursor.next()) {
+				String id = cursor.getString("id");
+				String nombre = cursor.getString("nombre");
+				String motivoBaja = cursor.getString("motivoBaja");
+				listaPrimates +="●ID: "+ id +"     ●Nombre: "+ nombre + "\n";
+			}
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		textPrimateBaja.setText(listaPrimates);
 	}
 }

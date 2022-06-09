@@ -54,7 +54,7 @@ public class PantallaAltaAnfibio extends JPanel{
 		});
 		
 		final JComboBox comboOrden = new JComboBox();
-		comboOrden.setModel(new DefaultComboBoxModel(new String[] {"...", "ANURA", "CAUDATA", "GYMNOPHIONA"}));
+		comboOrden.setModel(new DefaultComboBoxModel(new String[] {"...", "Anura", "Caudata", "Gymnophiona"}));
 		comboOrden.setMaximumRowCount(4);
 		comboOrden.setBounds(60, 359, 121, 22);
 		add(comboOrden);
@@ -179,6 +179,8 @@ public class PantallaAltaAnfibio extends JPanel{
 								tipoOrden = TipoOrden.CAUDATA;
 							}else if (comboOrden.getSelectedItem().equals("Gymnophiona")) {
 								tipoOrden = TipoOrden.GYMNOPHIONA;
+							}else {
+								JOptionPane.showMessageDialog(null, "HAS DEJADO EL CAMPO VACÍO", "AVISO", JOptionPane.INFORMATION_MESSAGE);
 							}
 							
 							

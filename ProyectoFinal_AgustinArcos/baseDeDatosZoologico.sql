@@ -12,6 +12,7 @@ contrasena VARCHAR (25),
 PRIMARY KEY (id)
 );
 
+select * from usuarios;
 
 CREATE TABLE altaPrimate (
 id int auto_increment,
@@ -25,6 +26,20 @@ PRIMARY KEY(id)
 );
 
 select * from altaPrimate;
+select id, nombre, date_format(fechaNacimiento,'%d-%m-%Y') as fechaNacimiento,motivoAlta,fechaAlta,genero,cuidados from altaPrimate where id=1;
+
+CREATE TABLE bajaPrimate (
+id int auto_increment,
+nombre VARCHAR (40),
+fechaNacimiento DATE,
+motivoBaja VARCHAR (100),
+fechaBaja DATE,
+GENERO boolean,
+CUIDADOS VARCHAR (200),
+PRIMARY KEY(id)
+);
+
+select * from bajaPrimate;
 
 
 CREATE TABLE altaReptil (
@@ -54,7 +69,32 @@ PRIMARY KEY (id)
 
 select * from altaAnfibio;
 
+DROP TABLE alimento;
 
-select * from usuarios;
-insert into usuarios values(null,'nombre','asdasd','25-08-1993',12345678);
+CREATE TABLE alimento (
+id int auto_increment,
+nombre VARCHAR(40),
+tipoAlimento VARCHAR (40),
+cantidadAlimento NUMERIC (4,1),
+PRIMARY KEY (id)
+);
+
+select * from alimento;
+DROP TABLE alimento;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

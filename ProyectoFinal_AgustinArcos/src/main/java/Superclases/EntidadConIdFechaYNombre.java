@@ -32,11 +32,18 @@ public class  EntidadConIdFechaYNombre  {
 		this.setFechaNacimiento(fechaNacimiento);
 		this.setNombre(nombre);
 	}
+	
+	public EntidadConIdFechaYNombre (short id,String nombre) throws NombreVacioException, NombreInvalidoException {
+		this.setNombre(nombre);
+		this.setId(id);
+	}
 
 	public EntidadConIdFechaYNombre(String nombre) throws NombreVacioException, NombreInvalidoException {
 		super();
 		setNombre(nombre);
 	}
+	
+	
 
 	public short getId() {
 		return id;

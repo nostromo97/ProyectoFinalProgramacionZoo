@@ -49,6 +49,15 @@ public Animal(String nombre,LocalDate fechaNacimiento,  MotivoAlta motivoAlta, L
 	this.fechaAlta = fechaAlta;
 }
 
+//baja
+public Animal(short id,String nombre,LocalDate fechaNacimiento,  MotivoBaja motivoBaja, LocalDate fechaBaja, String cuidados
+		) throws NombreVacioException, NombreInvalidoException, FechaFormatoException {
+	super(id,fechaNacimiento, nombre);
+	this.cuidados = cuidados;
+	this.motivoBaja = motivoBaja;
+	this.fechaBaja = fechaBaja;
+}
+
 	public Animal(String nombre, LocalDate fechaNacimiento, Cuidados cuidados, MotivoAlta motivoAlta, LocalDate fechaAlta, boolean genero) throws NombreVacioException, NombreInvalidoException, FechaFormatoException {
 		super(fechaNacimiento,nombre);
 		this.genero=genero;
