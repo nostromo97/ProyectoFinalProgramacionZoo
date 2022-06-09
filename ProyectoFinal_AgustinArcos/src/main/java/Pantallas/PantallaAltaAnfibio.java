@@ -25,6 +25,7 @@ import Clases.Primate;
 import Enums.MotivoAlta;
 import Enums.TipoOrden;
 import Excepciones.FechaFormatoException;
+import Excepciones.MotivoVacioException;
 import Excepciones.NombreInvalidoException;
 import Excepciones.NombreVacioException;
 
@@ -179,8 +180,8 @@ public class PantallaAltaAnfibio extends JPanel{
 								tipoOrden = TipoOrden.CAUDATA;
 							}else if (comboOrden.getSelectedItem().equals("Gymnophiona")) {
 								tipoOrden = TipoOrden.GYMNOPHIONA;
-							}else {
-								JOptionPane.showMessageDialog(null, "HAS DEJADO EL CAMPO VACÍO", "AVISO", JOptionPane.INFORMATION_MESSAGE);
+							}else if(comboOrden.getSelectedItem().equals("...")){
+								tipoOrden = TipoOrden.___;
 							}
 							
 							
@@ -209,6 +210,9 @@ public class PantallaAltaAnfibio extends JPanel{
 						JOptionPane.showMessageDialog(null, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 					} catch(DateTimeParseException e1) {
 						JOptionPane.showMessageDialog(null, "Error. Introduce la fecha en un formato: dd-MM-YYYY (día, mes, año)", "Error", JOptionPane.ERROR_MESSAGE);
+					} catch (MotivoVacioException e1) {
+						JOptionPane.showMessageDialog(null, "HAS DEJADO EL CAMPO VACÍO", "AVISO", JOptionPane.INFORMATION_MESSAGE);
+						e1.printStackTrace();
 					}
 				
 				

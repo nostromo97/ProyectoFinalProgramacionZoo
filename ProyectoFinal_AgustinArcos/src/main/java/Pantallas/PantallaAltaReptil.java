@@ -25,6 +25,7 @@ import Clases.Reptil;
 import Enums.MotivoAlta;
 import Enums.TipoPiel;
 import Excepciones.FechaFormatoException;
+import Excepciones.MotivoVacioException;
 import Excepciones.NombreInvalidoException;
 import Excepciones.NombreVacioException;
 
@@ -155,8 +156,8 @@ public class PantallaAltaReptil extends JPanel{
 								motivoAlta=MotivoAlta.NACIMIENTO;
 							}else if (comboAlta.getSelectedItem().equals("Llegada")) {
 								motivoAlta=MotivoAlta.LLEGADA;
-							}else {
-								JOptionPane.showMessageDialog(null, "Motivo de alta vacío", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+							}else if(comboAlta.getSelectedItem().equals("...")){
+								motivoAlta=MotivoAlta.___;
 							}
 					
 					boolean tipoPiel=true;
@@ -183,6 +184,9 @@ public class PantallaAltaReptil extends JPanel{
 						JOptionPane.showMessageDialog(null, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 					} catch(DateTimeParseException e1) {
 						JOptionPane.showMessageDialog(null, "Error. Introduce la fecha en un formato: dd-MM-YYYY (día, mes, año)", "Error", JOptionPane.ERROR_MESSAGE);
+					} catch (MotivoVacioException e1) {
+						JOptionPane.showMessageDialog(null, "Motivo de alta vacío", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+						e1.printStackTrace();
 					}
 								
 			}

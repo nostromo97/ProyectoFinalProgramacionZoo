@@ -9,6 +9,7 @@ import Enums.TipoRaza;
 import Excepciones.FechaFormatoException;
 import Excepciones.IdInvalidoException;
 import Excepciones.IdVacioException;
+import Excepciones.MotivoVacioException;
 import Excepciones.NombreInvalidoException;
 import Excepciones.NombreVacioException;
 import Superclases.EntidadConIdFechaYNombre;
@@ -42,19 +43,19 @@ public class Animal extends EntidadConIdFechaYNombre{
 	
 	//ALTA animal
 public Animal(String nombre,LocalDate fechaNacimiento,  MotivoAlta motivoAlta, LocalDate fechaAlta, String cuidados
-		) throws NombreVacioException, NombreInvalidoException, FechaFormatoException {
+		) throws NombreVacioException, NombreInvalidoException, FechaFormatoException,MotivoVacioException {
 	super(fechaNacimiento, nombre);
 	this.cuidados = cuidados;
-	this.motivoAlta = motivoAlta;
+	this.setMotivoAlta(motivoAlta);
 	this.fechaAlta = fechaAlta;
 }
 
 //baja
 public Animal(short id,String nombre,LocalDate fechaNacimiento,  MotivoBaja motivoBaja, LocalDate fechaBaja, String cuidados
-		) throws NombreVacioException, NombreInvalidoException, FechaFormatoException {
+		) throws NombreVacioException, NombreInvalidoException, FechaFormatoException,MotivoVacioException {
 	super(id,fechaNacimiento, nombre);
 	this.cuidados = cuidados;
-	this.motivoBaja = motivoBaja;
+	this.setMotivoBaja(motivoBaja);
 	this.fechaBaja = fechaBaja;
 }
 
@@ -62,20 +63,6 @@ public Animal(short id,String nombre,LocalDate fechaNacimiento,  MotivoBaja moti
 		super(fechaNacimiento,nombre);
 		this.genero=genero;
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -104,8 +91,13 @@ public Animal(short id,String nombre,LocalDate fechaNacimiento,  MotivoBaja moti
 	}
 
 
-	public void setMotivoAlta(MotivoAlta motivoAlta) {
-		this.motivoAlta = motivoAlta;
+	public void setMotivoAlta(MotivoAlta motivoAlta) throws MotivoVacioException{
+		if(motivoAlta == MotivoAlta.___) {
+			throw new MotivoVacioException ("Error. El motivo de alta no puede estar vacío");
+		}else {
+			this.motivoAlta = motivoAlta;
+		}
+		
 	}
 
 
@@ -114,8 +106,14 @@ public Animal(short id,String nombre,LocalDate fechaNacimiento,  MotivoBaja moti
 	}
 
 
-	public void setMotivoBaja(MotivoBaja motivoBaja) {
-		this.motivoBaja = motivoBaja;
+	public void setMotivoBaja(MotivoBaja motivoBaja) throws MotivoVacioException{
+		
+		if(motivoBaja == MotivoBaja.___) {
+			throw new MotivoVacioException ("Error. El motivo de baja no puede estar vacío.");
+		}else {
+			this.motivoBaja = motivoBaja;
+		}
+		
 	}
 
 

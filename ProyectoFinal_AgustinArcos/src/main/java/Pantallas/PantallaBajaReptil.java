@@ -2,23 +2,39 @@ package Pantallas;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Color;
 import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.awt.event.ActionEvent;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.Font;
 import javax.swing.JTextField;
+import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
+
+import Clases.Primate;
+import Clases.Reptil;
+import Enums.MotivoBaja;
+import Excepciones.FechaFormatoException;
+import Excepciones.MotivoVacioException;
+import Excepciones.NombreInvalidoException;
+import Excepciones.NombreVacioException;
+import Utils.UtilsDB;
 
 public class PantallaBajaReptil extends JPanel{
 	
 	private Ventana ventana;
 	private JTextField campoIdBaja;
-	private JTextField textReptilAlta;
-	private JTextField textReptilBaja;
+	private JTextPane textReptilAlta;
+	private JTextPane textReptilBaja;
 	
 	public PantallaBajaReptil(Ventana v) {
 		this.ventana=v;
@@ -27,12 +43,7 @@ public class PantallaBajaReptil extends JPanel{
 		
 		
 			
-			JButton botonDarAlta = new JButton("Introducir ID");
-			botonDarAlta.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					
-				}
-			});
+			
 			
 			JButton btnVolver = new JButton("Volver");
 			btnVolver.addActionListener(new ActionListener() {
@@ -40,13 +51,27 @@ public class PantallaBajaReptil extends JPanel{
 					ventana.cambiarPantalla("menu");				
 				}
 			});
+			
+			final JComboBox comboBaja = new JComboBox();
+			comboBaja.setModel(new DefaultComboBoxModel(new String[] {"...", "Muerte", "Traslado"}));
+			comboBaja.setMaximumRowCount(3);
+			comboBaja.setBounds(356, 291, 132, 22);
+			add(comboBaja);
 			btnVolver.setBackground(Color.ORANGE);
 			btnVolver.setBounds(629, 18, 89, 37);
 			add(btnVolver);
 			
-			textReptilBaja = new JTextField();
+			JLabel lblBaja = new JLabel("Motivo de baja:");
+			lblBaja.setFont(new Font("Tahoma", Font.BOLD, 12));
+			lblBaja.setForeground(Color.WHITE);
+			lblBaja.setBounds(355, 271, 118, 14);
+			add(lblBaja);
+			
+			textReptilBaja = new JTextPane();
+			textReptilBaja.setFont(new Font("Tahoma", Font.BOLD, 12));
+			textReptilBaja.setBackground(Color.LIGHT_GRAY);
 			textReptilBaja.setEditable(false);
-			textReptilBaja.setColumns(10);
+			
 			textReptilBaja.setBounds(76, 360, 573, 186);
 			add(textReptilBaja);
 			
@@ -56,11 +81,13 @@ public class PantallaBajaReptil extends JPanel{
 			lblListaBaja.setBounds(257, 334, 231, 28);
 			add(lblListaBaja);
 			
-			textReptilAlta = new JTextField();
+			textReptilAlta = new JTextPane();
+			textReptilAlta.setFont(new Font("Tahoma", Font.BOLD, 12));
+			textReptilAlta.setBackground(Color.ORANGE);
 			textReptilAlta.setEditable(false);
 			textReptilAlta.setBounds(76, 74, 573, 175);
 			add(textReptilAlta);
-			textReptilAlta.setColumns(10);
+			
 			
 			JLabel lblListaAlta = new JLabel("LISTA DE ALTAS DE REPTILES");
 			lblListaAlta.setForeground(Color.WHITE);
@@ -75,20 +102,93 @@ public class PantallaBajaReptil extends JPanel{
 			add(txtPrimate);
 			
 			campoIdBaja = new JTextField();
-			campoIdBaja.setBounds(353, 292, 46, 20);
+			campoIdBaja.setBounds(297, 292, 46, 20);
 			add(campoIdBaja);
 			campoIdBaja.setColumns(10);
+			
+			JButton botonBaja = new JButton("Dar de baja");
+			botonBaja.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+
+					//hacer select y si encuentra constructor baja
+					
+					Statement query = UtilsDB.conectarBD();
+					
+					short id = Short.parseShort(campoIdBaja.getText());
+					
+					try {
+						ResultSet cursor = query.executeQuery("select id, nombre, date_format(fechaNacimiento,'%d-%m-%Y') "
+								+ "as fechaNacimiento,motivoAlta,fechaAlta,tipoPiel,cuidados from altaReptil where id="+id+";");
+						if(cursor.next()) {
+							
+								
+							String nombre = cursor.getString("nombre");
+							DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+							LocalDate fechaNacimiento = LocalDate.parse(cursor.getString("fechaNacimiento"),formatter);		
+							LocalDate fechaBaja = LocalDate.now();
+							boolean tipoPiel = cursor.getBoolean("tipoPiel");
+							String cuidados = cursor.getString("cuidados");
+							MotivoBaja motivoBaja = null;
+							
+							if(comboBaja.getSelectedItem().equals("Muerte")) {
+								motivoBaja=MotivoBaja.MUERTE;
+							}else if (comboBaja.getSelectedItem().equals("Traspaso")) {
+								motivoBaja=MotivoBaja.TRASPASO;
+							}else if(comboBaja.getSelectedItem().equals("...")){
+								motivoBaja=MotivoBaja.___;
+							}
+							
+							
+							
+							Reptil reptil = new Reptil(id, nombre, fechaNacimiento, motivoBaja, fechaBaja, tipoPiel, cuidados);
+							mostrarReptilesAlta();
+							mostrarReptilesBaja();
+							JOptionPane.showMessageDialog(ventana, "Registro exitoso", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+							
+						}
+						else {
+							JOptionPane.showMessageDialog(null, "NO SE ENCUENTRA LA ID", "ERROR", JOptionPane.ERROR_MESSAGE);
+						}
+						
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (NombreVacioException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (NombreInvalidoException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (FechaFormatoException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (MotivoVacioException e1) {
+						JOptionPane.showMessageDialog(null, "Error. Motivo de alta vacío", "Error", JOptionPane.INFORMATION_MESSAGE);
+						e1.printStackTrace();
+					}
+						
+					
+					
+					UtilsDB.desconectarBD();
+					
+					
+					
+					
+					
+					
+				}
+			});
 			
 			JLabel lblIdBaja = new JLabel("ID de animal a dar de baja:");
 			lblIdBaja.setBackground(Color.GREEN);
 			lblIdBaja.setForeground(Color.WHITE);
 			lblIdBaja.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 14));
-			lblIdBaja.setBounds(162, 286, 195, 28);
+			lblIdBaja.setBounds(104, 286, 195, 28);
 			add(lblIdBaja);
-			botonDarAlta.setBackground(Color.RED);
-			botonDarAlta.setForeground(Color.BLACK);
-			botonDarAlta.setBounds(410, 288, 106, 28);
-			add(botonDarAlta);
+			botonBaja.setBackground(Color.RED);
+			botonBaja.setForeground(Color.BLACK);
+			botonBaja.setBounds(573, 286, 106, 39);
+			add(botonBaja);
 			
 			JLabel background = new JLabel("");
 			background.setIcon(new ImageIcon("C:\\Users\\carol\\Documents\\Eclipse-WORKSPACE\\ProyectoFinalProgramacionZoo\\ProyectoFinal_AgustinArcos\\fotos\\BACKGROUND_sinlogo.jpg"));
@@ -99,6 +199,64 @@ public class PantallaBajaReptil extends JPanel{
 			txtFechaBaja.setFont(new Font("Arial", Font.BOLD, 14));
 			txtFechaBaja.setBounds(0, 0, 46, 14);
 			add(txtFechaBaja);
-		
+			
+			mostrarReptilesAlta();
+			mostrarReptilesBaja();
+				
 	}
+	
+	private void mostrarReptilesAlta() {
+		Statement query = UtilsDB.conectarBD();
+		
+		String listaReptiles = "";
+		
+		ResultSet cursor;
+		try {
+			cursor = query.executeQuery("select * from altaReptil");
+			
+			while(cursor.next()) {
+				String id = cursor.getString("id");
+				String nombre = cursor.getString("nombre");
+				listaReptiles +="●ID: "+ id +"     ●Nombre: "+ nombre + "\n";
+			}
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		textReptilAlta.setText(listaReptiles);
+	}
+	
+	
+	private void mostrarReptilesBaja() {
+		Statement query = UtilsDB.conectarBD();
+		
+		String listaReptiles = "";
+		
+		ResultSet cursor;
+		try {
+			cursor = query.executeQuery("select * from bajaReptil");
+			
+			while(cursor.next()) {
+				String id = cursor.getString("id");
+				String nombre = cursor.getString("nombre");
+				String motivoBaja = cursor.getString("motivoBaja");
+				listaReptiles +="●ID: "+ id +"     ●Nombre: "+ nombre + "\n";
+			}
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		textReptilBaja.setText(listaReptiles);
+	}
+	
+	
+	
 }

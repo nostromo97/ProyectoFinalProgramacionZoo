@@ -9,9 +9,11 @@ import java.util.Scanner;
 import Enums.MotivoAlta;
 import Enums.MotivoBaja;
 import Enums.TipoRaza;
+import Excepciones.CampoVacioException;
 import Excepciones.FechaFormatoException;
 import Excepciones.IdInvalidoException;
 import Excepciones.IdVacioException;
+import Excepciones.MotivoVacioException;
 import Excepciones.NombreInvalidoException;
 import Excepciones.NombreVacioException;
 import Utils.UtilsDB;
@@ -22,7 +24,8 @@ public class Primate extends Animal{
 
 	public Primate(short id, LocalDate fechaNacimiento, String nombre, TipoRaza raza, String cuidados,
 			MotivoAlta motivoAlta, MotivoBaja motivoBaja, LocalDate fechaAlta, LocalDate fechaBaja, Dieta dieta,
-			boolean genero) throws NombreVacioException, NombreInvalidoException, IdInvalidoException, IdVacioException, FechaFormatoException {
+			boolean genero) throws NombreVacioException, NombreInvalidoException, IdInvalidoException, IdVacioException, FechaFormatoException,
+			CampoVacioException,MotivoVacioException {
 		super(id, fechaNacimiento, nombre, raza, cuidados, motivoAlta, motivoBaja, fechaAlta, fechaBaja, dieta);
 		this.genero = genero;
 	}
@@ -30,7 +33,7 @@ public class Primate extends Animal{
 	
 	//alta PRIMATE
 	public Primate (String nombre, LocalDate fechaNacimiento, MotivoAlta motivoAlta, LocalDate fechaAlta, boolean genero,
-			String cuidados) throws NombreVacioException, NombreInvalidoException, FechaFormatoException, SQLException {
+			String cuidados) throws NombreVacioException, NombreInvalidoException, FechaFormatoException, SQLException,CampoVacioException,MotivoVacioException {
 		super(nombre, fechaNacimiento, motivoAlta, fechaAlta, cuidados);
 		Scanner sc = new Scanner(System.in);
 		Statement query = UtilsDB.conectarBD();
@@ -48,7 +51,7 @@ public class Primate extends Animal{
 
 	//CONSTRUCTOR BAJA
 	public Primate (short id,String nombre, LocalDate fechaNacimiento, MotivoBaja motivoBaja, LocalDate fechaBaja, boolean genero,
-			String cuidados) throws NombreVacioException, NombreInvalidoException, FechaFormatoException, SQLException {
+			String cuidados) throws NombreVacioException, NombreInvalidoException, FechaFormatoException, SQLException, MotivoVacioException {
 		super(id, nombre, fechaNacimiento, motivoBaja, fechaBaja, cuidados);
 		Scanner sc = new Scanner(System.in);
 		Statement query = UtilsDB.conectarBD();

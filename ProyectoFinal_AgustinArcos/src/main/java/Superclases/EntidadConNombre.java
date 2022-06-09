@@ -1,5 +1,7 @@
 package Superclases;
 
+import Excepciones.NombreVacioException;
+
 public class EntidadConNombre {
 
 	private String nombre;
@@ -13,8 +15,12 @@ public class EntidadConNombre {
 		return nombre;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setNombre(String nombre) throws NombreVacioException {
+		if(nombre.isBlank()) {
+			throw new NombreVacioException("Error. El Nombre no puede estar vacío.");
+		}else {
+			this.nombre=nombre;
+		}
 	}
 	
 	

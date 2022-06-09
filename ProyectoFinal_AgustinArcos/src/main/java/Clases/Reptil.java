@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import Enums.MotivoAlta;
 import Enums.MotivoBaja;
@@ -12,6 +13,7 @@ import Enums.TipoRaza;
 import Excepciones.FechaFormatoException;
 import Excepciones.IdInvalidoException;
 import Excepciones.IdVacioException;
+import Excepciones.MotivoVacioException;
 import Excepciones.NombreInvalidoException;
 import Excepciones.NombreVacioException;
 import Utils.UtilsDB;
@@ -28,7 +30,7 @@ public class Reptil extends Animal{
 	}
 
 	public Reptil (String nombre, LocalDate fechaNacimiento, MotivoAlta motivoAlta, LocalDate fechaAlta, boolean tipoPiel,
-			String cuidados) throws NombreVacioException, NombreInvalidoException, FechaFormatoException, SQLException {
+			String cuidados) throws NombreVacioException, NombreInvalidoException, FechaFormatoException, SQLException, MotivoVacioException {
 		super(nombre, fechaNacimiento, motivoAlta, fechaAlta, cuidados);
 		
 		Statement query = UtilsDB.conectarBD();
@@ -41,13 +43,25 @@ public class Reptil extends Animal{
 			throw new SQLException("No se ha podido insertar el usuario");
 		}
 		UtilsDB.desconectarBD();
-		
-		
-		
-		
+				
 	}	
 
+	//CONSTRUCTOR BAJA
+	public Reptil (short id,String nombre, LocalDate fechaNacimiento, MotivoBaja motivoBaja, LocalDate fechaBaja, boolean tipoPiel,
+			String cuidados) throws NombreVacioException, NombreInvalidoException, FechaFormatoException, SQLException, MotivoVacioException {
+		super(id, nombre, fechaNacimiento, motivoBaja, fechaBaja, cuidados);
+		Scanner sc = new Scanner(System.in);
+		Statement query = UtilsDB.conectarBD();
 
+		if(query.executeUpdate("insert into bajaReptil values(null,'"+nombre+"','"+fechaNacimiento+"','"+motivoBaja+"','"+fechaBaja+"',"+tipoPiel+",'"+cuidados+"')")>0)
+		{
+			this.tipoPiel=tipoPiel;
+			query.executeUpdate("delete from altaReptil where id ="+id);
+		} else {
+			throw new SQLException("No se ha podido insertar el primate.");
+		}
+		UtilsDB.desconectarBD();		
+	}
 
 
 

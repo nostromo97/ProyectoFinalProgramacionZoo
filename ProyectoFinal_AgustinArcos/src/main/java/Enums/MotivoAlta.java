@@ -3,5 +3,9 @@ package Enums;
 public enum MotivoAlta {
 
 	NACIMIENTO,
-	LLEGADA
+	LLEGADA,
+	___
+	
+	
+	
 }

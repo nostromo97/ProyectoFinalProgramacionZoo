@@ -24,7 +24,9 @@ import javax.swing.SwingConstants;
 import Clases.Primate;
 import Clases.Usuario;
 import Enums.MotivoAlta;
+import Excepciones.CampoVacioException;
 import Excepciones.FechaFormatoException;
+import Excepciones.MotivoVacioException;
 import Excepciones.NombreInvalidoException;
 import Excepciones.NombreVacioException;
 
@@ -57,6 +59,16 @@ public class PantallaAltaPrimate extends JPanel{
 		final JRadioButton campoFemenino = new JRadioButton("Femenino");
 		campoFemenino.setBounds(57, 420, 89, 23);
 		add(campoFemenino);
+		
+		JButton btnVolver = new JButton("Volver");
+		btnVolver.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ventana.cambiarPantalla("menu");
+			}
+		});
+		btnVolver.setBackground(Color.ORANGE);
+		btnVolver.setBounds(583, 36, 89, 60);
+		add(btnVolver);
 		
 		final JRadioButton campoMasculino = new JRadioButton("Masculino");
 		campoMasculino.setBounds(57, 392, 90, 23);
@@ -152,15 +164,21 @@ public class PantallaAltaPrimate extends JPanel{
 					LocalDate fechaAlta = LocalDate.parse(campoFechaAlta.getText(),formatter);
 					String tratamientoDescripcion = campoDescripcion.getText();
 					MotivoAlta motivoAlta=null;
-							
+												
 					
 							if(comboAlta.getSelectedItem().equals("Nacimiento")) {
 								motivoAlta=MotivoAlta.NACIMIENTO;
 							}else if (comboAlta.getSelectedItem().equals("Llegada")) {
-								motivoAlta=MotivoAlta.LLEGADA;
-							}else {
-								JOptionPane.showMessageDialog(null, "HAS DEJADO EL MOTIVO DE ALTA VACÍO", "AVISO", JOptionPane.INFORMATION_MESSAGE);
-							}
+								 
+									motivoAlta=MotivoAlta.LLEGADA;
+								}else if(comboAlta.getSelectedItem().equals("...")) {
+									motivoAlta = MotivoAlta.___;
+								}
+									
+								
+							
+								
+							
 							
 							
 					
@@ -188,6 +206,12 @@ public class PantallaAltaPrimate extends JPanel{
 						JOptionPane.showMessageDialog(null, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 					} catch(DateTimeParseException e1) {
 						JOptionPane.showMessageDialog(null, "Error. Introduce la fecha en un formato: dd-MM-YYYY (día, mes, año)", "Error", JOptionPane.ERROR_MESSAGE);
+					} catch (CampoVacioException e1) {
+						
+						e1.printStackTrace();
+					} catch (MotivoVacioException e1) {
+						JOptionPane.showMessageDialog(null, "Error. Motivo de alta vacío", "Error", JOptionPane.ERROR_MESSAGE);
+						e1.printStackTrace();
 					}
 				
 				 			

@@ -19,12 +19,15 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import Clases.Primate;
+import Enums.MotivoAlta;
 import Enums.MotivoBaja;
 import Excepciones.FechaFormatoException;
+import Excepciones.MotivoVacioException;
 import Excepciones.NombreInvalidoException;
 import Excepciones.NombreVacioException;
 import Utils.UtilsDB;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextPane;
 
@@ -48,6 +51,18 @@ public class PantallaBajaPrimate extends JPanel{
 					ventana.cambiarPantalla("menu");				
 				}
 			});
+			
+			JLabel lblMotivoBaja = new JLabel("Motivo baja:");
+			lblMotivoBaja.setForeground(Color.WHITE);
+			lblMotivoBaja.setFont(new Font("Arial", Font.BOLD, 14));
+			lblMotivoBaja.setBounds(337, 271, 119, 14);
+			add(lblMotivoBaja);
+			
+			final JComboBox comboBaja = new JComboBox();
+			comboBaja.setModel(new DefaultComboBoxModel(new String[] {"...", "Muerte", "Traspaso"}));
+			comboBaja.setMaximumRowCount(3);
+			comboBaja.setBounds(337, 291, 155, 22);
+			add(comboBaja);
 			btnVolver.setBackground(Color.ORANGE);
 			btnVolver.setBounds(629, 18, 89, 37);
 			add(btnVolver);
@@ -91,7 +106,7 @@ public class PantallaBajaPrimate extends JPanel{
 			add(txtPrimate);
 			
 			campoIdBaja = new JTextField();
-			campoIdBaja.setBounds(353, 292, 46, 20);
+			campoIdBaja.setBounds(268, 292, 46, 20);
 			add(campoIdBaja);
 			campoIdBaja.setColumns(10);
 			
@@ -99,12 +114,12 @@ public class PantallaBajaPrimate extends JPanel{
 			lblIdBaja.setBackground(Color.GREEN);
 			lblIdBaja.setForeground(Color.WHITE);
 			lblIdBaja.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 14));
-			lblIdBaja.setBounds(162, 286, 195, 28);
+			lblIdBaja.setBounds(76, 286, 195, 28);
 			add(lblIdBaja);
 			
 			
 			
-			JButton botonDarBaja = new JButton("Introducir ID");
+			JButton botonDarBaja = new JButton("Dar de baja");
 			botonDarBaja.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					
@@ -127,18 +142,26 @@ public class PantallaBajaPrimate extends JPanel{
 							LocalDate fechaBaja = LocalDate.now();
 							boolean genero = cursor.getBoolean("genero");
 							String cuidados = cursor.getString("cuidados");
+							MotivoBaja motivoBaja = null;
 							
+							if(comboBaja.getSelectedItem().equals("Muerte")) {
+								motivoBaja=MotivoBaja.MUERTE;
+							}else if (comboBaja.getSelectedItem().equals("Traspaso")) {
+								motivoBaja=MotivoBaja.TRASPASO;
+							}else if(comboBaja.getSelectedItem().equals("...")){
+								motivoBaja = MotivoBaja.___;
+							}
 							
-							// lo coge del usuario combobox
-							MotivoBaja motivoBaja = MotivoBaja.MUERTE;
 							
 							
 							Primate p = new Primate(id,nombre,fechaNacimiento,motivoBaja,fechaBaja,genero,cuidados);
 							mostrarPrimatesAlta();
 							mostrarPrimatesBaja();
+							JOptionPane.showMessageDialog(ventana, "Registro exitoso", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+							
 						}
 						else {
-							//JOPTIONPANE DE QUE NO ESTA LA ID
+							JOptionPane.showMessageDialog(null, "NO SE ENCUENTRA LA ID", "ERROR", JOptionPane.ERROR_MESSAGE);
 						}
 						
 					} catch (SQLException e1) {
@@ -153,6 +176,9 @@ public class PantallaBajaPrimate extends JPanel{
 					} catch (FechaFormatoException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
+					} catch (MotivoVacioException e1) {
+						JOptionPane.showMessageDialog(null, "HAS DEJADO EL MOTIVO DE ALTA VACÍO", "ERROR", JOptionPane.ERROR_MESSAGE);
+						e1.printStackTrace();
 					}
 						
 					
@@ -164,7 +190,7 @@ public class PantallaBajaPrimate extends JPanel{
 			});
 			botonDarBaja.setBackground(Color.RED);
 			botonDarBaja.setForeground(Color.BLACK);
-			botonDarBaja.setBounds(410, 288, 106, 28);
+			botonDarBaja.setBounds(549, 271, 119, 54);
 			add(botonDarBaja);
 			
 			JLabel background = new JLabel("");
