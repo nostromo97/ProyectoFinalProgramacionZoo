@@ -28,7 +28,7 @@ public class Alimento extends EntidadConIdFechaYNombre {
 	private float cantidadAlimento;
 
 	/**
-	 * Constructor de la clase alimento.
+	 * Constructor de la clase Alimento.
 	 * 
 	 * @param nombre           Cadena de caracteres que contiene el nombre del
 	 *                         alimento.
