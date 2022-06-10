@@ -11,8 +11,7 @@ import Superclases.EntidadConIdFechaYNombre;
 import Utils.UtilsDB;
 
 /**
- * Clase que contiene un alimento que extiende de la clase
- * EntidadConIdFechaYNombre
+ * Clase que contiene un alimento que extiende de la clase EntidadConIdFechaYNombre
  * 
  * @author Agustín Arcos
  *
@@ -71,11 +70,17 @@ public class Alimento extends EntidadConIdFechaYNombre {
 	public void setTipoAlimento(TipoAlimento tipoAlimento) {
 		this.tipoAlimento = tipoAlimento;
 	}
-
+	/**
+	 * Función que devuelve cantidad de alimento.
+	 * @return tipo de alimento del objeto
+	 */
 	public float getCantidadAlimento() {
 		return cantidadAlimento;
 	}
-
+	/**
+	 * Función que establece la cantidad de alimentos en el objeto.
+	 * @param cantidadAlimento Nuevo valor para la cantidad de alimento.
+	 */
 	public void setCantidadAlimento(float cantidadAlimento) {
 		this.cantidadAlimento = cantidadAlimento;
 	}

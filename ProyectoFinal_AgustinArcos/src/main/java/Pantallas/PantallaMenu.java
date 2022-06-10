@@ -43,7 +43,7 @@ public class PantallaMenu extends JPanel{
 		add(btnUsuario);
 		
 		JLabel gifMonoMenu = new JLabel("");
-		gifMonoMenu.setIcon(new ImageIcon("C:\\Users\\carol\\Documents\\Eclipse-WORKSPACE\\ProyectoFinalProgramacionZoo\\ProyectoFinal_AgustinArcos\\gif\\monoMenu.gif"));
+		gifMonoMenu.setIcon(new ImageIcon("./gif/monoMenu.gif"));
 		gifMonoMenu.setBounds(594, 178, 159, 151);
 		add(gifMonoMenu);
 		btnSalir.setBounds(70, 481, 89, 23);
