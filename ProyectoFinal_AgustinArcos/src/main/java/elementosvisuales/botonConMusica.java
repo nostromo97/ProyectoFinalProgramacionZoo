@@ -22,7 +22,7 @@ public class botonConMusica extends JButton{
 	private AudioInputStream audioInputStream;
 	
 /*
- * Botón con musica que reproduce el theme de Crash Bandicoot.
+ * Botón con musica que toma la un archivo de audio a partir de la ruta del archivo wav.
  */
 
 public botonConMusica(String m) {
@@ -32,7 +32,6 @@ public botonConMusica(String m) {
 		musica = new File(FileSystems.getDefault().getPath("").toAbsolutePath() + "/musica/crashbandicoot.wav");
 		
 		botonConMusica.this.addActionListener(new ActionListener() {
-		//BotonConMusica.this.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
