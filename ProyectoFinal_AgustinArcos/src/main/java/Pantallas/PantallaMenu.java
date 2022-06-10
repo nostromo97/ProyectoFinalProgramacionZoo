@@ -39,6 +39,11 @@ public class PantallaMenu extends JPanel{
 		});
 		
 		JButton btnUsuario = new JButton("Usuario");
+		btnUsuario.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ventana.cambiarPantalla("infoUsuario");
+			}
+		});
 		btnUsuario.setBounds(570, 55, 89, 23);
 		add(btnUsuario);
 		
