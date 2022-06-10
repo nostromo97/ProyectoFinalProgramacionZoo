@@ -2,5 +2,6 @@ package Enums;
 
 public enum TipoPiel {
 	ESCAMA,
-	CAPARAZON
+	CAPARAZON,
+	___
 }
