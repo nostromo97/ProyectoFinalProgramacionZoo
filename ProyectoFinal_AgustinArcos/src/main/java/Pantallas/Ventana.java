@@ -25,7 +25,11 @@ public class Ventana extends JFrame{
 		
 		
 	}
-	
+	/**
+	 * Función a la que le pasas por argumentos el nombre de la pantalla y cambia de pantalla, mediante el uso del switch para cada
+	 * pantalla.
+	 * @param nombrePantalla Nombre de la pantalla a la que se quiere cambiar.
+	 */
 	public void cambiarPantalla (String nombrePantalla) {
 		this.pantallaActual.setVisible(false);
 		this.pantallaActual=null;

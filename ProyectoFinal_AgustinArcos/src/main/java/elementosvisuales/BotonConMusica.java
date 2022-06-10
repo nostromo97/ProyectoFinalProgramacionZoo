@@ -13,25 +13,37 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JButton;
+/**
+ * Clase que contiene BotonConMusica y que extiende de JButton
+ * @author carol
+ *
+ */
+public class BotonConMusica extends JButton{
 
-public class botonConMusica extends JButton{
-
-	
+	/**
+	 * Variable de tipo File que contiene el archivo wav de la canción.
+	 */
 	private File musica;
+	/**
+	 * Carga el audio para que pueda ser reproducido.
+	 */
 	private Clip clip;
+	/**
+	 * 
+	 */
 	private AudioInputStream audioInputStream;
 	
 /*
  * Botón con musica que toma la un archivo de audio a partir de la ruta del archivo wav.
  */
 
-public botonConMusica(String m) {
+public BotonConMusica(String m) {
 		super(m);
 		final Timer timer = new Timer();
 		setEnabled(true);
 		musica = new File(FileSystems.getDefault().getPath("").toAbsolutePath() + "/musica/crashbandicoot.wav");
 		
-		botonConMusica.this.addActionListener(new ActionListener() {
+		BotonConMusica.this.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {

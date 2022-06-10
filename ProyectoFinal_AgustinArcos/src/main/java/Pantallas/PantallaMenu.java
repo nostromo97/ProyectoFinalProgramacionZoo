@@ -2,7 +2,7 @@ package Pantallas;
 
 import javax.swing.JPanel;
 
-import elementosvisuales.botonConMusica;
+import elementosvisuales.BotonConMusica;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -69,7 +69,7 @@ public class PantallaMenu extends JPanel{
 		comboAlta.setBounds(369, 178, 145, 22);
 		add(comboAlta);
 		
-		JButton botonConMusica = new botonConMusica ("♫");
+		JButton botonConMusica = new BotonConMusica ("♫");
 		botonConMusica.setForeground(Color.BLUE);
 		botonConMusica.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		botonConMusica.setBackground(Color.ORANGE);
