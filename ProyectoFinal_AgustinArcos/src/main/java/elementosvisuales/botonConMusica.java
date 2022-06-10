@@ -22,7 +22,7 @@ public class botonConMusica extends JButton{
 	private AudioInputStream audioInputStream;
 	
 /*
- * Botón con musica de elementosvisuales que reproduce el theme de Crash Bandicoot.
+ * Botón con musica que reproduce el theme de Crash Bandicoot.
  */
 public botonConMusica(String m) {
 		super(m);
@@ -46,7 +46,7 @@ public botonConMusica(String m) {
 
 
 	/**
-	 * Metodo para reproducir un archivo de audio
+	 * Función para reproducir un archivo de audio
 	 */
 	public void play() {
 		try {
