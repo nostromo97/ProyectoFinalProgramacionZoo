@@ -29,6 +29,8 @@ import Excepciones.FechaFormatoException;
 import Excepciones.MotivoVacioException;
 import Excepciones.NombreInvalidoException;
 import Excepciones.NombreVacioException;
+import Excepciones.TipoAmbienteVacioException;
+import Excepciones.TipoOrdenVacioException;
 
 import javax.swing.JRadioButton;
 
@@ -164,14 +166,14 @@ public class PantallaAltaAnfibio extends JPanel{
 					LocalDate fechaAlta = LocalDate.parse(campoFechaAlta.getText(),formatter);
 					String tratamientoDescripcion = campoDescripcion.getText();
 					TipoOrden tipoOrden=null;
-					MotivoAlta motivoAlta=null;
-							
+					MotivoAlta motivoAlta=null;			
+					
 					
 							if(comboAlta.getSelectedItem().equals("Nacimiento")) {
 								motivoAlta=MotivoAlta.NACIMIENTO;
 							}else if (comboAlta.getSelectedItem().equals("Llegada")) {
 								motivoAlta=MotivoAlta.LLEGADA;
-							}else {
+							}else if (comboAlta.getSelectedItem().equals("...")){
 								JOptionPane.showMessageDialog(null, "HAS DEJADO EL MOTIVO DE ALTA VACÍO", "AVISO", JOptionPane.INFORMATION_MESSAGE);
 							}
 							
@@ -217,6 +219,12 @@ public class PantallaAltaAnfibio extends JPanel{
 					} catch (CampoVacioException e1) {
 						JOptionPane.showMessageDialog(null, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 						e1.printStackTrace();
+					} catch (TipoOrdenVacioException e1) {
+						JOptionPane.showMessageDialog(null, "Error. El tipo de orden no puede estar vacío.", "Error", JOptionPane.ERROR_MESSAGE);
+						e1.printStackTrace();
+					} catch (TipoAmbienteVacioException e1) {
+						JOptionPane.showMessageDialog(null, "Error. El tipo de ambiente no puede estar vacío", "Error", JOptionPane.ERROR_MESSAGE);
+						e1.printStackTrace();
 					}
 				
 				
@@ -242,7 +250,7 @@ public class PantallaAltaAnfibio extends JPanel{
 		add(botonDarAlta);
 		
 		JLabel background = new JLabel("");
-		background.setIcon(new ImageIcon("C:\\Users\\carol\\Documents\\Eclipse-WORKSPACE\\ProyectoFinalProgramacionZoo\\ProyectoFinal_AgustinArcos\\fotos\\BACKGROUND.jpg"));
+		background.setIcon(new ImageIcon("./fotos/BACKGROUND.jpg"));
 		background.setBounds(0, 0, 800, 600);
 		add(background);
 	}

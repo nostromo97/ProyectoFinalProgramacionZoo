@@ -203,7 +203,7 @@ public class PantallaAltaReptil extends JPanel{
 		add(botonDarAlta);
 		
 		JLabel background = new JLabel("");
-		background.setIcon(new ImageIcon("C:\\Users\\carol\\Documents\\Eclipse-WORKSPACE\\ProyectoFinalProgramacionZoo\\ProyectoFinal_AgustinArcos\\fotos\\BACKGROUND.jpg"));
+		background.setIcon(new ImageIcon("./fotos/BACKGROUND.jpg"));
 		background.setBounds(0, 0, 800, 600);
 		add(background);
 	}

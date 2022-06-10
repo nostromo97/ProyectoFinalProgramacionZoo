@@ -159,7 +159,7 @@ public class PantallaRegistro extends JPanel{
 		
 		JLabel background = new JLabel("");
 		background.setHorizontalAlignment(SwingConstants.CENTER);
-		background.setIcon(new ImageIcon("C:\\Users\\carol\\Documents\\Eclipse-WORKSPACE\\ProyectoFinalProgramacionZoo\\ProyectoFinal_AgustinArcos\\fotos\\login_pantalla.jpg"));
+		background.setIcon(new ImageIcon("./fotos/login_pantalla.jpg"));
 		background.setBounds(0, 0, 800, 589);
 		add(background);
 		

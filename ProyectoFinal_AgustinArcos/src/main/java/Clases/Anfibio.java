@@ -18,6 +18,8 @@ import Excepciones.IdVacioException;
 import Excepciones.MotivoVacioException;
 import Excepciones.NombreInvalidoException;
 import Excepciones.NombreVacioException;
+import Excepciones.TipoAmbienteVacioException;
+import Excepciones.TipoOrdenVacioException;
 import Utils.UtilsDB;
 
 public class Anfibio extends Animal{
@@ -27,14 +29,14 @@ public class Anfibio extends Animal{
 	
 	public Anfibio(short id,String nombre, LocalDate fechaNacimiento,  TipoRaza raza, String cuidados,
 			MotivoAlta motivoAlta, MotivoBaja motivoBaja, LocalDate fechaAlta, LocalDate fechaBaja, Dieta dieta,
-			TipoOrden tipoOrden, boolean tipoAmbiente) throws NombreVacioException, NombreInvalidoException, IdInvalidoException, IdVacioException, FechaFormatoException, MotivoVacioException {
+			TipoOrden tipoOrden, boolean tipoAmbiente) throws NombreVacioException, NombreInvalidoException, IdInvalidoException, IdVacioException, FechaFormatoException, MotivoVacioException, TipoOrdenVacioException, TipoAmbienteVacioException {
 		super(id, fechaNacimiento, nombre, raza, cuidados, motivoAlta, motivoBaja, fechaAlta, fechaBaja, dieta);
 		this.setTipoOrden(tipoOrden);
-		this.setTipoOrden(tipoOrden);;
+		this.setTipoAmbiente(tipoAmbiente);
 	}	
 	//ALTA anfibio
 	public Anfibio (String nombre, LocalDate fechaNacimiento, MotivoAlta motivoAlta, LocalDate fechaAlta, TipoOrden tipoOrden,boolean tipoAmbiente,
-			String cuidados) throws NombreVacioException, NombreInvalidoException, FechaFormatoException, SQLException, MotivoVacioException, CampoVacioException {
+			String cuidados) throws NombreVacioException, NombreInvalidoException, FechaFormatoException, SQLException, MotivoVacioException, CampoVacioException, TipoOrdenVacioException, TipoAmbienteVacioException {
 		super(nombre, fechaNacimiento, motivoAlta, fechaAlta, cuidados);
 		
 		Statement query = UtilsDB.conectarBD();
@@ -59,7 +61,7 @@ public class Anfibio extends Animal{
 
 		if(query.executeUpdate("insert into bajaAnfibio values(null,'"+nombre+"','"+fechaNacimiento+"','"+motivoBaja+"','"+fechaBaja+"','"+tipoOrden+"',"+tipoAmbiente+",'"+cuidados+"')")>0) 
 		{
-			this.setTipoOrden(tipoOrden);
+			this.tipoOrden= tipoOrden;
 			this.tipoAmbiente=tipoAmbiente;
 			query.executeUpdate("delete from altaAnfibio where id ="+id);
 		} else {
@@ -73,9 +75,9 @@ public class Anfibio extends Animal{
 	public TipoOrden getTipoOrden() {
 		return tipoOrden;
 	}
-	public void setTipoOrden(TipoOrden tipoOrden) throws MotivoVacioException{		
+	public void setTipoOrden(TipoOrden tipoOrden) throws TipoOrdenVacioException{		
 		if(tipoOrden == TipoOrden.___) {
-			throw new MotivoVacioException ("Error. El tipo orden no puede estar vacío");
+			throw new TipoOrdenVacioException ("Error. El tipo orden no puede estar vacío");
 		}else {
 			this.tipoOrden = tipoOrden;
 		}
@@ -83,9 +85,9 @@ public class Anfibio extends Animal{
 	public boolean getTipoAmbiente() {
 		return tipoAmbiente;
 	}
-	public void setTipoAmbiente(boolean tipoAmbiente) throws CampoVacioException{
+	public void setTipoAmbiente(boolean tipoAmbiente) throws TipoAmbienteVacioException{
 		if(tipoAmbiente = TipoAmbiente.___ != null) {
-			throw new CampoVacioException ("Error. el tipo de ambiente no puede estar vacío");
+			throw new TipoAmbienteVacioException ("Error. el tipo de ambiente no puede estar vacío");
 		}else {
 			this.tipoAmbiente= tipoAmbiente;
 		}

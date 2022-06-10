@@ -194,7 +194,7 @@ public class PantallaBajaPrimate extends JPanel{
 			add(botonDarBaja);
 			
 			JLabel background = new JLabel("");
-			background.setIcon(new ImageIcon("C:\\Users\\carol\\Documents\\Eclipse-WORKSPACE\\ProyectoFinalProgramacionZoo\\ProyectoFinal_AgustinArcos\\fotos\\BACKGROUND_sinlogo.jpg"));
+			background.setIcon(new ImageIcon("./fotos/BACKGROUND_sinlogo.jpg"));
 			background.setBounds(0, 0, 800, 600);
 			add(background);
 			

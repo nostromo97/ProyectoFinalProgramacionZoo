@@ -117,7 +117,7 @@ public class PantallaAlimentos extends JPanel{
 		add(botonAlimentos);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\carol\\Documents\\Eclipse-WORKSPACE\\ProyectoFinalProgramacionZoo\\ProyectoFinal_AgustinArcos\\fotos\\BACKGROUND.jpg"));
+		lblNewLabel.setIcon(new ImageIcon("./fotos/BACKGROUND.jpg"));
 		lblNewLabel.setBounds(0, 0, 800, 600);
 		add(lblNewLabel);
 	}
