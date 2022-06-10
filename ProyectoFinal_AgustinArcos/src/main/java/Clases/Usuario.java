@@ -34,17 +34,21 @@ public class Usuario extends EntidadConIdFechaYNombre {
 
 //Insertar usuario en la base de datos.
 	public Usuario(String nombre, String apellidos, String contrasena, LocalDate fechaNacimiento)
-			throws NombreVacioException, NombreInvalidoException, SQLException, FechaFormatoException, ContrasenaVaciaException {
+			throws NombreVacioException, NombreInvalidoException, SQLException, FechaFormatoException, ContrasenaVaciaException, ContrasenaInvalidaException, ContrasenaLargaException {
 		super(fechaNacimiento, nombre);
 
 		Statement query = UtilsDB.conectarBD();
 
+		
+		
+		
 		if (query.executeUpdate("insert into usuarios values(null,'" + nombre + "','" + apellidos + "','"
 				+ fechaNacimiento + "','" + contrasena + "'" + ")") > 0)
 
 		{
+			this.setContrasena(contrasena);
 			this.apellidos = apellidos;
-			this.contrasena = contrasena;
+			
 		} else {
 			throw new SQLException("No se ha podido insertar el usuario");
 		}
@@ -52,7 +56,7 @@ public class Usuario extends EntidadConIdFechaYNombre {
 	}
 
 	public Usuario(String nombre, String contrasena)
-			throws NombreVacioException, NombreInvalidoException, SQLException, ContrasenaInvalidaException, ContrasenaVaciaException {
+			throws NombreVacioException, NombreInvalidoException, SQLException, ContrasenaInvalidaException, ContrasenaVaciaException, ContrasenaLargaException {
 		super(nombre);
 		Scanner sc = new Scanner(System.in);
 		Statement smt = UtilsDB.conectarBD();
@@ -66,6 +70,7 @@ public class Usuario extends EntidadConIdFechaYNombre {
 			}
 
 			this.setNombre(cursor.getString("nombre"));
+			this.setContrasena(cursor.getString("contrasena"));
 
 		} else {
 			UtilsDB.desconectarBD();
@@ -87,20 +92,15 @@ public class Usuario extends EntidadConIdFechaYNombre {
 	}
 
 	public void setContrasena(String contrasena)
-			throws ContrasenaInvalidaException, NombreVacioException, ContrasenaLargaException, ContrasenaVaciaException {
-		if (this.contrasena.isEmpty()) {
+			throws ContrasenaInvalidaException, ContrasenaLargaException, ContrasenaVaciaException {
+		if(contrasena.isEmpty() ) {
 			throw new ContrasenaVaciaException("Error. El campo contraseña no puede estar vacío.");
-		} else {
-			this.contrasena = contrasena;
-		}
+		} 
 
-		if (this.contrasena.length() > 20) {
+		else if (contrasena.length() > 15) {
 			throw new ContrasenaLargaException("Error. Contraseña muy larga. Máximo 20 caracteres.");
-		} else {
-			this.contrasena = contrasena;
-
-		}
-		if (this.contrasena != contrasena) {
+		} 
+		else if (contrasena != contrasena) {
 			throw new ContrasenaInvalidaException("Error. Las contraseñas no coinciden");
 		} else {
 			this.contrasena = contrasena;

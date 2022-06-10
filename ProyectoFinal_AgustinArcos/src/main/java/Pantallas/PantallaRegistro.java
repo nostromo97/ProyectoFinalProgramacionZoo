@@ -19,6 +19,8 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 
 import Clases.Usuario;
+import Excepciones.ContrasenaInvalidaException;
+import Excepciones.ContrasenaLargaException;
 import Excepciones.ContrasenaVaciaException;
 import Excepciones.FechaFormatoException;
 import Excepciones.IdInvalidoException;
@@ -131,7 +133,6 @@ public class PantallaRegistro extends JPanel{
 					JOptionPane.showMessageDialog(null, "Nombre Vacio", "Error", JOptionPane.WARNING_MESSAGE);
 				} catch (NombreInvalidoException e1) {
 					JOptionPane.showMessageDialog(null, "El nombre no puede contener números.", "Error", JOptionPane.ERROR_MESSAGE);
-					e1.printStackTrace();
 				} catch (SQLException e1) {
 					JOptionPane.showMessageDialog(null, "Error SQL", "Error", JOptionPane.ERROR_MESSAGE);
 				} catch (FechaFormatoException e1) {
@@ -139,6 +140,12 @@ public class PantallaRegistro extends JPanel{
 				} catch(DateTimeParseException e1) {
 					JOptionPane.showMessageDialog(null, "Error. Introduce la fecha en un formato: dd-MM-YYYY (día, mes, año)", "Error", JOptionPane.ERROR_MESSAGE);
 				} catch (ContrasenaVaciaException e1) {
+					JOptionPane.showMessageDialog(null, "La contraseña no puede estar vacía.","Error",JOptionPane.ERROR_MESSAGE);
+					e1.printStackTrace();
+				} catch (ContrasenaInvalidaException e1) {
+					JOptionPane.showMessageDialog(null, "La contraseña no puede estar vacía.","Error",JOptionPane.ERROR_MESSAGE);
+					e1.printStackTrace();
+				} catch (ContrasenaLargaException e1) {
 					JOptionPane.showMessageDialog(null, "La contraseña no puede estar vacía.","Error",JOptionPane.ERROR_MESSAGE);
 					e1.printStackTrace();
 				}

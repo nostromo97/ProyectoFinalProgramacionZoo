@@ -136,9 +136,6 @@ public class PantallaBajaAnfibio extends JPanel{
 						}else if(comboBaja.getSelectedItem().equals("...")){
 							motivoBaja = MotivoBaja.___;
 						}
-
-						
-						
 						
 						
 						Anfibio an = new Anfibio(id, nombre, fechaNacimiento, motivoBaja, fechaBaja, tipoOrden,tipoAmbiente, cuidados);
@@ -167,13 +164,10 @@ public class PantallaBajaAnfibio extends JPanel{
 					JOptionPane.showMessageDialog(null, "Has dejado el motivo vacío.", "ERROR", JOptionPane.ERROR_MESSAGE);
 					e1.printStackTrace();
 				}
-					
-				
+								
 				
 				UtilsDB.desconectarBD();
-				
-				
-				
+								
 			}
 		});
 		

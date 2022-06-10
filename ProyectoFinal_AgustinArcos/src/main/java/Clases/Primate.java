@@ -8,9 +8,11 @@ import java.util.Scanner;
 
 import Enums.MotivoAlta;
 import Enums.MotivoBaja;
+import Enums.TipoAmbiente;
 import Enums.TipoRaza;
 import Excepciones.CampoVacioException;
 import Excepciones.FechaFormatoException;
+import Excepciones.GeneroVacioException;
 import Excepciones.IdInvalidoException;
 import Excepciones.IdVacioException;
 import Excepciones.MotivoVacioException;
@@ -33,7 +35,7 @@ public class Primate extends Animal{
 	
 	//alta PRIMATE
 	public Primate (String nombre, LocalDate fechaNacimiento, MotivoAlta motivoAlta, LocalDate fechaAlta, boolean genero,
-			String cuidados) throws NombreVacioException, NombreInvalidoException, FechaFormatoException, SQLException,CampoVacioException,MotivoVacioException {
+			String cuidados) throws NombreVacioException, NombreInvalidoException, FechaFormatoException, SQLException,CampoVacioException,MotivoVacioException, GeneroVacioException {
 		super(nombre, fechaNacimiento, motivoAlta, fechaAlta, cuidados);
 		Scanner sc = new Scanner(System.in);
 		Statement query = UtilsDB.conectarBD();
@@ -80,7 +82,8 @@ public class Primate extends Animal{
 
 
 	public void setGenero(boolean genero) {
-		this.genero = genero;
+		this.genero=genero;
+		
 	}
 	
 	
