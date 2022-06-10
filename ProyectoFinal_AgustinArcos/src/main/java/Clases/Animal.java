@@ -50,7 +50,7 @@ public Animal(String nombre,LocalDate fechaNacimiento,  MotivoAlta motivoAlta, L
 	this.fechaAlta = fechaAlta;
 }
 
-//baja
+	//BAJA animal
 public Animal(short id,String nombre,LocalDate fechaNacimiento,  MotivoBaja motivoBaja, LocalDate fechaBaja, String cuidados
 		) throws NombreVacioException, NombreInvalidoException, FechaFormatoException,MotivoVacioException {
 	super(id,fechaNacimiento, nombre);

@@ -24,6 +24,7 @@ import Clases.Anfibio;
 import Clases.Primate;
 import Enums.MotivoAlta;
 import Enums.TipoOrden;
+import Excepciones.CampoVacioException;
 import Excepciones.FechaFormatoException;
 import Excepciones.MotivoVacioException;
 import Excepciones.NombreInvalidoException;
@@ -211,7 +212,10 @@ public class PantallaAltaAnfibio extends JPanel{
 					} catch(DateTimeParseException e1) {
 						JOptionPane.showMessageDialog(null, "Error. Introduce la fecha en un formato: dd-MM-YYYY (día, mes, año)", "Error", JOptionPane.ERROR_MESSAGE);
 					} catch (MotivoVacioException e1) {
-						JOptionPane.showMessageDialog(null, "HAS DEJADO EL CAMPO VACÍO", "AVISO", JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Has dejado el motivo de baja vacío", "ERROR", JOptionPane.ERROR_MESSAGE);
+						e1.printStackTrace();
+					} catch (CampoVacioException e1) {
+						JOptionPane.showMessageDialog(null, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 						e1.printStackTrace();
 					}
 				

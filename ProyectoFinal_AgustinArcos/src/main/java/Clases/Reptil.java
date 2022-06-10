@@ -58,7 +58,7 @@ public class Reptil extends Animal{
 			this.tipoPiel=tipoPiel;
 			query.executeUpdate("delete from altaReptil where id ="+id);
 		} else {
-			throw new SQLException("No se ha podido insertar el primate.");
+			throw new SQLException("No se ha podido insertar el reptil.");
 		}
 		UtilsDB.desconectarBD();		
 	}
