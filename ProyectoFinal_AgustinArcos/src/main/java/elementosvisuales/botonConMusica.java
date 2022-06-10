@@ -24,6 +24,7 @@ public class botonConMusica extends JButton{
 /*
  * Botón con musica que reproduce el theme de Crash Bandicoot.
  */
+
 public botonConMusica(String m) {
 		super(m);
 		final Timer timer = new Timer();
@@ -46,7 +47,8 @@ public botonConMusica(String m) {
 
 
 	/**
-	 * Función para reproducir un archivo de audio
+	 * Función para reproducir un archivo de audio a paritr de la clase AudioSystem al cual se le pasa un objeto de la clase Clip
+	 * y reproduce el archivo.
 	 */
 	public void play() {
 		try {

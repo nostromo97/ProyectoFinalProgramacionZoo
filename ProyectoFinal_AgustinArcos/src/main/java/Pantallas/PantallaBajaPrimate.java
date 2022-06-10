@@ -256,7 +256,6 @@ public class PantallaBajaPrimate extends JPanel{
 			e.printStackTrace();
 		}
 		
-		
 		textPrimateBaja.setText(listaPrimates);
 	}
 }

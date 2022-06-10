@@ -8,7 +8,9 @@ import javax.swing.JButton;
 import java.awt.Color;
 import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -24,6 +26,7 @@ import Enums.TipoAlimento;
 import Excepciones.FechaFormatoException;
 import Excepciones.NombreInvalidoException;
 import Excepciones.NombreVacioException;
+import Utils.UtilsDB;
 
 public class PantallaAlimentos extends JPanel{
 	
@@ -42,6 +45,15 @@ public class PantallaAlimentos extends JPanel{
 				ventana.cambiarPantalla("menu");
 			}
 		});
+		
+		JButton btnNewButton = new JButton("Lista de alimentos");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ventana.cambiarPantalla("listaAlimentos");
+			}
+		});
+		btnNewButton.setBounds(567, 397, 124, 60);
+		add(btnNewButton);
 		
 		campoNombreAlimento = new JTextField();
 		campoNombreAlimento.setBounds(315, 196, 153, 20);
@@ -99,13 +111,13 @@ public class PantallaAlimentos extends JPanel{
 						
 						Alimento alimento1 = new Alimento(nombreAlimento, tipoAlimento, cantidadAlimentos);
 						//JOPTION PANE QUE DIGA REGISTRO EXITOSO DE TIPO INFORMATION_MESSAGE.
-						JOptionPane.showMessageDialog(ventana, "Registro exitoso", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(ventana, "Registro exitoso", "Ã‰xito", JOptionPane.INFORMATION_MESSAGE);
 						//IR A PANTALLA METER ANIMALES
 						ventana.cambiarPantalla("menu");
 					} catch (NombreVacioException e1) {
 						JOptionPane.showMessageDialog(null, "Nombre Vacio", "Error", JOptionPane.WARNING_MESSAGE);
 					} catch (NombreInvalidoException e1) {
-						JOptionPane.showMessageDialog(null, "El nombre no puede contener números.", "Error", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "El nombre no puede contener nÃºmeros.", "Error", JOptionPane.ERROR_MESSAGE);
 						e1.printStackTrace();
 					} catch (SQLException e1) {
 						JOptionPane.showMessageDialog(null, "Error SQL", "Error", JOptionPane.ERROR_MESSAGE);
@@ -121,4 +133,6 @@ public class PantallaAlimentos extends JPanel{
 		lblNewLabel.setBounds(0, 0, 800, 600);
 		add(lblNewLabel);
 	}
+	
+
 }

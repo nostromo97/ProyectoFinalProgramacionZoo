@@ -10,14 +10,31 @@ import Excepciones.NombreVacioException;
 import Superclases.EntidadConIdFechaYNombre;
 import Utils.UtilsDB;
 
-
+/**
+ * Clase que contiene un alimento que extiende de la clase EntidadConIdFechaYNombre
+ * @author Agustín Arcos
+ *
+ */
 public class Alimento extends EntidadConIdFechaYNombre{
 	
-	
+	/**
+	 * Variable interna de clase alimento que contiene un tipoAlimento
+	 */
 	private TipoAlimento tipoAlimento;
+	/**
+	 * Variable numérica que contiene la cantidad de Kg del alimento
+	 */
 	private float cantidadAlimento;
 	
-	
+	/**
+	 * Constructor de la clase alimento.
+	 * @param nombre Cadena de caracteres que contiene el nombre del alimento.
+	 * @param tipoAlimento Enum que contiene el nombre del tipo de alimento.
+	 * @param cantidadAlimento Cantidad de Kg del alimento.
+	 * @throws NombreVacioException Excepción que se lanza cuando el nombre está vacío.
+	 * @throws NombreInvalidoException Excepción que se lanza cuando el nombre no es válido.
+	 * @throws SQLException Excepción que se lanza cuando hay fallos relacionados con la base de datos en SQL.
+	 */
 	public Alimento(String nombre, TipoAlimento tipoAlimento, float cantidadAlimento) throws NombreVacioException, NombreInvalidoException, SQLException {
 		super(nombre);
 		Scanner sc = new Scanner(System.in);

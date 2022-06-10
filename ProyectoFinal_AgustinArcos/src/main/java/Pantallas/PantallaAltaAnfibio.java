@@ -195,7 +195,13 @@ public class PantallaAltaAnfibio extends JPanel{
 						tipoAmbiente=true;
 					}else if(rdbtnAmbiente2.isSelected()) {
 						tipoAmbiente=false;
-					}
+					}if(!rdbtnAmbiente1.isSelected() && (!rdbtnAmbiente2.isSelected())) {
+
+						JOptionPane.showMessageDialog(null, "Error. El tipo de ambiente no puede estar vacío.", "Error",
+								JOptionPane.ERROR_MESSAGE);
+					}else {
+						
+					
 					
 				
 						Anfibio anfibio1 = new Anfibio(nombreAnfibio, fechaNacimiento, motivoAlta, fechaAlta, tipoOrden,tipoAmbiente, tratamientoDescripcion);
@@ -203,6 +209,7 @@ public class PantallaAltaAnfibio extends JPanel{
 						JOptionPane.showMessageDialog(ventana, "Registro exitoso", "Éxito", JOptionPane.INFORMATION_MESSAGE);
 						//IR A PANTALLA METER ANIMALES
 						ventana.cambiarPantalla("menu");
+					}
 					} catch (NombreVacioException e1) {
 						JOptionPane.showMessageDialog(null, "Nombre Vacio", "Error", JOptionPane.WARNING_MESSAGE);
 					} catch (NombreInvalidoException e1) {
