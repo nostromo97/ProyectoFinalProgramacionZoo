@@ -25,6 +25,7 @@ import Clases.Primate;
 import Enums.MotivoAlta;
 import Enums.TipoOrden;
 import Excepciones.CampoVacioException;
+import Excepciones.DescripcionVaciaException;
 import Excepciones.FechaFormatoException;
 import Excepciones.MotivoVacioException;
 import Excepciones.NombreInvalidoException;
@@ -224,6 +225,9 @@ public class PantallaAltaAnfibio extends JPanel{
 						e1.printStackTrace();
 					} catch (TipoAmbienteVacioException e1) {
 						JOptionPane.showMessageDialog(null, "Error. El tipo de ambiente no puede estar vacío", "Error", JOptionPane.ERROR_MESSAGE);
+						e1.printStackTrace();
+					} catch (DescripcionVaciaException e1) {
+						JOptionPane.showMessageDialog(null, "AVISO. Has dejado la descripción vacía.", "AVISO",JOptionPane.WARNING_MESSAGE);
 						e1.printStackTrace();
 					}
 				

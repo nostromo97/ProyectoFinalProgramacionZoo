@@ -10,6 +10,7 @@ import Enums.MotivoAlta;
 import Enums.MotivoBaja;
 import Enums.TipoPiel;
 import Enums.TipoRaza;
+import Excepciones.DescripcionVaciaException;
 import Excepciones.FechaFormatoException;
 import Excepciones.IdInvalidoException;
 import Excepciones.IdVacioException;
@@ -29,8 +30,9 @@ public class Reptil extends Animal{
 		this.tipoPiel = tipoPiel;
 	}
 
+	//CONSTRUCTOR ALTA
 	public Reptil (String nombre, LocalDate fechaNacimiento, MotivoAlta motivoAlta, LocalDate fechaAlta, boolean tipoPiel,
-			String cuidados) throws NombreVacioException, NombreInvalidoException, FechaFormatoException, SQLException, MotivoVacioException {
+			String cuidados) throws NombreVacioException, NombreInvalidoException, FechaFormatoException, SQLException, MotivoVacioException, DescripcionVaciaException {
 		super(nombre, fechaNacimiento, motivoAlta, fechaAlta, cuidados);
 		
 		Statement query = UtilsDB.conectarBD();

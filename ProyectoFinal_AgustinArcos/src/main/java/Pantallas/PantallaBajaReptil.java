@@ -163,7 +163,7 @@ public class PantallaBajaReptil extends JPanel{
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					} catch (MotivoVacioException e1) {
-						JOptionPane.showMessageDialog(null, "Error. Motivo de alta vacío", "Error", JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Error. Motivo de baja vacío", "Error", JOptionPane.INFORMATION_MESSAGE);
 						e1.printStackTrace();
 					}
 						

@@ -11,6 +11,7 @@ import Enums.MotivoBaja;
 import Enums.TipoAmbiente;
 import Enums.TipoRaza;
 import Excepciones.CampoVacioException;
+import Excepciones.DescripcionVaciaException;
 import Excepciones.FechaFormatoException;
 import Excepciones.GeneroVacioException;
 import Excepciones.IdInvalidoException;
@@ -35,7 +36,7 @@ public class Primate extends Animal{
 	
 	//alta PRIMATE
 	public Primate (String nombre, LocalDate fechaNacimiento, MotivoAlta motivoAlta, LocalDate fechaAlta, boolean genero,
-			String cuidados) throws NombreVacioException, NombreInvalidoException, FechaFormatoException, SQLException,CampoVacioException,MotivoVacioException, GeneroVacioException {
+			String cuidados) throws NombreVacioException, NombreInvalidoException, FechaFormatoException, SQLException,CampoVacioException,MotivoVacioException, GeneroVacioException, DescripcionVaciaException {
 		super(nombre, fechaNacimiento, motivoAlta, fechaAlta, cuidados);
 		Scanner sc = new Scanner(System.in);
 		Statement query = UtilsDB.conectarBD();

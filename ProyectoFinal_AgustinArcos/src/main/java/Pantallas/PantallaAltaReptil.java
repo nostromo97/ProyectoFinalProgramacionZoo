@@ -24,6 +24,7 @@ import Clases.Primate;
 import Clases.Reptil;
 import Enums.MotivoAlta;
 import Enums.TipoPiel;
+import Excepciones.DescripcionVaciaException;
 import Excepciones.FechaFormatoException;
 import Excepciones.MotivoVacioException;
 import Excepciones.NombreInvalidoException;
@@ -160,12 +161,18 @@ public class PantallaAltaReptil extends JPanel{
 								motivoAlta=MotivoAlta.___;
 							}
 					
-					boolean tipoPiel=true;
-					if(rdbtnPiel1.isSelected()) {
-						tipoPiel=true;
-					}else if(rdbtnPiel2.isSelected()) {
-						tipoPiel=false;
-					}
+							boolean tipoPiel = true;
+							if (rdbtnPiel1.isSelected()) {
+								tipoPiel = true;
+							} else if (rdbtnPiel2.isSelected()) {
+								tipoPiel = false;
+							}
+							if (!rdbtnPiel1.isSelected() && (!rdbtnPiel2.isSelected())) {
+
+								JOptionPane.showMessageDialog(null, "Error. El campo tipo de piel no puede estar vacío.", "Error",
+										JOptionPane.ERROR_MESSAGE);
+
+							}else {
 					
 				
 						Reptil reptil1 = new Reptil(nombreReptil, fechaNacimiento, motivoAlta, fechaAlta, tipoPiel, tratamientoDescripcion);
@@ -173,7 +180,7 @@ public class PantallaAltaReptil extends JPanel{
 						JOptionPane.showMessageDialog(ventana, "Registro exitoso", "Éxito", JOptionPane.INFORMATION_MESSAGE);
 						//IR A PANTALLA METER ANIMALES
 						ventana.cambiarPantalla("menu");
-					} catch (NombreVacioException e1) {
+							}} catch (NombreVacioException e1) {
 						JOptionPane.showMessageDialog(null, "Nombre Vacio", "Error", JOptionPane.WARNING_MESSAGE);
 					} catch (NombreInvalidoException e1) {
 						JOptionPane.showMessageDialog(null, "El nombre no puede contener números.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -187,8 +194,11 @@ public class PantallaAltaReptil extends JPanel{
 					} catch (MotivoVacioException e1) {
 						JOptionPane.showMessageDialog(null, "Motivo de alta vacío", "Aviso", JOptionPane.INFORMATION_MESSAGE);
 						e1.printStackTrace();
+					} catch (DescripcionVaciaException e1) {
+						JOptionPane.showMessageDialog(null, "AVISO. Has dejado la descripción vacía.", "AVISO",JOptionPane.WARNING_MESSAGE);
+						e1.printStackTrace();
 					}
-								
+				
 			}
 		});
 		

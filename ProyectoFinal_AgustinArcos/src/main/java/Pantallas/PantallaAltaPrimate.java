@@ -25,6 +25,7 @@ import Clases.Primate;
 import Clases.Usuario;
 import Enums.MotivoAlta;
 import Excepciones.CampoVacioException;
+import Excepciones.DescripcionVaciaException;
 import Excepciones.FechaFormatoException;
 import Excepciones.GeneroVacioException;
 import Excepciones.MotivoVacioException;
@@ -213,8 +214,10 @@ public class PantallaAltaPrimate extends JPanel {
 							JOptionPane.ERROR_MESSAGE);
 					e1.printStackTrace();
 				} catch (GeneroVacioException e1) {
-					JOptionPane.showMessageDialog(null, "Error. El género no puede estar vacío.", "Error",
-							JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Error. El género no puede estar vacío.", "Error",JOptionPane.ERROR_MESSAGE);
+					e1.printStackTrace();
+				} catch (DescripcionVaciaException e1) {
+					JOptionPane.showMessageDialog(null, "AVISO. Has dejado la descripción vacía.", "AVISO",JOptionPane.WARNING_MESSAGE);
 					e1.printStackTrace();
 				}
 

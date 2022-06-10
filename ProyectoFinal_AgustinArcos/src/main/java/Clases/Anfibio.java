@@ -12,6 +12,7 @@ import Enums.TipoAmbiente;
 import Enums.TipoOrden;
 import Enums.TipoRaza;
 import Excepciones.CampoVacioException;
+import Excepciones.DescripcionVaciaException;
 import Excepciones.FechaFormatoException;
 import Excepciones.IdInvalidoException;
 import Excepciones.IdVacioException;
@@ -36,7 +37,7 @@ public class Anfibio extends Animal{
 	}	
 	//ALTA anfibio
 	public Anfibio (String nombre, LocalDate fechaNacimiento, MotivoAlta motivoAlta, LocalDate fechaAlta, TipoOrden tipoOrden,boolean tipoAmbiente,
-			String cuidados) throws NombreVacioException, NombreInvalidoException, FechaFormatoException, SQLException, MotivoVacioException, CampoVacioException, TipoOrdenVacioException, TipoAmbienteVacioException {
+			String cuidados) throws NombreVacioException, NombreInvalidoException, FechaFormatoException, SQLException, MotivoVacioException, CampoVacioException, TipoOrdenVacioException, TipoAmbienteVacioException, DescripcionVaciaException {
 		super(nombre, fechaNacimiento, motivoAlta, fechaAlta, cuidados);
 		
 		Statement query = UtilsDB.conectarBD();
@@ -85,11 +86,7 @@ public class Anfibio extends Animal{
 	public boolean getTipoAmbiente() {
 		return tipoAmbiente;
 	}
-	public void setTipoAmbiente(boolean tipoAmbiente) throws TipoAmbienteVacioException{
-		if(tipoAmbiente = TipoAmbiente.___ != null) {
-			throw new TipoAmbienteVacioException ("Error. el tipo de ambiente no puede estar vacío");
-		}else {
-			this.tipoAmbiente= tipoAmbiente;
-		}
+	public void setTipoAmbiente(boolean tipoAmbiente) {
+		this.tipoAmbiente = tipoAmbiente;
 	}
 }

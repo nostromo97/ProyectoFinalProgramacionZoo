@@ -21,6 +21,7 @@ import javax.swing.SwingConstants;
 import Clases.Primate;
 import Enums.MotivoAlta;
 import Enums.MotivoBaja;
+import Excepciones.DescripcionVaciaException;
 import Excepciones.FechaFormatoException;
 import Excepciones.MotivoVacioException;
 import Excepciones.NombreInvalidoException;
@@ -177,7 +178,7 @@ public class PantallaBajaPrimate extends JPanel{
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					} catch (MotivoVacioException e1) {
-						JOptionPane.showMessageDialog(null, "HAS DEJADO EL MOTIVO DE ALTA VACÍO", "ERROR", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Motivo de baja vacío", "ERROR", JOptionPane.ERROR_MESSAGE);
 						e1.printStackTrace();
 					}
 						
