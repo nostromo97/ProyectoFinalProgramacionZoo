@@ -115,7 +115,6 @@ public class Anfibio extends Animal{
 	
 	/**
 	 * 	Constructor de la clase Anfibio que extiende de Animal, utilizado para dar de baja a un anfibio.
-	 * 	Hace conexión con la base de datos, inserta un anfibio y después elimina el anfibio.
 	 * @param nombre Cadena de caracteres que contiene el nombre del animal.                         
 	 * @param fechaNacimiento Variable de tipo LocalDate que contiene la fecha de nacimiento del animal.
 	 * @param motivoBaja Proviene del Enum MotivoBaja que contiene los motivos por el que se da de baja el animal.
