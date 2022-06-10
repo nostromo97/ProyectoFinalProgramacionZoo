@@ -29,6 +29,13 @@ public class PantallaInicial extends JPanel{
 				salir();
 			}
 		});
+		
+		JLabel gifMonoPortatil = new JLabel("");
+		gifMonoPortatil.setIcon(new ImageIcon("./gif/monoPortatil.gif"));
+		gifMonoPortatil.setBounds(10, -34, 350, 321);
+		add(gifMonoPortatil);
+		
+		
 		btnSalir.setBounds(356, 294, 89, 23);
 		add(btnSalir);
 		botonLogin.setBounds(314, 382, 173, 40);

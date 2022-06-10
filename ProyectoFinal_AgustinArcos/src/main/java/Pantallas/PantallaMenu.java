@@ -13,6 +13,7 @@ import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.DefaultComboBoxModel;
+import java.awt.Font;
 
 public class PantallaMenu extends JPanel{
 	
@@ -40,6 +41,11 @@ public class PantallaMenu extends JPanel{
 		JButton btnUsuario = new JButton("Usuario");
 		btnUsuario.setBounds(570, 55, 89, 23);
 		add(btnUsuario);
+		
+		JLabel gifMonoMenu = new JLabel("");
+		gifMonoMenu.setIcon(new ImageIcon("C:\\Users\\carol\\Documents\\Eclipse-WORKSPACE\\ProyectoFinalProgramacionZoo\\ProyectoFinal_AgustinArcos\\gif\\monoMenu.gif"));
+		gifMonoMenu.setBounds(594, 178, 159, 151);
+		add(gifMonoMenu);
 		btnSalir.setBounds(70, 481, 89, 23);
 		add(btnSalir);
 		botonAlimentos.setBounds(407, 367, 107, 42);
@@ -63,7 +69,9 @@ public class PantallaMenu extends JPanel{
 		comboAlta.setBounds(369, 178, 145, 22);
 		add(comboAlta);
 		
-		JButton botonConMusica = new botonConMusica ("Música");
+		JButton botonConMusica = new botonConMusica ("â™«");
+		botonConMusica.setForeground(Color.BLUE);
+		botonConMusica.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		botonConMusica.setBackground(Color.ORANGE);
 		botonConMusica.setBounds(597, 448, 77, 56);
 		add(botonConMusica);

@@ -33,7 +33,7 @@ public class PantallaLogin extends JPanel{
 	private JPasswordField campoContrasena;
 	
 	
-	public PantallaLogin(Ventana v) {
+	public PantallaLogin(final Ventana v) {
 		this.ventana=v;
 		setLayout(null);
 		setSize (800,600);
@@ -44,6 +44,10 @@ public class PantallaLogin extends JPanel{
 		campoContrasena.setBounds(326, 444, 141, 20);
 		add(campoContrasena);
 
+		JLabel gifMonoPortatil = new JLabel("");
+		gifMonoPortatil.setIcon(new ImageIcon("./gif/monoPortatil.gif"));
+		gifMonoPortatil.setBounds(10, -34, 350, 321);
+		add(gifMonoPortatil);
 		
 		JLabel textoLogin = new JLabel("LOGIN");
 		textoLogin.setFont(new Font("Arial Black", Font.BOLD, 20));
@@ -90,7 +94,7 @@ public class PantallaLogin extends JPanel{
 				String nombre = campoUsuario.getText();
 				String contrasena = new String (campoContrasena.getPassword());
 				try {
-					Usuario user1 = new Usuario (nombre,contrasena);
+					v.usuarioActual = new Usuario (nombre,contrasena);
 					JOptionPane.showMessageDialog(null, "Login correcto", "Éxito", JOptionPane.INFORMATION_MESSAGE);
 					ventana.cambiarPantalla("menu");
 				} catch (NombreVacioException e1) {
@@ -112,6 +116,8 @@ public class PantallaLogin extends JPanel{
 					JOptionPane.showMessageDialog(null, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 					e1.printStackTrace();
 				}
+				
+				
 			}
 		});
 		botonIngresar.setBounds(247, 474, 308, 32);

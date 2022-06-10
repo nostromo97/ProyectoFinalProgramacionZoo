@@ -47,6 +47,11 @@ public class PantallaRegistro extends JPanel{
 		setLayout(null);
 		setSize (800,600);
 		
+		JLabel gifMonoPortatil = new JLabel("");
+		gifMonoPortatil.setIcon(new ImageIcon("./gif/monoPortatil.gif"));
+		gifMonoPortatil.setBounds(10, -34, 350, 321);
+		add(gifMonoPortatil);
+		
 		JButton botonAtras = new JButton("ATR\u00C1S");
 		botonAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

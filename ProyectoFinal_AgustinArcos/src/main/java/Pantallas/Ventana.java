@@ -4,9 +4,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import Clases.Usuario;
+
 public class Ventana extends JFrame{
 	private JPanel pantallaActual;
-	
+	public Usuario usuarioActual;
 	
 	public Ventana() {
 		

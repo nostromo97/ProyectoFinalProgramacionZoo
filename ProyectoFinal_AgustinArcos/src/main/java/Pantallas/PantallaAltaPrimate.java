@@ -65,6 +65,11 @@ public class PantallaAltaPrimate extends JPanel {
 				ventana.cambiarPantalla("menu");
 			}
 		});
+		
+		JLabel lblGifPrimate = new JLabel("");
+		lblGifPrimate.setIcon(new ImageIcon("./gif/mono.gif"));
+		lblGifPrimate.setBounds(539, 245, 236, 184);
+		add(lblGifPrimate);
 		btnVolver.setBackground(Color.ORANGE);
 		btnVolver.setBounds(583, 36, 89, 60);
 		add(btnVolver);
@@ -128,7 +133,7 @@ public class PantallaAltaPrimate extends JPanel {
 		JLabel txtPrimate = new JLabel("PRIMATE");
 		txtPrimate.setForeground(Color.WHITE);
 		txtPrimate.setFont(new Font("Arial Black", Font.BOLD, 20));
-		txtPrimate.setBounds(615, 245, 127, 42);
+		txtPrimate.setBounds(583, 234, 127, 42);
 		add(txtPrimate);
 
 		JLabel txtFechaNacimiento = new JLabel("FECHA NACIMIENTO:");

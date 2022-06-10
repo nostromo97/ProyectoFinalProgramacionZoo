@@ -58,6 +58,13 @@ public class PantallaAltaAnfibio extends JPanel{
 			}
 		});
 		
+		JLabel gifAnfibio_1_1 = new JLabel("");
+		
+		gifAnfibio_1_1.setHorizontalAlignment(SwingConstants.CENTER);
+		gifAnfibio_1_1.setIcon(new ImageIcon("./gif/anfibio.gif"));
+		gifAnfibio_1_1.setBounds(457, 230, 253, 231);
+		add(gifAnfibio_1_1);
+		
 		final JComboBox comboOrden = new JComboBox();
 		comboOrden.setModel(new DefaultComboBoxModel(new String[] {"...", "Anura", "Caudata", "Gymnophiona"}));
 		comboOrden.setMaximumRowCount(4);
@@ -71,6 +78,7 @@ public class PantallaAltaAnfibio extends JPanel{
 		add(rdbtnAmbiente2);
 		
 		final JRadioButton rdbtnAmbiente1 = new JRadioButton("Acu\u00E1tico");
+		rdbtnAmbiente1.setHorizontalAlignment(SwingConstants.LEFT);
 		rdbtnAmbiente1.setBounds(78, 442, 102, 23);
 		add(rdbtnAmbiente1);
 		btnAtras.setForeground(Color.BLACK);
@@ -158,6 +166,7 @@ public class PantallaAltaAnfibio extends JPanel{
 		campoFechaNacimiento.setColumns(10);
 		
 		JButton botonDarAlta = new JButton("DAR DE ALTA ANFIBIO");
+		
 		botonDarAlta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {

@@ -56,13 +56,13 @@ public class PantallaBajaPrimate extends JPanel{
 			JLabel lblMotivoBaja = new JLabel("Motivo baja:");
 			lblMotivoBaja.setForeground(Color.WHITE);
 			lblMotivoBaja.setFont(new Font("Arial", Font.BOLD, 14));
-			lblMotivoBaja.setBounds(337, 271, 119, 14);
+			lblMotivoBaja.setBounds(312, 271, 119, 14);
 			add(lblMotivoBaja);
 			
 			final JComboBox comboBaja = new JComboBox();
 			comboBaja.setModel(new DefaultComboBoxModel(new String[] {"...", "Muerte", "Traspaso"}));
 			comboBaja.setMaximumRowCount(3);
-			comboBaja.setBounds(337, 291, 155, 22);
+			comboBaja.setBounds(312, 291, 155, 22);
 			add(comboBaja);
 			btnVolver.setBackground(Color.ORANGE);
 			btnVolver.setBounds(629, 18, 89, 37);
@@ -107,7 +107,7 @@ public class PantallaBajaPrimate extends JPanel{
 			add(txtPrimate);
 			
 			campoIdBaja = new JTextField();
-			campoIdBaja.setBounds(268, 292, 46, 20);
+			campoIdBaja.setBounds(245, 292, 46, 20);
 			add(campoIdBaja);
 			campoIdBaja.setColumns(10);
 			
@@ -115,12 +115,13 @@ public class PantallaBajaPrimate extends JPanel{
 			lblIdBaja.setBackground(Color.GREEN);
 			lblIdBaja.setForeground(Color.WHITE);
 			lblIdBaja.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 14));
-			lblIdBaja.setBounds(76, 286, 195, 28);
+			lblIdBaja.setBounds(49, 286, 195, 28);
 			add(lblIdBaja);
 			
 			
 			
-			JButton botonDarBaja = new JButton("Dar de baja");
+			JButton botonDarBaja = new JButton("DAR DE BAJA");
+			botonDarBaja.setIcon(new ImageIcon("./gif/muerte.gif"));
 			botonDarBaja.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					
@@ -191,18 +192,13 @@ public class PantallaBajaPrimate extends JPanel{
 			});
 			botonDarBaja.setBackground(Color.RED);
 			botonDarBaja.setForeground(Color.BLACK);
-			botonDarBaja.setBounds(549, 271, 119, 54);
+			botonDarBaja.setBounds(503, 260, 195, 74);
 			add(botonDarBaja);
 			
 			JLabel background = new JLabel("");
 			background.setIcon(new ImageIcon("./fotos/BACKGROUND_sinlogo.jpg"));
 			background.setBounds(0, 0, 800, 600);
 			add(background);
-			
-			JLabel txtFechaBaja = new JLabel("New label");
-			txtFechaBaja.setFont(new Font("Arial", Font.BOLD, 14));
-			txtFechaBaja.setBounds(0, 0, 46, 14);
-			add(txtFechaBaja);
 			
 			mostrarPrimatesAlta();
 			mostrarPrimatesBaja();
@@ -247,7 +243,7 @@ public class PantallaBajaPrimate extends JPanel{
 				String id = cursor.getString("id");
 				String nombre = cursor.getString("nombre");
 				String motivoBaja = cursor.getString("motivoBaja");
-				listaPrimates +="●ID: "+ id +"     ●Nombre: "+ nombre + "\n";
+				listaPrimates +="●ID: "+ id +"||     ●Nombre: "+ nombre + "\n";
 			}
 			
 			

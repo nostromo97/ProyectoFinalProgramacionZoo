@@ -59,13 +59,13 @@ public class PantallaBajaAnfibio extends JPanel{
 		final JComboBox comboBaja = new JComboBox();
 		comboBaja.setModel(new DefaultComboBoxModel(new String[] {"...", "Muerte", "Traspaso"}));
 		comboBaja.setMaximumRowCount(3);
-		comboBaja.setBounds(545, 291, 114, 22);
+		comboBaja.setBounds(334, 291, 114, 22);
 		add(comboBaja);
 		
 		JLabel lblMotivoBaja = new JLabel("Motivo baja:");
 		lblMotivoBaja.setForeground(Color.WHITE);
 		lblMotivoBaja.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblMotivoBaja.setBounds(549, 270, 100, 14);
+		lblMotivoBaja.setBounds(336, 275, 100, 14);
 		add(lblMotivoBaja);
 		
 		textAnfibioBaja = new JTextPane();
@@ -101,11 +101,12 @@ public class PantallaBajaAnfibio extends JPanel{
 		add(txtAnfibio);
 		
 		campoIdBaja = new JTextField();
-		campoIdBaja.setBounds(282, 292, 46, 20);
+		campoIdBaja.setBounds(258, 292, 46, 20);
 		add(campoIdBaja);
 		campoIdBaja.setColumns(10);
 		
-		JButton botonDarBaja = new JButton("Introducir ID");
+		JButton botonDarBaja = new JButton("DAR DE BAJA");
+		botonDarBaja.setIcon(new ImageIcon("./gif/muerte.gif"));
 		botonDarBaja.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -175,11 +176,11 @@ public class PantallaBajaAnfibio extends JPanel{
 		lblIdBaja.setBackground(Color.GREEN);
 		lblIdBaja.setForeground(Color.WHITE);
 		lblIdBaja.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 14));
-		lblIdBaja.setBounds(89, 286, 195, 28);
+		lblIdBaja.setBounds(69, 286, 195, 28);
 		add(lblIdBaja);
 		botonDarBaja.setBackground(Color.RED);
 		botonDarBaja.setForeground(Color.BLACK);
-		botonDarBaja.setBounds(348, 288, 106, 28);
+		botonDarBaja.setBounds(503, 260, 195, 74);
 		add(botonDarBaja);
 		
 		JLabel background = new JLabel("");

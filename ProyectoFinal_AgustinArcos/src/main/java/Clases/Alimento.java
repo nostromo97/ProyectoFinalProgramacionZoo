@@ -11,12 +11,14 @@ import Superclases.EntidadConIdFechaYNombre;
 import Utils.UtilsDB;
 
 /**
- * Clase que contiene un alimento que extiende de la clase EntidadConIdFechaYNombre
+ * Clase que contiene un alimento que extiende de la clase
+ * EntidadConIdFechaYNombre
+ * 
  * @author Agustín Arcos
  *
  */
-public class Alimento extends EntidadConIdFechaYNombre{
-	
+public class Alimento extends EntidadConIdFechaYNombre {
+
 	/**
 	 * Variable interna de clase alimento que contiene un tipoAlimento
 	 */
@@ -25,35 +27,47 @@ public class Alimento extends EntidadConIdFechaYNombre{
 	 * Variable numérica que contiene la cantidad de Kg del alimento
 	 */
 	private float cantidadAlimento;
-	
+
 	/**
 	 * Constructor de la clase alimento.
-	 * @param nombre Cadena de caracteres que contiene el nombre del alimento.
-	 * @param tipoAlimento Enum que contiene el nombre del tipo de alimento.
+	 * 
+	 * @param nombre           Cadena de caracteres que contiene el nombre del
+	 *                         alimento.
+	 * @param tipoAlimento     Enum que contiene el nombre del tipo de alimento.
 	 * @param cantidadAlimento Cantidad de Kg del alimento.
-	 * @throws NombreVacioException Excepción que se lanza cuando el nombre está vacío.
-	 * @throws NombreInvalidoException Excepción que se lanza cuando el nombre no es válido.
-	 * @throws SQLException Excepción que se lanza cuando hay fallos relacionados con la base de datos en SQL.
+	 * @throws NombreVacioException    Excepción que se lanza cuando el nombre está
+	 *                                 vacío.
+	 * @throws NombreInvalidoException Excepción que se lanza cuando el nombre no es
+	 *                                 válido.
+	 * @throws SQLException            Excepción que se lanza cuando hay fallos
+	 *                                 relacionados con la base de datos en SQL.
 	 */
-	public Alimento(String nombre, TipoAlimento tipoAlimento, float cantidadAlimento) throws NombreVacioException, NombreInvalidoException, SQLException {
+	public Alimento(String nombre, TipoAlimento tipoAlimento, float cantidadAlimento)
+			throws NombreVacioException, NombreInvalidoException, SQLException {
 		super(nombre);
 		Scanner sc = new Scanner(System.in);
 		Statement query = UtilsDB.conectarBD();
-				
-		if(query.executeUpdate("insert into alimento values(null,'"+nombre+"','"+tipoAlimento+"','"+cantidadAlimento+"')")>0)
-		this.tipoAlimento = tipoAlimento;
+
+		if (query.executeUpdate("insert into alimento values(null,'" + nombre + "','" + tipoAlimento + "','"
+				+ cantidadAlimento + "')") > 0)
+			this.tipoAlimento = tipoAlimento;
 		this.cantidadAlimento = cantidadAlimento;
-		
-		UtilsDB.desconectarBD();	
+
+		UtilsDB.desconectarBD();
 	}
-	
-	
-	
+
+	/**
+	 * Función que devuelve el tipo de alimento
+	 * @return tipo de alimento del objeto
+	 */
 
 	public TipoAlimento getTipoAlimento() {
 		return tipoAlimento;
 	}
-
+	/**
+	 * Función que establece un nuevo tipo de alimento en el objeto
+	 * @param tipoAlimento Nuevo valor del tipo de alimento.
+	 */
 	public void setTipoAlimento(TipoAlimento tipoAlimento) {
 		this.tipoAlimento = tipoAlimento;
 	}
@@ -65,8 +79,5 @@ public class Alimento extends EntidadConIdFechaYNombre{
 	public void setCantidadAlimento(float cantidadAlimento) {
 		this.cantidadAlimento = cantidadAlimento;
 	}
-	
-	
-	
-	
+
 }

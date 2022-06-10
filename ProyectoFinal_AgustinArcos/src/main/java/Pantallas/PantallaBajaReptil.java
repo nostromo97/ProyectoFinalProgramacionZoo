@@ -55,7 +55,7 @@ public class PantallaBajaReptil extends JPanel{
 			final JComboBox comboBaja = new JComboBox();
 			comboBaja.setModel(new DefaultComboBoxModel(new String[] {"...", "Muerte", "Traslado"}));
 			comboBaja.setMaximumRowCount(3);
-			comboBaja.setBounds(356, 291, 132, 22);
+			comboBaja.setBounds(341, 291, 132, 22);
 			add(comboBaja);
 			btnVolver.setBackground(Color.ORANGE);
 			btnVolver.setBounds(629, 18, 89, 37);
@@ -64,7 +64,7 @@ public class PantallaBajaReptil extends JPanel{
 			JLabel lblBaja = new JLabel("Motivo de baja:");
 			lblBaja.setFont(new Font("Tahoma", Font.BOLD, 12));
 			lblBaja.setForeground(Color.WHITE);
-			lblBaja.setBounds(355, 271, 118, 14);
+			lblBaja.setBounds(341, 273, 118, 14);
 			add(lblBaja);
 			
 			textReptilBaja = new JTextPane();
@@ -102,11 +102,13 @@ public class PantallaBajaReptil extends JPanel{
 			add(txtPrimate);
 			
 			campoIdBaja = new JTextField();
-			campoIdBaja.setBounds(297, 292, 46, 20);
+			campoIdBaja.setBounds(268, 292, 46, 20);
 			add(campoIdBaja);
 			campoIdBaja.setColumns(10);
 			
-			JButton botonBaja = new JButton("Dar de baja");
+			JButton botonBaja = new JButton("DAR DE BAJA");
+			botonBaja.setBounds(503, 260, 195, 74);
+			botonBaja.setIcon(new ImageIcon("./gif/muerte.gif"));
 			botonBaja.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 
@@ -183,11 +185,11 @@ public class PantallaBajaReptil extends JPanel{
 			lblIdBaja.setBackground(Color.GREEN);
 			lblIdBaja.setForeground(Color.WHITE);
 			lblIdBaja.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 14));
-			lblIdBaja.setBounds(104, 286, 195, 28);
+			lblIdBaja.setBounds(76, 286, 195, 28);
 			add(lblIdBaja);
 			botonBaja.setBackground(Color.RED);
 			botonBaja.setForeground(Color.BLACK);
-			botonBaja.setBounds(573, 286, 106, 39);
+			botonBaja.setBounds(503, 260, 195, 74);
 			add(botonBaja);
 			
 			JLabel background = new JLabel("");

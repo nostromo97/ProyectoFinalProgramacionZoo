@@ -9,7 +9,11 @@ import Excepciones.IdInvalidoException;
 import Excepciones.IdVacioException;
 import Excepciones.NombreInvalidoException;
 import Excepciones.NombreVacioException;
-
+/**
+ * Clase que modela una entidad con id, fecha y nombre
+ * @author Agustín
+ *
+ */
 public class  EntidadConIdFechaYNombre  {
 	
 	
@@ -56,6 +60,11 @@ public class  EntidadConIdFechaYNombre  {
 	public LocalDate getFechaNacimiento() {
 		return fechaNacimiento;
 	}
+	/**
+	 * Función que establece una nueva fecha de nacimiento.
+	 * @param fechaNacimiento Nuevo valor fecha de nacimiento
+	 * @throws FechaFormatoException Excepción que se lanza cundo no se introduce correctamente el formato de la fecha.
+	 */
 	public void setFechaNacimiento(LocalDate fechaNacimiento) throws FechaFormatoException{
 		Pattern pattern = Pattern.compile("dd-MM-YYYY");
 		Matcher matcher = pattern.matcher(fechaNacimiento.toString());

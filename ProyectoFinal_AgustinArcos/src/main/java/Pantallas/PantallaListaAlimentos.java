@@ -44,6 +44,8 @@ public class PantallaListaAlimentos extends JPanel{
 		add(lbllistaAlimentos);
 		
 		textListaAlimentos = new JTextPane();
+		textListaAlimentos.setFont(new Font("Tahoma", Font.BOLD, 11));
+		textListaAlimentos.setBackground(Color.LIGHT_GRAY);
 		textListaAlimentos.setBounds(101, 99, 622, 331);
 		add(textListaAlimentos);
 		
@@ -71,8 +73,8 @@ public class PantallaListaAlimentos extends JPanel{
 				String nombre = cursor.getString("nombre");
 				String tipoAlimento = cursor.getString("tipoAlimento");
 				float cantidadAlimento = cursor.getFloat("cantidadAlimento");
-				listaAlimentos +="●ID: "+ id +"     ●Nombre: "+ nombre + "     ●Tipo de alimento: "+tipoAlimento+
-						"     ●Cantidad de alimento: "+cantidadAlimento+"\n";
+				listaAlimentos +="●ID: "+ id +"||     ●NOMBRE: "+ nombre + "||     ●TIPO: "+tipoAlimento+
+						"||     ●CANTIDAD: "+cantidadAlimento+"Kg \n";
 			}
 			
 			

@@ -44,6 +44,11 @@ public class PantallaAltaReptil extends JPanel{
 		this.ventana=v;
 		setLayout(null);
 		setSize (800,600);
+		
+		JLabel lblGifTortuga = new JLabel("");
+		lblGifTortuga.setIcon(new ImageIcon("./gif/tortuga.gif"));
+		lblGifTortuga.setBounds(556, 249, 202, 201);
+		add(lblGifTortuga);
 				
 		final JRadioButton rdbtnPiel2 = new JRadioButton("Caparaz\u00F3n");
 		rdbtnPiel2.setBounds(58, 414, 89, 23);
@@ -119,12 +124,8 @@ public class PantallaAltaReptil extends JPanel{
 		JLabel txtAnfibio = new JLabel("REPTIL");
 		txtAnfibio.setForeground(Color.WHITE);
 		txtAnfibio.setFont(new Font("Arial Black", Font.BOLD, 20));
-		txtAnfibio.setBounds(559, 245, 127, 42);
+		txtAnfibio.setBounds(591, 214, 127, 42);
 		add(txtAnfibio);
-		
-		JButton botonDieta = new JButton("DIETA");
-		botonDieta.setBounds(500, 403, 89, 23);
-		add(botonDieta);
 		
 		JLabel txtFechaNacimiento = new JLabel("FECHA NACIMIENTO:");
 		txtFechaNacimiento.setFont(new Font("Arial", Font.BOLD, 14));
