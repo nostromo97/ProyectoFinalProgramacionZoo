@@ -11,7 +11,7 @@ import Superclases.EntidadConIdFechaYNombre;
 import Utils.UtilsDB;
 
 /**
- * Clase que contiene un alimento que extiende de la clase EntidadConIdFechaYNombre
+ * Clase que contiene un alimento que extiende de la superclase EntidadConIdFechaYNombre
  * 
  * @author Agustín Arcos
  *

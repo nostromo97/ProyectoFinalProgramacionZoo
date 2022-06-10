@@ -16,7 +16,7 @@ import Excepciones.TipoAmbienteVacioException;
 import Excepciones.TipoOrdenVacioException;
 import Superclases.EntidadConIdFechaYNombre;
 /**
- * Clase que contiene un objeto de tipo Animal que extiende de EntidadConIdFechaYNombre.
+ * Clase que contiene un objeto de tipo Animal que extiende de la superclase EntidadConIdFechaYNombre.
  * @author Agustín Arcos
  *
  */
@@ -160,7 +160,10 @@ public Animal(short id,String nombre,LocalDate fechaNacimiento,  MotivoBaja moti
 		return raza;
 	}
 
-
+	/**
+	 * Función que establece una raza en el objeto.
+	 * @param raza Un tipo de raza.
+	 */
 	public void setRaza(TipoRaza raza) {
 		this.raza = raza;
 	}
@@ -173,7 +176,10 @@ public Animal(short id,String nombre,LocalDate fechaNacimiento,  MotivoBaja moti
 		return cuidados;
 	}
 
-
+	/**
+	 * Función que establece un cuidado.
+	 * @param cuidados Un cuidado.
+	 */
 	public void setCuidados(String cuidados) {
 		this.cuidados = cuidados;
 	}
