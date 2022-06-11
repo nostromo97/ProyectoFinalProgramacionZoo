@@ -30,7 +30,7 @@ public class HabitatAnfibio extends Habitat{
 	}
 	/**
 	 * Función que establece los metros cubicos de agua del habitat
-	 * @param metrosCubicosAgua Los metros cubicos de agua.
+	 * @param metrosCubicosAgua Nuevo parámetro que estblace nuevo valor de metros cubicos de agua.
 	 */
 	public void setMetrosCubicosAgua(short metrosCubicosAgua) {
 		this.metrosCubicosAgua = metrosCubicosAgua;

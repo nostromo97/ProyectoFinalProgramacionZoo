@@ -38,7 +38,7 @@ public class Cuidados extends EntidadConNombre{
 	}
 	/**
 	 * Función que devuelve la descripción del tratamiento.
-	 * @return descripción de tratamiento del objeto.
+	 * @param descripcionTratamiento Nueva descripción del tratamiento.
 	 */
 	public void setDescripcionTratamiento(String descripcionTratamiento) {
 		this.descripcionTratamiento = descripcionTratamiento;
@@ -51,7 +51,7 @@ public class Cuidados extends EntidadConNombre{
 	}
 		/**
 		 * Función que devuelve la duración del tratamiento.
-		 * @return duración de tratamiento del objeto.
+		 * @param setDuracionTratamiento Nuevo parámetro que estblace una nueva duración del tratamiento.
 		 */
 	public void setDuracionTratamiento(short duracionTratamiento) {
 		this.duracionTratamiento = duracionTratamiento;

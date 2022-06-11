@@ -28,7 +28,7 @@ public class HabitatPrimate extends Habitat{
 	}
 	/**
 	 * Función que establece una cantidad de árboles.
-	 * @param cantidadArboles Cantidad de árboles.
+	 * @param cantidadArboles Nuevo parámetro que estblace nuevo valor de cantidad de árboles.
 	 */
 	public void setCantidadArboles(short cantidadArboles) {
 		this.cantidadArboles = cantidadArboles;

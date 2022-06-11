@@ -45,7 +45,7 @@ public class Refugio {
 
 	/**
 	 * Función que establece un nombre para el refugio.
-	 * @param nombreRefugio El nombre del refugio.
+	 * @param nombreRefugio Nuevo parámetro que estblace un nombre al refugio.
 	 */
 	public void setNombreRefugio(String nombreRefugio) {
 		this.nombreRefugio = nombreRefugio;
@@ -61,7 +61,7 @@ public class Refugio {
 
 	/**
 	 * Función que establece los diferentes animales.
-	 * @param animales Animales en el refugio.
+	 * @param animales Nuevo parámetro que estblace los animales que hay en el refugio.
 	 */
 	public void setAnimales(ArrayList<Animal> animales) {
 		this.animales = animales;
@@ -77,7 +77,7 @@ public class Refugio {
 
 	/**
 	 * Función que establece los habitats que hay en el refugio.
-	 * @param habitats Los habitats del refugio.
+	 * @param habitats Nuevo parámetro que estblace los habitats que hay en el refugio.
 	 */
 	public void setHabitats(ArrayList<Habitat> habitats) {
 		this.habitats = habitats;

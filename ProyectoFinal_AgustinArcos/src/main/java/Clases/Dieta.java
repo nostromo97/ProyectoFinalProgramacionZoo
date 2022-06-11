@@ -96,7 +96,7 @@ public class Dieta extends Animal{
 	}
 	/**
 	 * Función que establece una dieta para el día Lunes
-	 * @param dietaLunes Dieta de día Lunes.
+	 * @param dietaLunes Nuevo parámetro que estblace una nueva dieta para el día Lunes.
 	 */
 	public void setDietaLunes(ArrayList<Alimento> dietaLunes) {
 		this.dietaLunes = dietaLunes;
@@ -110,7 +110,7 @@ public class Dieta extends Animal{
 	}
 	/**
 	 * Función que establece una dieta para el día Martes
-	 * @param dietaLunes Dieta de día Martes.
+	 * @param dietaMartes Nuevo parámetro que estblace una nueva dieta para el día Martes.
 	 */
 	public void setDietaMartes(ArrayList<Alimento> dietaMartes) {
 		this.dietaMartes = dietaMartes;
@@ -124,7 +124,7 @@ public class Dieta extends Animal{
 	}
 	/**
 	 * Función que establece una dieta para el día Miércoles
-	 * @param dietaLunes Dieta de día Miércoles.
+	 * @param dietaMiércoles Nuevo parámetro que estblace una nueva dieta para el día Miércoles.
 	 */
 	public void setDietaMiércoles(ArrayList<Alimento> dietaMiércoles) {
 		this.dietaMiércoles = dietaMiércoles;
@@ -138,7 +138,7 @@ public class Dieta extends Animal{
 	}
 	/**
 	 * Función que establece una dieta para el día Jueves.
-	 * @param dietaLunes Dieta de día Jueves.
+	 * @param dietaJueves Nuevo parámetro que estblace una nueva dieta para el día Jueves.
 	 */
 	public void setDietaJueves(ArrayList<Alimento> dietaJueves) {
 		this.dietaJueves = dietaJueves;
@@ -152,7 +152,7 @@ public class Dieta extends Animal{
 	}
 	/**
 	 * Función que establece una dieta para el día Viernes
-	 * @param dietaLunes Dieta de día Viernes.
+	 * @param dietaViernes Nuevo parámetro que estblace una nueva dieta para el día Viernes.
 	 */
 	public void setDietaViernes(ArrayList<Alimento> dietaViernes) {
 		this.dietaViernes = dietaViernes;
@@ -166,7 +166,7 @@ public class Dieta extends Animal{
 	}
 	/**
 	 * Función que establece una dieta para el día Sábado
-	 * @param dietaLunes Dieta de día Sábado
+	 * @param dietaSábado Nuevo parámetro que estblace una nueva dieta para el día Sábado.
 	 */
 	public void setDietaSábado(ArrayList<Alimento> dietaSábado) {
 		this.dietaSábado = dietaSábado;
@@ -180,7 +180,7 @@ public class Dieta extends Animal{
 	}
 	/**
 	 * Función que establece una dieta para el día Domingo
-	 * @param dietaLunes Dieta de día Domingo.
+	 * @param dietaDomingo Nuevo parámetro que estblace una nueva dieta para el día Domingo.
 	 */
 	public void setDietaDomingo(ArrayList<Alimento> dietaDomingo) {
 		this.dietaDomingo = dietaDomingo;

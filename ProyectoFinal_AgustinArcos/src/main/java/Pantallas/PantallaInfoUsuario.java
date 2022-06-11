@@ -67,7 +67,7 @@ public class PantallaInfoUsuario extends JPanel{
 		
 		ResultSet cursor;
 		try {
-			cursor = query.executeQuery("select * from usuario");
+			cursor = query.executeQuery("select * from usuarios");
 			
 			while(cursor.next()) {
 				String id = cursor.getString("id");

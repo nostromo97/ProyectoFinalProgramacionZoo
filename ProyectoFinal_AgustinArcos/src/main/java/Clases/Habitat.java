@@ -29,7 +29,7 @@ public class Habitat extends EntidadConNombre{
 	}
 	/**
 	 * Función que establece un tipo de habitat al objeto.
-	 * @param tipo Tipo de habitat.
+	 * @return tipo Nuevo parámetro que estblace un nuevo tipo de habitat
 	 */
 	public void setTipo(String tipo) {
 		this.tipo = tipo;

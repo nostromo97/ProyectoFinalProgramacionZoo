@@ -29,7 +29,7 @@ public class HabitatReptil extends Habitat{
 	}
 	/**
 	 * Función que establece un tamaño al terreno de arena del objeto.
-	 * @param terrenoArena Tamaño del terreno de arena.
+	 * @param terrenoArena Nuevo parámetro que estblace nuevo valor al terreno de arena.
 	 */
 	public void setTerrenoArena(short terrenoArena) {
 		this.terrenoArena = terrenoArena;

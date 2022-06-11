@@ -144,7 +144,7 @@ public class Primate extends Animal{
 
 	/**
 	 * Función que establece un género al primate.
-	 * @param genero Género del primate.
+	 * @param genero Establece un género al primate.
 	 */
 	public void setGenero(boolean genero) {
 		this.genero=genero;

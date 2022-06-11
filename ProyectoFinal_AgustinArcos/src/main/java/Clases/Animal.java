@@ -133,7 +133,7 @@ public Animal(short id,String nombre,LocalDate fechaNacimiento,  MotivoBaja moti
 	this.fechaBaja = fechaBaja;
 }
 /**
- * 	Constructor para dar de baja a un Animal, que extiende de la superclase EntidadConIdFechaYNombre.
+ * 	Constructor de la clase Animal.
  *
  * @param nombre Cadena de caracteres que contiene el nombre del animal.
  * @param fechaNacimiento Variable de tipo LocalDate que contiene la fecha de nacimiento del animal.
@@ -162,7 +162,7 @@ public Animal(short id,String nombre,LocalDate fechaNacimiento,  MotivoBaja moti
 
 	/**
 	 * Función que establece una raza en el objeto.
-	 * @param raza Un tipo de raza.
+	 * @param raza Nuevo tipo de raza.
 	 */
 	public void setRaza(TipoRaza raza) {
 		this.raza = raza;
@@ -170,7 +170,7 @@ public Animal(short id,String nombre,LocalDate fechaNacimiento,  MotivoBaja moti
 
 	/**
 	 * Función que devuelve la descripción de los cuidados del animal.
-	 * @return tipo de orden del objeto
+	 * @return tipo de orden del objeto.
 	 */
 	public String getCuidados() {
 		return cuidados;
@@ -178,7 +178,7 @@ public Animal(short id,String nombre,LocalDate fechaNacimiento,  MotivoBaja moti
 
 	/**
 	 * Función que establece un cuidado.
-	 * @param cuidados Un cuidado.
+	 * @param cuidados Nuevo parámetro que estblace un nuevo cuidado.
 	 */
 	public void setCuidados(String cuidados) {
 		this.cuidados = cuidados;
@@ -194,7 +194,7 @@ public Animal(short id,String nombre,LocalDate fechaNacimiento,  MotivoBaja moti
 
 	/**
 	 * Función que establece un motivo de alta en el objeto.
-	 * @param motivoAlta Un motivo de alta.
+	 * @param motivoAlta Nuevo parámetro que estblace un nuevo motivo de alta.
 	 * @throws MotivoVacioException Excepción que se lanza cuando no se selecciona ningún motivo de alta.
 	 */
 	public void setMotivoAlta(MotivoAlta motivoAlta) throws MotivoVacioException{
@@ -216,7 +216,7 @@ public Animal(short id,String nombre,LocalDate fechaNacimiento,  MotivoBaja moti
 
 	/**
 	 * Función que establece un motivo de baja en el objeto.
-	 * @param motivoBaja Un motivo de baja.
+	 * @param motivoBaja Nuevo parámetro que estblace un nuevo motivo de baja.
 	 * @throws MotivoVacioException Excepción que se lanza cuando no se selecciona ningún motivo de baja.
 	 */
 	public void setMotivoBaja(MotivoBaja motivoBaja) throws MotivoVacioException{
@@ -239,7 +239,7 @@ public Animal(short id,String nombre,LocalDate fechaNacimiento,  MotivoBaja moti
 
 	/**
 	 * Función que establece una nueva fecha de alta en el objeto.
-	 * @param fechaAlta Nueva fecha de alta.
+	 * @param fechaAlta Nuevo parámetro que estblace una nueva fecha de alta.
 	 */
 	public void setFechaAlta(LocalDate fechaAlta) {
 		this.fechaAlta = fechaAlta;

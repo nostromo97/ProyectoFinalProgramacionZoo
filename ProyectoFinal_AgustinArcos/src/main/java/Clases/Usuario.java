@@ -90,7 +90,7 @@ public class Usuario extends EntidadConIdFechaYNombre {
 		} else {
 			throw new SQLException("No se ha podido insertar el usuario");
 		}
-		//Desconexión de la base de datos.
+		
 		UtilsDB.desconectarBD();
 	}
 	/**
@@ -138,7 +138,7 @@ public class Usuario extends EntidadConIdFechaYNombre {
 	}
 	/**
 	 * Función que establece apellidos al objeto.
-	 * @param apellidos Los apellidos del usuario.
+	 * @param apellidos Nuevo parámetro que estblace los apellidos al usuario.
 	 */
 	public void setApellidos(String apellidos) {
 		this.apellidos = apellidos;
@@ -152,7 +152,7 @@ public class Usuario extends EntidadConIdFechaYNombre {
 	}
 	/**
 	 * Función que establece una contraseña en el objeto.
-	 * @param contraseña La contraseña del usuario.
+	 * @param contraseña Nuevo parámetro que estblace contraseña al usuario.
 	 * @throws ContrasenaInavalidaException Excepción que se lanza cuando la contraseña introducida no es válida.
 	 * @throws ContrasenaLargaException Excepción que se lanza cuando el tamaño de la contrasela es más larga de lo establecido.
 	 * @throws ContrasenaVaciaExceptiopn Excepción que se lanza cuando el campo de la contraseña está vacío.
