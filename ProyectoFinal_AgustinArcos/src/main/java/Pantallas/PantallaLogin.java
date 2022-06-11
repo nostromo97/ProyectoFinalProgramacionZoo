@@ -24,15 +24,30 @@ import Excepciones.NombreVacioException;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 import javax.swing.JPasswordField;
-
+/**
+ * Clase que implementa la pantalla de login y extiende de JPanel.
+ * @author Agustín Arcos
+ *
+ */
 public class PantallaLogin extends JPanel{
 
-	
+	/**
+	 * Ventana en la que se muestra la pantalla actual.
+	 */
 	private Ventana ventana;
+	/**
+	 * Campo donde el usuario introduce su nombre.
+	 */
 	private JTextField campoUsuario;
+	/**
+	 * Campo donde el usuario introduce su contraseña.
+	 */
 	private JPasswordField campoContrasena;
 	
-	
+	/**
+	 * Constructor que implementa el funcionamiento de la pantalla de login.
+	 * @param v
+	 */
 	public PantallaLogin(final Ventana v) {
 		this.ventana=v;
 		setLayout(null);
@@ -89,6 +104,10 @@ public class PantallaLogin extends JPanel{
 		
 		JButton botonIngresar = new JButton("INGRESAR");
 		botonIngresar.addActionListener(new ActionListener() {
+			/**
+			 * Función que registra y guarda los campos del login cuando el usuario hace click. 
+			 * @param e Variable que activa el evento.
+			 */
 			public void actionPerformed(ActionEvent e) {
 				
 				String nombre = campoUsuario.getText();

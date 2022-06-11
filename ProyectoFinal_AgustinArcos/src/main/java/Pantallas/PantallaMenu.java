@@ -14,11 +14,20 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.Font;
-
+/**
+ * Clase que implementa la pantalla del menú principal y extiende de JPanel.
+ * @author Agustín Arcos
+ *
+ */
 public class PantallaMenu extends JPanel{
-	
+	/**
+	 * Ventana en la que se muestra la pantalla actual.
+	 */
 	private Ventana ventana;
-	
+	/**
+	 * Constructor que implementa el funcionamiento de la pantalla del menú.
+	 * @param v
+	 */
 	public PantallaMenu(Ventana v) {
 		this.ventana=v;
 		setLayout(null);
@@ -26,6 +35,10 @@ public class PantallaMenu extends JPanel{
 		
 		JButton botonAlimentos = new JButton("ALIMENTOS");
 		botonAlimentos.addActionListener(new ActionListener() {
+			/**
+			 * Función que te devuelve a la pantalla de alimentos.
+			 * @param e Variable que activa el evento.
+			 */
 			public void actionPerformed(ActionEvent e) {
 				ventana.cambiarPantalla("alimentos");	
 			}
@@ -33,6 +46,10 @@ public class PantallaMenu extends JPanel{
 		
 		JButton btnSalir = new JButton("Salir");
 		btnSalir.addActionListener(new ActionListener() {
+			/**
+			 * Función que cierra el programa.
+			 * @param e Variable que activa el evento.
+			 */
 			public void actionPerformed(ActionEvent e) {
 				salir();
 			}
@@ -40,6 +57,10 @@ public class PantallaMenu extends JPanel{
 		
 		JButton btnUsuario = new JButton("Usuario");
 		btnUsuario.addActionListener(new ActionListener() {
+			/**
+			 * Función que te devuelve a la pantalla de info del usuario.
+			 * @param e Variable que activa el evento.
+			 */
 			public void actionPerformed(ActionEvent e) {
 				ventana.cambiarPantalla("infoUsuario");
 			}
@@ -84,6 +105,10 @@ public class PantallaMenu extends JPanel{
 		
 		JButton botonBaja = new JButton("DAR DE BAJA ANIMAL");
 		botonBaja.addActionListener(new ActionListener() {
+			/**
+			 * Función donde el usuario elige que tipo de animal quiere dar de alta y le lleva a la pantalla de alta del animal seleccionado
+			 * @param e Variable que activa el evento.
+			 */
 			public void actionPerformed(ActionEvent e) {
 				if(comboBaja.getSelectedItem().equals("Anfibio")) {
 					ventana.cambiarPantalla("bajaAnfibio");
@@ -103,6 +128,10 @@ public class PantallaMenu extends JPanel{
 		
 		JButton botonAlta = new JButton("DAR DE ALTA ANIMAL");
 		botonAlta.addActionListener(new ActionListener() {
+			/**
+			 * Función donde el usuario elige que tipo de animal quiere dar de baja y le lleva a la pantalla de baja del animal seleccionado
+			 * @param e Variable que activa el evento.
+			 */
 			public void actionPerformed(ActionEvent e) {
 				if(comboAlta.getSelectedItem().equals("Anfibio")) {
 					ventana.cambiarPantalla("altaAnfibio");

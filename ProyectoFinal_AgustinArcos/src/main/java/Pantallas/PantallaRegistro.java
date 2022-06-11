@@ -31,17 +31,37 @@ import Excepciones.NombreVacioException;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 import javax.swing.JPasswordField;
-
+/**
+ * Clase que implementa la pantalla de registro del usuario y extiende de JPanel.
+ * @author Agustín Arcos
+ *
+ */
 public class PantallaRegistro extends JPanel{
-
-	
+	/**
+	 * Ventana en la que se muestra la pantalla actual.
+	 */
 	private Ventana ventana;
+	/**
+	 * Campo donde el usuario introduce su nombre de usuario.
+	 */
 	private JTextField campoUsuario;
+	/**
+	 * Campo donde el usuario introduce su contraseña.
+	 */
 	private JPasswordField campoContrasena;
+	/**
+	 * Campo donde el usuario introduce sus apellidos.
+	 */
 	private JTextField campoApellidos;
+	/**
+	 * Campo donde el usuario introduce su fecha de nacimiento.
+	 */
 	private JTextField textFechaNacimiento;
 	
-	
+	/**
+	 * Constructor que implementa el funcionamiento de la pantalla de registro.
+	 * @param v
+	 */
 	public PantallaRegistro(Ventana v) {
 		this.ventana=v;
 		setLayout(null);
@@ -54,6 +74,10 @@ public class PantallaRegistro extends JPanel{
 		
 		JButton botonAtras = new JButton("ATR\u00C1S");
 		botonAtras.addActionListener(new ActionListener() {
+			/**
+			 * Función que te devuelve a la pantalla inical.
+			 * @param e Variable que activa el evento.
+			 */
 			public void actionPerformed(ActionEvent e) {
 				ventana.cambiarPantalla("atras");
 			}
@@ -120,6 +144,10 @@ public class PantallaRegistro extends JPanel{
 		
 		JButton btnRegistro = new JButton("REGISTRAR");
 		btnRegistro.addActionListener(new ActionListener() {
+			/**
+			 * Función que registra y guarda los campos del registro cuando el usuario hace click. 
+			 * @param e Variable que activa el evento.
+			 */
 			public void actionPerformed(ActionEvent e) {
 				try {
 				String nombreUsuario = campoUsuario.getText();

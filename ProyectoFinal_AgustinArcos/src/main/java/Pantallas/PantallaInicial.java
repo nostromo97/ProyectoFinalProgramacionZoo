@@ -6,11 +6,20 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
+/**
+ * Clase que implementa la pantalla inicio del programa y extiende de JPanel.
+ * @author Agustín Arcos
+ *
+ */
 public class PantallaInicial extends JPanel{
-	
+	/**
+	 * Ventana en la que se muestra la pantalla actual.
+	 */
 	private Ventana ventana;
-	
+	/**
+	 * Constructor que implementa el funcionamiento de la pantalla de inicio.
+	 * @param v
+	 */
 	public PantallaInicial(Ventana v) {
 		this.ventana=v;
 		setLayout(null);
@@ -18,6 +27,10 @@ public class PantallaInicial extends JPanel{
 		
 		JButton botonLogin = new JButton("LOGIN");
 		botonLogin.addActionListener(new ActionListener() {
+			/**
+			 * Función que te lleva a la pantalla de login.
+			 * @param e Variable que activa el evento.
+			 */
 			public void actionPerformed(ActionEvent e) {
 				ventana.cambiarPantalla("login");
 			}
@@ -25,6 +38,10 @@ public class PantallaInicial extends JPanel{
 		
 		JButton btnSalir = new JButton("SALIR");
 		btnSalir.addActionListener(new ActionListener() {
+			/**
+			 * Función que cierra el programa.
+			 * @param e Variable que activa el evento.
+			 */
 			public void actionPerformed(ActionEvent e) {
 				salir();
 			}
@@ -43,6 +60,10 @@ public class PantallaInicial extends JPanel{
 		
 		JButton botonRegistrarse = new JButton("REGISTRARSE");
 		botonRegistrarse.addActionListener(new ActionListener() {
+			/**
+			 * Función que lleva al usuario a la pantalla de registro
+			 * @param e Variable que activa el evento.
+			 */
 			public void actionPerformed(ActionEvent e) {
 				ventana.cambiarPantalla("registro");
 			}

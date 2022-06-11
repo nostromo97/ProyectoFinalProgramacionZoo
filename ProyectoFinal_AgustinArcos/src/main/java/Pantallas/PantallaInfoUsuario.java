@@ -16,12 +16,24 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.awt.event.ActionEvent;
-
+/**
+ * Clase que implementa la pantalla la información del usuario y extiende de JPanel.
+ * @author Agustín Arcos
+ *
+ */
 public class PantallaInfoUsuario extends JPanel{
-	
+	/**
+	 * Ventana en la que se muestra la pantalla actual.
+	 */
 	private Ventana ventana;
+	/**
+	 * Panel donde aparece la información del usuario.
+	 */
 	private JTextPane textInfoUsuario;
-	
+	/**
+	 * Constructor que implementa el funcionamiento de la pantalla de info del usuario.
+	 * @param v
+	 */
 	public PantallaInfoUsuario(Ventana v) {
 		this.ventana = v;
 		setLayout(null);
@@ -29,6 +41,10 @@ public class PantallaInfoUsuario extends JPanel{
 		
 		JButton botonVolver = new JButton("Volver");
 		botonVolver.addActionListener(new ActionListener() {
+			/**
+			 * Función que te devuelve a la pantalla menú.
+			 * @param e Variable que activa el evento.
+			 */
 			public void actionPerformed(ActionEvent e) {
 				ventana.cambiarPantalla("menu");
 			}
@@ -59,7 +75,9 @@ public class PantallaInfoUsuario extends JPanel{
 		mostrarInfoUsuario();
 				
 	}
-	
+	/**
+	 * Función que muestra la información del usuario en la base de datos.
+	 */
 	private void mostrarInfoUsuario() {
 		Statement query = UtilsDB.conectarBD();
 		
