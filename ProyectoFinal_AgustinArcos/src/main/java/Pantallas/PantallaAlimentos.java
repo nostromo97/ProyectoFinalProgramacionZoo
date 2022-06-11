@@ -27,27 +27,47 @@ import Excepciones.FechaFormatoException;
 import Excepciones.NombreInvalidoException;
 import Excepciones.NombreVacioException;
 import Utils.UtilsDB;
-
+/**
+ * Clase que implementa la pantalla de los alimentos y extiende de JPanel.
+ * @author Agustín Arcos
+ *
+ */
 public class PantallaAlimentos extends JPanel{
-	
+	/**
+	 * Ventana en la que se muestra la pantalla actual.
+	 */
 	private Ventana ventana;
+	/**
+	 * Campo donde el usuario introduce la cantidad del alimento.
+	 */
 	private JTextField campoCantidadAlimentos;
+	/**
+	 * Campo donde el usuario introduce el nombre del alimento.
+	 */
 	private JTextField campoNombreAlimento;
-	
+	/**
+	 * Constructor que implementa el funcionamiento de la pantalla de los alimentos.
+	 * @param v
+	 */
 	public PantallaAlimentos(Ventana v) {
 		this.ventana=v;
 		setLayout(null);
 		setSize (800,600);
-		
+
 		JButton btnAtras = new JButton("VOLVER");
 		btnAtras.addActionListener(new ActionListener() {
+			/**
+			 * Función que te devuelve a la pantalla menú.
+			 * @param e Variable que activa el evento.
+			 */
 			public void actionPerformed(ActionEvent e) {
 				ventana.cambiarPantalla("menu");
 			}
 		});
-		
+
 		JButton btnNewButton = new JButton("Lista de alimentos");
 		btnNewButton.addActionListener(new ActionListener() {
+		
 			public void actionPerformed(ActionEvent e) {
 				ventana.cambiarPantalla("listaAlimentos");
 			}
@@ -90,9 +110,13 @@ public class PantallaAlimentos extends JPanel{
 		lblTipoAlimento.setForeground(Color.WHITE);
 		lblTipoAlimento.setBounds(332, 277, 136, 17);
 		add(lblTipoAlimento);
-		
+
 		JButton botonAlimentos = new JButton("GUARDAR ALIMENTO");
 		botonAlimentos.addActionListener(new ActionListener() {
+			/**
+			 * Función que registra y guarda los campos del alimento cuando el usuario hace click. 
+			 * @param e Variable que activa el evento.
+			 */
 			public void actionPerformed(ActionEvent e) {
 				try {
 				String nombreAlimento = campoNombreAlimento.getText();
@@ -125,9 +149,10 @@ public class PantallaAlimentos extends JPanel{
 									
 			}
 		});
+		
 		botonAlimentos.setBounds(283, 486, 225, 42);
 		add(botonAlimentos);
-		
+
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon("./fotos/BACKGROUND.jpg"));
 		lblNewLabel.setBounds(0, 0, 800, 600);

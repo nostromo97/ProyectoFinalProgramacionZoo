@@ -5,11 +5,23 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import Clases.Usuario;
-
+/**
+ * Clase Ventana que extiende de JFrame y hace que se muestre el programa por pantalla a través de la interfaz gráfica.
+ * @author Agustín Arcos
+ *
+ */
 public class Ventana extends JFrame{
+	/**
+	 * Pantalla que contiene la ventana en el momento de mostrarse.
+	 */
 	private JPanel pantallaActual;
+	/**
+	 * Usuario logueado.
+	 */
 	public Usuario usuarioActual;
-	
+	/**
+	 * Constructor que implementa el funcionamiento de la clase ventana
+	 */
 	public Ventana() {
 		
 		

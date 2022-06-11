@@ -23,6 +23,8 @@ import Enums.MotivoAlta;
 import Enums.MotivoBaja;
 import Excepciones.DescripcionVaciaException;
 import Excepciones.FechaFormatoException;
+import Excepciones.IdInvalidoException;
+import Excepciones.IdVacioException;
 import Excepciones.MotivoVacioException;
 import Excepciones.NombreInvalidoException;
 import Excepciones.NombreVacioException;
@@ -125,7 +127,6 @@ public class PantallaBajaPrimate extends JPanel{
 			botonDarBaja.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					
-					//hacer select y si encuentra constructor baja
 					
 					Statement query = UtilsDB.conectarBD();
 					
@@ -136,8 +137,7 @@ public class PantallaBajaPrimate extends JPanel{
 								+ "as fechaNacimiento,motivoAlta,fechaAlta,genero,cuidados from altaPrimate where id="+id+";");
 						if(cursor.next()) {
 							
-							//public Primate (short id,String nombre, LocalDate fechaNacimiento, MotivoBaja motivoBaja, LocalDate fechaBaja, boolean genero,
-									//String cuidados)	
+
 							String nombre = cursor.getString("nombre");
 							DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 							LocalDate fechaNacimiento = LocalDate.parse(cursor.getString("fechaNacimiento"),formatter);		
@@ -167,7 +167,7 @@ public class PantallaBajaPrimate extends JPanel{
 						}
 						
 					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
+						JOptionPane.showMessageDialog(null, "Error en la base de datos.", "ERROR", JOptionPane.ERROR_MESSAGE);
 						e1.printStackTrace();
 					} catch (NombreVacioException e1) {
 						// TODO Auto-generated catch block
@@ -180,6 +180,12 @@ public class PantallaBajaPrimate extends JPanel{
 						e1.printStackTrace();
 					} catch (MotivoVacioException e1) {
 						JOptionPane.showMessageDialog(null, "Motivo de baja vacío", "ERROR", JOptionPane.ERROR_MESSAGE);
+						e1.printStackTrace();
+					} catch (IdVacioException e1) {
+						JOptionPane.showMessageDialog(null, e1.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+						e1.printStackTrace();
+					} catch (IdInvalidoException e1) {
+						JOptionPane.showMessageDialog(null, e1.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
 						e1.printStackTrace();
 					}
 						

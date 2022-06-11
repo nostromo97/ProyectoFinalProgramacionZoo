@@ -34,15 +34,36 @@ import Excepciones.TipoAmbienteVacioException;
 import Excepciones.TipoOrdenVacioException;
 
 import javax.swing.JRadioButton;
-
+/**
+ * Clase que implementa la pantalla de alta de los anfibios y extiende de JPanel.
+ * @author Agustín Arcos
+ *
+ */
 public class PantallaAltaAnfibio extends JPanel{
-	
+	/**
+	 * Ventana en la que se muestra la pantalla actual.
+	 */
 	private Ventana ventana;
+	/**
+	 * Campo donde el usuario introduce el nombre del animal.
+	 */
 	private JTextField campoNombre;
+	/**
+	 * Campo donde el usuario introduce la fecha de nacimiento del animal.
+	 */
 	private JTextField campoFechaNacimiento;
+	/**
+	 * Campo donde el usuario introduce la fecha de alta del animal.
+	 */
 	private JTextField campoFechaAlta;
+	/**
+	 * Campo donde el usuario introduce la descripción de los cuidados del animal.
+	 */
 	private JTextField campoDescripcion;
-	
+	/**
+	 * Constructor que implementa el funcionamiento de la pantalla de alta de los anfibios.
+	 * @param v
+	 */
 	public PantallaAltaAnfibio(Ventana v) {
 		this.ventana=v;
 		setLayout(null);
@@ -53,6 +74,10 @@ public class PantallaAltaAnfibio extends JPanel{
 		JButton btnAtras = new JButton("Volver");
 		btnAtras.setBackground(Color.ORANGE);
 		btnAtras.addActionListener(new ActionListener() {
+			/**
+			 * Función que te devuelve a la pantalla menú.
+			 * @param e Variable que activa el evento.
+			 */
 			public void actionPerformed(ActionEvent e) {
 				ventana.cambiarPantalla("menu");
 			}
@@ -168,6 +193,10 @@ public class PantallaAltaAnfibio extends JPanel{
 		JButton botonDarAlta = new JButton("DAR DE ALTA ANFIBIO");
 		
 		botonDarAlta.addActionListener(new ActionListener() {
+			/**
+			 * Función que registra y guarda los campos de alta del anfibio cuando el usuario hace click. 
+			 * @param e Variable que activa el evento.
+			 */
 			public void actionPerformed(ActionEvent e) {
 				try {
 					String nombreAnfibio = campoNombre.getText();

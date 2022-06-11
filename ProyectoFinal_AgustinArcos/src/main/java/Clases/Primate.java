@@ -119,7 +119,7 @@ public class Primate extends Animal{
 	 * @throws MotivoVacioException Excepción que se lanza cuando no se selecciona ningún motivo.
 	 */
 	public Primate (short id,String nombre, LocalDate fechaNacimiento, MotivoBaja motivoBaja, LocalDate fechaBaja, boolean genero,
-			String cuidados) throws NombreVacioException, NombreInvalidoException, FechaFormatoException, SQLException, MotivoVacioException {
+			String cuidados) throws NombreVacioException, NombreInvalidoException, FechaFormatoException, SQLException, MotivoVacioException, IdVacioException,IdInvalidoException {
 		super(id, nombre, fechaNacimiento, motivoBaja, fechaBaja, cuidados);
 		Scanner sc = new Scanner(System.in);
 		Statement query = UtilsDB.conectarBD();
