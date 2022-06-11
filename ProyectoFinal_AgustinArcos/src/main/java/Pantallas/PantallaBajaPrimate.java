@@ -33,14 +33,32 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextPane;
-
+/**
+ * Clase que implementa la pantalla de baja de los primates y extiende de JPanel.
+ * @author Agustín Arcos
+ *
+ */
 public class PantallaBajaPrimate extends JPanel{
-	
+	/**
+	 * Ventana en la que se muestra la pantalla actual.
+	 */
 	private Ventana ventana;
+	/**
+	 * Campo donde el usuario introduce el id a dar de baja.
+	 */
 	private JTextField campoIdBaja;
+	/**
+	 * Panel donde aparecen los animales dados de alta.
+	 */
 	private JTextPane textPrimateAlta;
+	/**
+	 * Panel donde aparecen los animales dados de baja.
+	 */
 	private JTextPane textPrimateBaja;
-	
+	/**
+	 * Constructor que implementa el funcionamiento de la pantalla de baja de los primates.
+	 * @param v
+	 */
 	public PantallaBajaPrimate(Ventana v) {
 		this.ventana=v;
 		setLayout(null);
@@ -50,6 +68,10 @@ public class PantallaBajaPrimate extends JPanel{
 			
 			JButton btnVolver = new JButton("Volver");
 			btnVolver.addActionListener(new ActionListener() {
+				/**
+				 * Función que te devuelve a la pantalla menú.
+				 * @param e Variable que activa el evento.
+				 */
 				public void actionPerformed(ActionEvent e) {
 					ventana.cambiarPantalla("menu");				
 				}
@@ -75,7 +97,6 @@ public class PantallaBajaPrimate extends JPanel{
 			textPrimateBaja.setBackground(Color.LIGHT_GRAY);
 			textPrimateBaja.setFont(new Font("Tahoma", Font.BOLD, 12));
 			textPrimateBaja.setEditable(false);
-			//textPrimateBaja.setColumns(10);
 			textPrimateBaja.setBounds(76, 360, 573, 186);
 			add(textPrimateBaja);
 			
@@ -94,7 +115,7 @@ public class PantallaBajaPrimate extends JPanel{
 			textPrimateAlta.setEditable(false);
 			textPrimateAlta.setBounds(76, 74, 573, 175);
 			add(textPrimateAlta);
-			//textPrimateAlta.setColumns(10);
+
 			
 			JLabel lblListaAlta = new JLabel("LISTA DE ALTAS DE PRIMATES");
 			lblListaAlta.setForeground(Color.WHITE);
@@ -125,6 +146,10 @@ public class PantallaBajaPrimate extends JPanel{
 			JButton botonDarBaja = new JButton("DAR DE BAJA");
 			botonDarBaja.setIcon(new ImageIcon("./gif/muerte.gif"));
 			botonDarBaja.addActionListener(new ActionListener() {
+				/**
+				 * Función que registra y guarda los campos de baja del primate cuando el usuario hace click. 
+				 * @param e Variable que activa el evento.
+				 */
 				public void actionPerformed(ActionEvent e) {
 					
 					
@@ -210,7 +235,9 @@ public class PantallaBajaPrimate extends JPanel{
 			mostrarPrimatesBaja();
 		
 	}
-	
+	/**
+	 * Función que muestra los primates dados de alta en la base de datos.
+	 */
 	private void mostrarPrimatesAlta() {
 		Statement query = UtilsDB.conectarBD();
 		
@@ -235,7 +262,9 @@ public class PantallaBajaPrimate extends JPanel{
 		
 		textPrimateAlta.setText(listaPrimates);
 	}
-	
+	/**
+	 * Función que muestra los primates dados de baja en la base de datos.
+	 */	
 	private void mostrarPrimatesBaja() {
 		Statement query = UtilsDB.conectarBD();
 		

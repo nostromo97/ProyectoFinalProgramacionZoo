@@ -60,7 +60,7 @@ public class PantallaAltaPrimate extends JPanel {
 	 */
 	private JTextField campoDescripcion;
 	/**
-	 * Constructor que implementa el funcionamiento de la pantalla de alta de los anfibios.
+	 * Constructor que implementa el funcionamiento de la pantalla de alta de los primates.
 	 * @param v
 	 */
 	public PantallaAltaPrimate(Ventana v) {

@@ -28,14 +28,32 @@ import Excepciones.MotivoVacioException;
 import Excepciones.NombreInvalidoException;
 import Excepciones.NombreVacioException;
 import Utils.UtilsDB;
-
+/**
+ * Clase que implementa la pantalla de baja de los reptiles y extiende de JPanel.
+ * @author Agustín Arcos
+ *
+ */
 public class PantallaBajaReptil extends JPanel{
-	
+	/**
+	 * Ventana en la que se muestra la pantalla actual.
+	 */
 	private Ventana ventana;
+	/**
+	 * Campo donde el usuario introduce el id a dar de baja.
+	 */
 	private JTextField campoIdBaja;
+	/**
+	 * Panel donde aparecen los animales dados de alta.
+	 */
 	private JTextPane textReptilAlta;
+	/**
+	 * Panel donde aparecen los animales dados de baja.
+	 */
 	private JTextPane textReptilBaja;
-	
+	/**
+	 * Constructor que implementa el funcionamiento de la pantalla de baja de los reptiles.
+	 * @param v
+	 */
 	public PantallaBajaReptil(Ventana v) {
 		this.ventana=v;
 		setLayout(null);
@@ -47,6 +65,10 @@ public class PantallaBajaReptil extends JPanel{
 			
 			JButton btnVolver = new JButton("Volver");
 			btnVolver.addActionListener(new ActionListener() {
+				/**
+				 * Función que te devuelve a la pantalla menú.
+				 * @param e Variable que activa el evento.
+				 */
 				public void actionPerformed(ActionEvent e) {
 					ventana.cambiarPantalla("menu");				
 				}
@@ -110,6 +132,10 @@ public class PantallaBajaReptil extends JPanel{
 			botonBaja.setBounds(503, 260, 195, 74);
 			botonBaja.setIcon(new ImageIcon("./gif/muerte.gif"));
 			botonBaja.addActionListener(new ActionListener() {
+				/**
+				 * Función que registra y guarda los campos de baja del reptil cuando el usuario hace click. 
+				 * @param e Variable que activa el evento.
+				 */
 				public void actionPerformed(ActionEvent e) {
 
 					//hacer select y si encuentra constructor baja
@@ -206,7 +232,9 @@ public class PantallaBajaReptil extends JPanel{
 			mostrarReptilesBaja();
 				
 	}
-	
+	/**
+	 * Función que muestra los reptiles dados de alta en la base de datos.
+	 */
 	private void mostrarReptilesAlta() {
 		Statement query = UtilsDB.conectarBD();
 		
@@ -232,7 +260,9 @@ public class PantallaBajaReptil extends JPanel{
 		textReptilAlta.setText(listaReptiles);
 	}
 	
-	
+	/**
+	 * Función que muestra los reptiles dados de baja en la base de datos.
+	 */
 	private void mostrarReptilesBaja() {
 		Statement query = UtilsDB.conectarBD();
 		

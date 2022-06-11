@@ -58,7 +58,7 @@ public class PantallaAltaReptil extends JPanel{
 	 */
 	private JTextField campoDescripcionCuidados;
 	/**
-	 * Constructor que implementa el funcionamiento de la pantalla de alta de los anfibios.
+	 * Constructor que implementa el funcionamiento de la pantalla de alta de los reptiles.
 	 * @param v
 	 */
 	public PantallaAltaReptil(Ventana v) {

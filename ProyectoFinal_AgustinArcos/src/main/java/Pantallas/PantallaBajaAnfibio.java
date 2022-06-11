@@ -31,14 +31,32 @@ import Excepciones.MotivoVacioException;
 import Excepciones.NombreInvalidoException;
 import Excepciones.NombreVacioException;
 import Utils.UtilsDB;
-
+/**
+ * Clase que implementa la pantalla de baja de los anfibios y extiende de JPanel.
+ * @author Agustín Arcos
+ *
+ */
 public class PantallaBajaAnfibio extends JPanel{
-	
+	/**
+	 * Ventana en la que se muestra la pantalla actual.
+	 */
 	private Ventana ventana;
+	/**
+	 * Campo donde el usuario introduce el id a dar de baja.
+	 */
 	private JTextField campoIdBaja;
+	/**
+	 * Panel donde aparecen los animales dados de alta.
+	 */
 	private JTextPane textAnfibioAlta;
+	/**
+	 * Panel donde aparecen los animales dados de baja.
+	 */
 	private JTextPane textAnfibioBaja;
-	
+	/**
+	 * Constructor que implementa el funcionamiento de la pantalla de baja de los anfibios.
+	 * @param v
+	 */
 	public PantallaBajaAnfibio(Ventana v) {
 		this.ventana=v;
 		setLayout(null);
@@ -48,6 +66,10 @@ public class PantallaBajaAnfibio extends JPanel{
 		
 		JButton btnVolver = new JButton("Volver");
 		btnVolver.addActionListener(new ActionListener() {
+			/**
+			 * Función que te devuelve a la pantalla menú.
+			 * @param e Variable que activa el evento.
+			 */
 			public void actionPerformed(ActionEvent e) {
 				ventana.cambiarPantalla("menu");				
 			}
@@ -108,6 +130,10 @@ public class PantallaBajaAnfibio extends JPanel{
 		JButton botonDarBaja = new JButton("DAR DE BAJA");
 		botonDarBaja.setIcon(new ImageIcon("./gif/muerte.gif"));
 		botonDarBaja.addActionListener(new ActionListener() {
+			/**
+			 * Función que registra y guarda los campos de baja del anfibio cuando el usuario hace click. 
+			 * @param e Variable que activa el evento.
+			 */
 			public void actionPerformed(ActionEvent e) {
 				
 			
@@ -197,6 +223,9 @@ public class PantallaBajaAnfibio extends JPanel{
 		mostrarAnfibiosBaja();
 		
 	}
+	/**
+	 * Función que muestra los anfibios dados de alta en la base de datos.
+	 */
 	private void mostrarAnfibiosAlta() {
 		Statement query = UtilsDB.conectarBD();
 		
@@ -221,7 +250,9 @@ public class PantallaBajaAnfibio extends JPanel{
 		
 		textAnfibioAlta.setText(listaAnfibios);
 	}
-	
+	/**
+	 * Función que muestra los anfibios dados de baja en la base de datos.
+	 */
 	private void mostrarAnfibiosBaja() {
 		Statement query = UtilsDB.conectarBD();
 		
