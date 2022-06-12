@@ -1,0 +1,11 @@
+Primates dados de Alta: 
+?ID: 4     ?Nombre: Manolo
+
+----------------
+Primates dados de Baja: 
+?ID: 1||     ?Nombre: PrimateUno
+?ID: 2||     ?Nombre: primateEjemplo
+?ID: 3||     ?Nombre: aaaaaaaa
+?ID: 4||     ?Nombre: kingkong
+
+----------------

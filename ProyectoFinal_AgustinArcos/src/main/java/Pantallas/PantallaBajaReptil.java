@@ -1,6 +1,7 @@
 package Pantallas;
 
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
@@ -8,6 +9,8 @@ import javax.swing.JButton;
 import java.awt.Color;
 import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -50,6 +53,9 @@ public class PantallaBajaReptil extends JPanel{
 	 * Panel donde aparecen los animales dados de baja.
 	 */
 	private JTextPane textReptilBaja;
+	
+	private String listaTotalReptiles;
+	
 	/**
 	 * Constructor que implementa el funcionamiento de la pantalla de baja de los reptiles.
 	 * @param v
@@ -74,6 +80,33 @@ public class PantallaBajaReptil extends JPanel{
 				}
 			});
 			
+
+			JButton btnExportarAnimales = new JButton("Exportar \r\nLista animales");
+			btnExportarAnimales.addActionListener(new ActionListener() {
+				/**
+				 * Función que exporta un archivo de texto con la lista de animales dados de alta y de baja.
+				 * @param e Variable que activa el evento.
+				 */
+				public void actionPerformed(ActionEvent e) {
+					try {
+						FileWriter escritor = new FileWriter("./archivosTxt/altaBajasReptiles - "+LocalDate.now()+".txt");
+						escritor.write(listaTotalReptiles);
+						escritor.flush();
+						JOptionPane.showMessageDialog(null, "Lista exportada", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+						
+					} catch (IOException e1) {
+						
+						JOptionPane.showMessageDialog(null, "La carpeta no existe", "ERROR", JOptionPane.ERROR_MESSAGE);
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
+				}
+			});
+			btnExportarAnimales.setBounds(284, 22, 154, 28);
+			add(btnExportarAnimales);
+			
+			
 			final JComboBox comboBaja = new JComboBox();
 			comboBaja.setModel(new DefaultComboBoxModel(new String[] {"...", "Muerte", "Traslado"}));
 			comboBaja.setMaximumRowCount(3);
@@ -94,8 +127,9 @@ public class PantallaBajaReptil extends JPanel{
 			textReptilBaja.setBackground(Color.LIGHT_GRAY);
 			textReptilBaja.setEditable(false);
 			
-			textReptilBaja.setBounds(76, 360, 573, 186);
-			add(textReptilBaja);
+			JScrollPane scrBaja = new JScrollPane(textReptilBaja);
+			scrBaja.setBounds(76, 360, 573, 186);
+			add(scrBaja); 
 			
 			JLabel lblListaBaja = new JLabel("LISTA DE BAJAS DE REPTILES");
 			lblListaBaja.setForeground(Color.WHITE);
@@ -107,8 +141,11 @@ public class PantallaBajaReptil extends JPanel{
 			textReptilAlta.setFont(new Font("Tahoma", Font.BOLD, 12));
 			textReptilAlta.setBackground(Color.ORANGE);
 			textReptilAlta.setEditable(false);
-			textReptilAlta.setBounds(76, 74, 573, 175);
-			add(textReptilAlta);
+			
+
+			JScrollPane scrAlta = new JScrollPane(textReptilAlta);
+			scrAlta.setBounds(76, 74, 573, 175);
+			add(scrAlta); 
 			
 			
 			JLabel lblListaAlta = new JLabel("LISTA DE ALTAS DE REPTILES");
@@ -169,6 +206,7 @@ public class PantallaBajaReptil extends JPanel{
 							
 							
 							Reptil reptil = new Reptil(id, nombre, fechaNacimiento, motivoBaja, fechaBaja, tipoPiel, cuidados);
+							listaTotalReptiles="";
 							mostrarReptilesAlta();
 							mostrarReptilesBaja();
 							JOptionPane.showMessageDialog(ventana, "Registro exitoso", "Éxito", JOptionPane.INFORMATION_MESSAGE);
@@ -228,6 +266,7 @@ public class PantallaBajaReptil extends JPanel{
 			txtFechaBaja.setBounds(0, 0, 46, 14);
 			add(txtFechaBaja);
 			
+			listaTotalReptiles ="";
 			mostrarReptilesAlta();
 			mostrarReptilesBaja();
 				
@@ -256,7 +295,7 @@ public class PantallaBajaReptil extends JPanel{
 			e.printStackTrace();
 		}
 		
-		
+		listaTotalReptiles += "Reptiles dados de Alta: \n" + listaReptiles + "\n----------------\n";
 		textReptilAlta.setText(listaReptiles);
 	}
 	
@@ -285,7 +324,7 @@ public class PantallaBajaReptil extends JPanel{
 			e.printStackTrace();
 		}
 		
-		
+		listaTotalReptiles += "Reptiles dados de Baja: \n" + listaReptiles + "\n----------------\n";
 		textReptilBaja.setText(listaReptiles);
 	}
 	

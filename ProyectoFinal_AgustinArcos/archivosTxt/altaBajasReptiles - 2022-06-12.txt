@@ -1,0 +1,10 @@
+Reptiles dados de Alta: 
+?ID: 4     ?Nombre: gex
+
+----------------
+Reptiles dados de Baja: 
+?ID: 1     ?Nombre: ReptilUno
+?ID: 2     ?Nombre: ReptilUno
+?ID: 3     ?Nombre: oooooooo
+
+----------------

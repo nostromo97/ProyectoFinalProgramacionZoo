@@ -1,12 +1,15 @@
 package Pantallas;
 
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Color;
 import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -56,6 +59,10 @@ public class PantallaBajaPrimate extends JPanel{
 	 */
 	private JTextPane textPrimateBaja;
 	/**
+	 * String que muestra todos los primates dados de alta y de baja.
+	 */
+	private String listaTotalPrimates;
+	/**
 	 * Constructor que implementa el funcionamiento de la pantalla de baja de los primates.
 	 * @param v
 	 */
@@ -83,6 +90,31 @@ public class PantallaBajaPrimate extends JPanel{
 			lblMotivoBaja.setBounds(312, 271, 119, 14);
 			add(lblMotivoBaja);
 			
+			JButton btnExportarAnimales = new JButton("Exportar \r\nLista animales");
+			btnExportarAnimales.addActionListener(new ActionListener() {
+				/**
+				 * Función que exporta un archivo de texto con la lista de animales dados de alta y de baja.
+				 * @param e Variable que activa el evento.
+				 */
+				public void actionPerformed(ActionEvent e) {
+					try {
+						FileWriter escritor = new FileWriter("./archivosTxt/altaBajasPrimates - "+LocalDate.now()+".txt");
+						escritor.write(listaTotalPrimates);
+						escritor.flush();
+						JOptionPane.showMessageDialog(null, "Lista exportada", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+						
+					} catch (IOException e1) {
+						
+						JOptionPane.showMessageDialog(null, "La carpeta no existe", "ERROR", JOptionPane.ERROR_MESSAGE);
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
+				}
+			});
+			btnExportarAnimales.setBounds(284, 22, 154, 28);
+			add(btnExportarAnimales);
+			
 			final JComboBox comboBaja = new JComboBox();
 			comboBaja.setModel(new DefaultComboBoxModel(new String[] {"...", "Muerte", "Traspaso"}));
 			comboBaja.setMaximumRowCount(3);
@@ -97,9 +129,10 @@ public class PantallaBajaPrimate extends JPanel{
 			textPrimateBaja.setBackground(Color.LIGHT_GRAY);
 			textPrimateBaja.setFont(new Font("Tahoma", Font.BOLD, 12));
 			textPrimateBaja.setEditable(false);
-			textPrimateBaja.setBounds(76, 360, 573, 186);
-			add(textPrimateBaja);
-			
+			 
+			JScrollPane scrBaja = new JScrollPane(textPrimateBaja);
+			scrBaja.setBounds(76, 360, 573, 186);
+			add(scrBaja); 
 			
 			
 			JLabel lblListaBaja = new JLabel("LISTA DE BAJAS DE PRIMATES");
@@ -113,9 +146,14 @@ public class PantallaBajaPrimate extends JPanel{
 			textPrimateAlta.setBackground(Color.ORANGE);
 			textPrimateAlta.setFont(new Font("Tahoma", Font.BOLD, 12));
 			textPrimateAlta.setEditable(false);
-			textPrimateAlta.setBounds(76, 74, 573, 175);
-			add(textPrimateAlta);
-
+			
+			JScrollPane scrAlta = new JScrollPane(textPrimateAlta);
+			scrAlta.setBounds(76, 74, 573, 175);
+			add(scrAlta); 
+		
+			
+			
+			
 			
 			JLabel lblListaAlta = new JLabel("LISTA DE ALTAS DE PRIMATES");
 			lblListaAlta.setForeground(Color.WHITE);
@@ -182,6 +220,7 @@ public class PantallaBajaPrimate extends JPanel{
 							
 							
 							Primate p = new Primate(id,nombre,fechaNacimiento,motivoBaja,fechaBaja,genero,cuidados);
+							listaTotalPrimates ="";
 							mostrarPrimatesAlta();
 							mostrarPrimatesBaja();
 							JOptionPane.showMessageDialog(ventana, "Registro exitoso", "Éxito", JOptionPane.INFORMATION_MESSAGE);
@@ -231,6 +270,7 @@ public class PantallaBajaPrimate extends JPanel{
 			background.setBounds(0, 0, 800, 600);
 			add(background);
 			
+			listaTotalPrimates="";
 			mostrarPrimatesAlta();
 			mostrarPrimatesBaja();
 		
@@ -259,7 +299,7 @@ public class PantallaBajaPrimate extends JPanel{
 			e.printStackTrace();
 		}
 		
-		
+		listaTotalPrimates += "Primates dados de Alta: \n" + listaPrimates + "\n----------------\n";
 		textPrimateAlta.setText(listaPrimates);
 	}
 	/**
@@ -286,7 +326,7 @@ public class PantallaBajaPrimate extends JPanel{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		listaTotalPrimates += "Primates dados de Baja: \n" + listaPrimates + "\n----------------\n";
 		textPrimateBaja.setText(listaPrimates);
 	}
 }

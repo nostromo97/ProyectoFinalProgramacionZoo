@@ -57,7 +57,9 @@ public class PantallaBajaAnfibio extends JPanel{
 	 * Panel donde aparecen los animales dados de baja.
 	 */
 	private JTextPane textAnfibioBaja;
-	
+	/**
+	 * String que muestra todos los anfibios dados de alta y de baja.
+	 */
 	private String listaTotalAnfibios;
 	
 	/**
@@ -85,25 +87,29 @@ public class PantallaBajaAnfibio extends JPanel{
 		btnVolver.setBounds(629, 18, 89, 37);
 		add(btnVolver);
 		
-		JButton btnExportarAnimales = new JButton("Exportar \r\nAnimales");
+		JButton btnExportarAnimales = new JButton("Exportar \r\nLista animales");
 		btnExportarAnimales.addActionListener(new ActionListener() {
+			/**
+			 * Función que exporta un archivo de texto con la lista de animales dados de alta y de baja.
+			 * @param e Variable que activa el evento.
+			 */
 			public void actionPerformed(ActionEvent e) {
 				try {
 					FileWriter escritor = new FileWriter("./archivosTxt/altaBajasAnfibios - "+LocalDate.now()+".txt");
 					escritor.write(listaTotalAnfibios);
 					escritor.flush();
-					//JOPTIONPANE AVISANDO DE Q SE HA EXPORTAO CORRECTAMENTE
+					JOptionPane.showMessageDialog(null, "Lista exportada", "Éxito", JOptionPane.INFORMATION_MESSAGE);
 					
 				} catch (IOException e1) {
 					
-					//JOPTION PANE DE LA CARPETA NO EXISTE
+					JOptionPane.showMessageDialog(null, "La carpeta no existe", "ERROR", JOptionPane.ERROR_MESSAGE);
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 				
 			}
 		});
-		btnExportarAnimales.setBounds(671, 135, 89, 71);
+		btnExportarAnimales.setBounds(284, 22, 154, 28);
 		add(btnExportarAnimales);
 		
 		final JComboBox comboBaja = new JComboBox();
@@ -288,7 +294,7 @@ public class PantallaBajaAnfibio extends JPanel{
 			// TODO Auto-generated catch block 
 			e.printStackTrace();
 		}
-		
+		//
 		listaTotalAnfibios += "Anfibios dados de Alta: \n" + listaAnfibios + "\n----------------\n";
 		textAnfibioAlta.setText(listaAnfibios);
 	}
