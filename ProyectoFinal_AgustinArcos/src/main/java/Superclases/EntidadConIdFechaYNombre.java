@@ -81,6 +81,9 @@ public class  EntidadConIdFechaYNombre  {
 		super();
 		setNombre(nombre);
 	}
+	
+
+
 	/**
 	 * Función que devuelve el valor de la id.
 	 * @return La id del objeto.

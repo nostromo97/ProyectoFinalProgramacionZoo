@@ -1,0 +1,42 @@
+Anfibios dados de Alta: 
+?ID: 1     ?Nombre: AnfibioUno
+?ID: 3     ?Nombre: AnfibioUno
+?ID: 4     ?Nombre: AnfibioUno
+?ID: 7     ?Nombre: AnfibioUno
+?ID: 8     ?Nombre: AnfibioUno
+?ID: 9     ?Nombre: AnfibioUno
+?ID: 11     ?Nombre: AGUSTIN
+?ID: 12     ?Nombre: anfibioUNO
+?ID: 13     ?Nombre: anfibiooooo
+?ID: 14     ?Nombre: anfibiooooo
+?ID: 15     ?Nombre: anfibiooooo
+?ID: 16     ?Nombre: Agustino
+?ID: 17     ?Nombre: Agustino
+?ID: 18     ?Nombre: Agustino
+?ID: 19     ?Nombre: Agustino
+?ID: 20     ?Nombre: anfibiooooooo
+?ID: 21     ?Nombre: anfibiooooooo
+?ID: 22     ?Nombre: anfibiooooooo
+?ID: 23     ?Nombre: anfibiooooooo
+?ID: 24     ?Nombre: anfibiooooooo
+?ID: 25     ?Nombre: anfnbiooo
+?ID: 26     ?Nombre: anfnbiooo
+?ID: 27     ?Nombre: Anfibioooooooooo
+?ID: 28     ?Nombre: Anfibioooooooooo
+?ID: 29     ?Nombre: aaaaaaaaaaaa
+?ID: 30     ?Nombre: aaaaaaaaaaaa
+?ID: 31     ?Nombre: eeeeeeee
+?ID: 32     ?Nombre: eeeeeeee
+?ID: 33     ?Nombre: eeeeeeee
+?ID: 34     ?Nombre: eeeeeeeeeee
+?ID: 35     ?Nombre: Agustin
+?ID: 36     ?Nombre: Agustin
+
+----------------
+Anfibios dados de Baja: 
+?ID: 1     ?Nombre: AnfibioUno
+?ID: 2     ?Nombre: AnfibioUno
+?ID: 3     ?Nombre: AnfibioUno
+?ID: 4     ?Nombre: AnfibioUno
+
+----------------

@@ -1,6 +1,7 @@
 package Pantallas;
 
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
@@ -8,6 +9,9 @@ import javax.swing.JButton;
 import java.awt.Color;
 import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -53,6 +57,9 @@ public class PantallaBajaAnfibio extends JPanel{
 	 * Panel donde aparecen los animales dados de baja.
 	 */
 	private JTextPane textAnfibioBaja;
+	
+	private String listaTotalAnfibios;
+	
 	/**
 	 * Constructor que implementa el funcionamiento de la pantalla de baja de los anfibios.
 	 * @param v
@@ -78,6 +85,27 @@ public class PantallaBajaAnfibio extends JPanel{
 		btnVolver.setBounds(629, 18, 89, 37);
 		add(btnVolver);
 		
+		JButton btnExportarAnimales = new JButton("Exportar \r\nAnimales");
+		btnExportarAnimales.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					FileWriter escritor = new FileWriter("./archivosTxt/altaBajasAnfibios - "+LocalDate.now()+".txt");
+					escritor.write(listaTotalAnfibios);
+					escritor.flush();
+					//JOPTIONPANE AVISANDO DE Q SE HA EXPORTAO CORRECTAMENTE
+					
+				} catch (IOException e1) {
+					
+					//JOPTION PANE DE LA CARPETA NO EXISTE
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+		});
+		btnExportarAnimales.setBounds(671, 135, 89, 71);
+		add(btnExportarAnimales);
+		
 		final JComboBox comboBaja = new JComboBox();
 		comboBaja.setModel(new DefaultComboBoxModel(new String[] {"...", "Muerte", "Traspaso"}));
 		comboBaja.setMaximumRowCount(3);
@@ -94,8 +122,13 @@ public class PantallaBajaAnfibio extends JPanel{
 		textAnfibioBaja.setBackground(Color.LIGHT_GRAY);
 		textAnfibioBaja.setFont(new Font("Tahoma", Font.BOLD, 12));
 		textAnfibioBaja.setEditable(false);
-		textAnfibioBaja.setBounds(76, 360, 573, 186);
-		add(textAnfibioBaja);
+		
+		JScrollPane anfbaj = new JScrollPane(textAnfibioBaja);
+		anfbaj.setBounds(76, 360, 573, 186);
+		add(anfbaj); 
+		
+		
+		
 		
 		JLabel lblListaBaja = new JLabel("LISTA DE BAJAS DE ANFIBIO");
 		lblListaBaja.setForeground(Color.WHITE);
@@ -107,8 +140,14 @@ public class PantallaBajaAnfibio extends JPanel{
 		textAnfibioAlta.setBackground(Color.ORANGE);
 		textAnfibioAlta.setFont(new Font("Tahoma", Font.BOLD, 12));
 		textAnfibioAlta.setEditable(false);
-		textAnfibioAlta.setBounds(76, 74, 573, 175);
-		add(textAnfibioAlta);
+		
+		//------//
+		JScrollPane anfalt = new JScrollPane(textAnfibioAlta);
+		anfalt.setBounds(76, 74, 573, 175);
+		add(anfalt);
+		
+		
+		
 		
 		JLabel lblListaAlta = new JLabel("LISTA DE ALTAS DE ANFIBIOS");
 		lblListaAlta.setForeground(Color.WHITE);
@@ -166,6 +205,7 @@ public class PantallaBajaAnfibio extends JPanel{
 						
 						
 						Anfibio an = new Anfibio(id, nombre, fechaNacimiento, motivoBaja, fechaBaja, tipoOrden,tipoAmbiente, cuidados);
+						listaTotalAnfibios = "";
 						mostrarAnfibiosAlta();
 						mostrarAnfibiosBaja();
 						JOptionPane.showMessageDialog(ventana, "Registro exitoso", "Éxito", JOptionPane.INFORMATION_MESSAGE);
@@ -219,6 +259,8 @@ public class PantallaBajaAnfibio extends JPanel{
 		txtFechaBaja.setBounds(0, 0, 46, 14);
 		add(txtFechaBaja);
 		
+
+		listaTotalAnfibios = ""; 
 		mostrarAnfibiosAlta();
 		mostrarAnfibiosBaja();
 		
@@ -243,11 +285,11 @@ public class PantallaBajaAnfibio extends JPanel{
 			
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			// TODO Auto-generated catch block 
 			e.printStackTrace();
 		}
 		
-		
+		listaTotalAnfibios += "Anfibios dados de Alta: \n" + listaAnfibios + "\n----------------\n";
 		textAnfibioAlta.setText(listaAnfibios);
 	}
 	/**
@@ -275,8 +317,7 @@ public class PantallaBajaAnfibio extends JPanel{
 			e.printStackTrace();
 		}
 		
-		
+		listaTotalAnfibios += "Anfibios dados de Baja: \n" + listaAnfibios + "\n----------------\n";
 		textAnfibioBaja.setText(listaAnfibios);
 	}
-	
 }

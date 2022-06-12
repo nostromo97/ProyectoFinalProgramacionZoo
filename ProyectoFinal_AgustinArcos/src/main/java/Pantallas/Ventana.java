@@ -16,10 +16,6 @@ public class Ventana extends JFrame{
 	 */
 	private JPanel pantallaActual;
 	/**
-	 * Usuario logueado.
-	 */
-	public Usuario usuarioActual;
-	/**
 	 * Constructor que implementa el funcionamiento de la clase ventana
 	 */
 	public Ventana() {

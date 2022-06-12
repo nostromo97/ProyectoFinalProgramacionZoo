@@ -1,8 +1,12 @@
 package Pantallas;
 
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 
+import Clases.Usuario;
+import Excepciones.NombreInvalidoException;
+import Excepciones.NombreVacioException;
 import Utils.UtilsDB;
 
 import javax.swing.JLabel;
@@ -15,6 +19,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.awt.event.ActionEvent;
 /**
  * Clase que implementa la pantalla la información del usuario y extiende de JPanel.
@@ -57,9 +63,11 @@ public class PantallaInfoUsuario extends JPanel{
 		fotoMonoPortatil.setBounds(279, 27, 209, 187);
 		add(fotoMonoPortatil);
 		
-		JTextPane textInfoUsuario= new JTextPane();
-		textInfoUsuario.setBounds(214, 252, 372, 133);
-		add(textInfoUsuario);
+		textInfoUsuario= new JTextPane();
+		
+		JScrollPane usr = new JScrollPane(textInfoUsuario);
+		usr.setBounds(214, 252, 372, 133);
+		add(usr);
 		
 		JLabel lblNewLabel = new JLabel("Info Usuario:");
 		lblNewLabel.setFont(new Font("Microsoft JhengHei Light", Font.BOLD, 18));
@@ -72,39 +80,23 @@ public class PantallaInfoUsuario extends JPanel{
 		background.setBounds(0, 0, 800, 600);
 		add(background);
 		
-		mostrarInfoUsuario();
-				
-	}
-	/**
-	 * Función que muestra la información del usuario en la base de datos.
-	 */
-	private void mostrarInfoUsuario() {
-		Statement query = UtilsDB.conectarBD();
-		
-		String infoUsuario = "";
-		
-		ResultSet cursor;
 		try {
-			cursor = query.executeQuery("select * from usuarios");
+			ArrayList<Usuario> usuarios = Usuario.mostrarInfoUsuario();
+			String infoUsuario = "";
 			
-			while(cursor.next()) {
-				String id = cursor.getString("id");
-				String nombre = cursor.getString("nombre");
-				String apellidos = cursor.getString("apellidos");
+			for (int i = 0; i < usuarios.size(); i++) {
+				String id = String.valueOf(usuarios.get(i).getId());
+				String nombre = usuarios.get(i).getNombre();
+				String apellidos = usuarios.get(i).getApellidos();
 				infoUsuario +="●ID: "+ id +"||\n     ●NOMBRE: "+ nombre + "||\n     ●APELLIDOS: "+apellidos+"\n";
 			}
+			textInfoUsuario.setText(infoUsuario);
 			
-			
-		} catch (SQLException e) {
+		} catch (NombreVacioException | NombreInvalidoException e1) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e1.printStackTrace();
 		}
-		
-		
-		textInfoUsuario.setText(infoUsuario);
+				
 	}
-	
-	
-	
 	
 }
