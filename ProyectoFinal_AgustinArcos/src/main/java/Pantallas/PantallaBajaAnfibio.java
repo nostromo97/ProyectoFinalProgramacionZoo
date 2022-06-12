@@ -27,7 +27,6 @@ import javax.swing.SwingConstants;
 import Clases.Anfibio;
 import Clases.Primate;
 import Enums.MotivoBaja;
-import Enums.TipoAmbiente;
 import Enums.TipoOrden;
 import Excepciones.CampoVacioException;
 import Excepciones.FechaFormatoException;

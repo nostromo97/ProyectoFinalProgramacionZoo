@@ -213,7 +213,7 @@ public class PantallaAltaPrimate extends JPanel {
 					} else if (campoFemenino.isSelected()) {
 						genero = false;
 					}
-					if (!campoMasculino.isSelected() && (!campoMasculino.isSelected())) {
+					if (!campoMasculino.isSelected() && !campoFemenino.isSelected()) {
 
 						JOptionPane.showMessageDialog(null, "Error. El género no puede estar vacío.", "Error",
 								JOptionPane.ERROR_MESSAGE);

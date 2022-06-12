@@ -8,7 +8,6 @@ import java.util.Scanner;
 
 import Enums.MotivoAlta;
 import Enums.MotivoBaja;
-import Enums.TipoAmbiente;
 import Enums.TipoRaza;
 import Excepciones.CampoVacioException;
 import Excepciones.DescripcionVaciaException;
@@ -60,8 +59,19 @@ public class Primate extends Animal{
 		super(id, fechaNacimiento, nombre, raza, cuidados, motivoAlta, motivoBaja, fechaAlta, fechaBaja, dieta);
 		this.genero = genero;
 	}
+	
+	
 
 	
+	public Primate(short id, String nombre, TipoRaza raza, boolean genero)
+			throws NombreVacioException, NombreInvalidoException {
+		super(id, nombre, raza);
+		this.genero = genero;
+	}
+
+
+
+
 	/**
 	 * 	Constructor de la clase Primate que extiende de Animal, utilizado para dar de alta a un Primate.
 	 * Hace conexión con la base de datos e inserta un primate.
@@ -150,6 +160,18 @@ public class Primate extends Animal{
 		this.genero=genero;
 		
 	}
+
+
+
+	/**
+	 * Función que devuelve una cadena de caracteres con todos los atributos del objeto de la Clase.
+	 */
+	@Override
+	public String toString() {
+		return super.toString() +"Genero: "+ (genero==true? "Masculino":"Femenino");
+	}
+	
+	
 	
 	
 }

@@ -4,8 +4,9 @@ package Enums;
  *
  * @author Agustín Arcos
  */
-public enum TipoPiel {
+/*public enum TipoPiel {
 	ESCAMA,
 	CAPARAZON,
 	___
 }
+*/

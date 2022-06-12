@@ -4,8 +4,8 @@ package Enums;
  *
  * @author Agustín Arcos
  */
-public enum TipoAmbiente {
+/*public enum TipoAmbiente {
 	ACUÁTICO,
 	SECO,
 	___
-}
+}*/

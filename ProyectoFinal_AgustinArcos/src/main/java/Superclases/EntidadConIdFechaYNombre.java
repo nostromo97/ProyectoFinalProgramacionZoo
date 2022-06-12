@@ -149,6 +149,15 @@ public class  EntidadConIdFechaYNombre  {
 		}
 		this.nombre = nombre;
 	}
+
+
+	/**
+	 * 
+	 */
+	@Override
+	public String toString() {
+		return "ID: "+id + " Nombre: " + nombre + " ";
+	}
 	
 	
 	

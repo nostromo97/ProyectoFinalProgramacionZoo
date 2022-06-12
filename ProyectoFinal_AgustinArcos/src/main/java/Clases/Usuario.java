@@ -169,7 +169,14 @@ public class Usuario extends EntidadConIdFechaYNombre {
 	}
 
 	
-
+/**
+ * Constructor de usuario.
+ * @param id Variable numérica de tipo short que contiene la id del usuario.
+ * @param nombre Cadena de caracteres que contiene el nombre del usuario.
+ * @param apellidos Cadena de caracteres que contiene los apellidos del usuario.
+ * @throws NombreVacioException Excepción que se lanza cuando el campo del nombre está vacío.
+ * @throws NombreInvalidoException Excepción que se lanza cuando el nombre introducido no es válido.
+ */
 	public Usuario(short id, String nombre, String apellidos) throws NombreVacioException, NombreInvalidoException{
 		super(id, nombre);
 		this.apellidos = apellidos;
@@ -232,10 +239,10 @@ public class Usuario extends EntidadConIdFechaYNombre {
 	}
 
 	/**
-	 * 
-	 * @return
-	 * @throws NombreVacioException
-	 * @throws NombreInvalidoException
+	 * Función que muestra la información del usuario.
+	 * @return la lista de información de todos los usuarios.
+	 * @throws NombreVacioException Excepción que se lanza cuando el campo del nombre está vacío.
+	 * @throws NombreInvalidoException Excepción que se lanza cuando el nombre introducido no es válido.
 	 */
 	public static ArrayList<Usuario> mostrarInfoUsuario() throws NombreVacioException, NombreInvalidoException {
 
@@ -251,8 +258,6 @@ public class Usuario extends EntidadConIdFechaYNombre {
 				short id = cursor.getShort("id");
 				String nombre = cursor.getString("nombre");
 				String apellidos = cursor.getString("apellidos");
-				//infoUsuario += "●ID: " + id + "||\n     ●NOMBRE: " + nombre + "||\n     ●APELLIDOS: " + apellidos
-						//+ "\n";
 				Usuario usuario = new Usuario (id,nombre,apellidos);
 				todosUsuarios.add(usuario);
 				
@@ -264,7 +269,6 @@ public class Usuario extends EntidadConIdFechaYNombre {
 		}
 		return todosUsuarios;
 
-		//textInfoUsuario.setText(infoUsuario);
 	}
 
 }

@@ -23,7 +23,6 @@ import javax.swing.SwingConstants;
 import Clases.Primate;
 import Clases.Reptil;
 import Enums.MotivoAlta;
-import Enums.TipoPiel;
 import Excepciones.DescripcionVaciaException;
 import Excepciones.FechaFormatoException;
 import Excepciones.MotivoVacioException;

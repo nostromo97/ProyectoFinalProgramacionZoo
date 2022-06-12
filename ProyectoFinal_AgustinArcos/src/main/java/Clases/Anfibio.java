@@ -8,7 +8,6 @@ import java.util.Scanner;
 
 import Enums.MotivoAlta;
 import Enums.MotivoBaja;
-import Enums.TipoAmbiente;
 import Enums.TipoOrden;
 import Enums.TipoRaza;
 import Excepciones.CampoVacioException;
@@ -150,6 +149,14 @@ public class Anfibio extends Animal{
 	}
 
 	
+	
+	
+	public Anfibio(short id, String nombre, TipoRaza raza, TipoOrden tipoOrden, boolean tipoAmbiente)
+			throws NombreVacioException, NombreInvalidoException {
+		super(id, nombre, raza);
+		this.tipoOrden = tipoOrden;
+		this.tipoAmbiente = tipoAmbiente;
+	}
 	/**
 	 * Función que devuelve el tipo de orden
 	 * @return tipo de orden del objeto
@@ -186,4 +193,10 @@ public class Anfibio extends Animal{
 	public void setTipoAmbiente(boolean tipoAmbiente) {
 		this.tipoAmbiente = tipoAmbiente;
 	}
+	@Override
+	public String toString() {
+		return super.toString() + "Tipo de Orden: " + tipoOrden + " Tipo de Ambiente: " + (tipoAmbiente==true?"Acuático":"Seco");
+	}
+	
+	
 }

@@ -8,7 +8,6 @@ import java.util.Scanner;
 
 import Enums.MotivoAlta;
 import Enums.MotivoBaja;
-import Enums.TipoPiel;
 import Enums.TipoRaza;
 import Excepciones.CampoVacioException;
 import Excepciones.DescripcionVaciaException;
@@ -132,7 +131,15 @@ public class Reptil extends Animal{
 		}
 		UtilsDB.desconectarBD();		
 	}
+	
+	
 
+
+	public Reptil(short id, String nombre, TipoRaza raza, boolean tipoPiel)
+			throws NombreVacioException, NombreInvalidoException {
+		super(id, nombre, raza);
+		this.tipoPiel = tipoPiel;
+	}
 
 	/**
 	 * Función que devuelve el tipo de piel del reptil.
@@ -148,6 +155,13 @@ public class Reptil extends Animal{
 	public void setTipoPiel(boolean tipoPiel) {
 		this.tipoPiel = tipoPiel;
 	}
+
+	
+	@Override
+	public String toString() {
+		return super.toString() + "Tipo de Piel: " + (tipoPiel==true?"Escamas":"Caparazón");
+	}
+	
 	
 	
 	

@@ -77,7 +77,16 @@ public class PantallaMenu extends JPanel{
 		botonAlimentos.setBounds(407, 367, 107, 42);
 		add(botonAlimentos);
 		
-		JButton botonRefugio = new JButton("REFUGIO");
+		JButton botonRefugio = new JButton("ANIMALES");
+		botonRefugio.addActionListener(new ActionListener() {
+			/**
+			 * 
+			 * @param e
+			 */
+			public void actionPerformed(ActionEvent e) {
+				ventana.cambiarPantalla("zoologico");
+			}
+		});
 		botonRefugio.setBounds(234, 368, 108, 40);
 		add(botonRefugio);
 		
