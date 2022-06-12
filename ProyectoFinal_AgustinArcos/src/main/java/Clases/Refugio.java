@@ -1,8 +1,10 @@
 package Clases;
 
 import java.util.ArrayList;
+
 /**
  * Clase que contiene un objeto de tipo Refugio.
+ * 
  * @author Agustín Arcos
  *
  */
@@ -11,8 +13,8 @@ public class Refugio {
 	 * Cadena de caracteres que contiene el nombre del refugio.
 	 */
 	private String nombreRefugio;
-	 //cambiar arraylist en hashset de habitat
-	
+	// cambiar arraylist en hashset de habitat
+
 	/**
 	 * ArrayList de Animal de los animales que hay en el refugio.
 	 */
@@ -21,12 +23,15 @@ public class Refugio {
 	 * ArrayList de Animal de los habitats que hay en el refugio.
 	 */
 	private ArrayList<Habitat> habitats;
-	
+
 	/**
 	 * Constructor de la clase Refugio
+	 * 
 	 * @param nombreRefugio Cadena de caracteres que contiene el nombre del refugio.
-	 * @param animales ArrauList de Animal de los habitats que hay en el refugio.
-	 * @param habitats ArrayList de Animal de los habitats que hay en el refugio.
+	 * @param animales      ArrauList de Animal de los habitats que hay en el
+	 *                      refugio.
+	 * @param habitats      ArrayList de Animal de los habitats que hay en el
+	 *                      refugio.
 	 */
 	public Refugio(String nombreRefugio, ArrayList<Animal> animales, ArrayList<Habitat> habitats) {
 		super();
@@ -37,6 +42,7 @@ public class Refugio {
 
 	/**
 	 * Función que devuelve el nombre del refugio.
+	 * 
 	 * @return El nombre del refugio.
 	 */
 	public String getNombreRefugio() {
@@ -45,6 +51,7 @@ public class Refugio {
 
 	/**
 	 * Función que establece un nombre para el refugio.
+	 * 
 	 * @param nombreRefugio Nuevo parámetro que estblace un nombre al refugio.
 	 */
 	public void setNombreRefugio(String nombreRefugio) {
@@ -53,6 +60,7 @@ public class Refugio {
 
 	/**
 	 * Función que devuelve los animales que hay en el refugio.
+	 * 
 	 * @return Animales del refugio.
 	 */
 	public ArrayList<Animal> getAnimales() {
@@ -61,7 +69,9 @@ public class Refugio {
 
 	/**
 	 * Función que establece los diferentes animales.
-	 * @param animales Nuevo parámetro que estblace los animales que hay en el refugio.
+	 * 
+	 * @param animales Nuevo parámetro que estblace los animales que hay en el
+	 *                 refugio.
 	 */
 	public void setAnimales(ArrayList<Animal> animales) {
 		this.animales = animales;
@@ -69,6 +79,7 @@ public class Refugio {
 
 	/**
 	 * Función que devuelve las habitats del refugio.
+	 * 
 	 * @return Habitats del refugio.
 	 */
 	public ArrayList<Habitat> getHabitats() {
@@ -77,11 +88,12 @@ public class Refugio {
 
 	/**
 	 * Función que establece los habitats que hay en el refugio.
-	 * @param habitats Nuevo parámetro que estblace los habitats que hay en el refugio.
+	 * 
+	 * @param habitats Nuevo parámetro que estblace los habitats que hay en el
+	 *                 refugio.
 	 */
 	public void setHabitats(ArrayList<Habitat> habitats) {
 		this.habitats = habitats;
 	}
-	
-	
+
 }

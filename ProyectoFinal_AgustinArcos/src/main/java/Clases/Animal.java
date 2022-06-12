@@ -362,12 +362,14 @@ public class Animal extends EntidadConIdFechaYNombre {
 		this.dieta = dieta;
 	}
 
+	/**
+	 * Función que devuelve una cadena de caracteres con todos los atributos del
+	 * objeto de la Clase.
+	 */
 	@Override
 	public String toString() {
-		return super.toString() + "Raza: " + raza +" " ;
-				
+		return super.toString() + "Raza: " + raza + " ";
+
 	}
-	
-	
 
 }
