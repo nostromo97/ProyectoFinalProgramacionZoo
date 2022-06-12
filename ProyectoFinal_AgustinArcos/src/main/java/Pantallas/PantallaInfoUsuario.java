@@ -64,6 +64,8 @@ public class PantallaInfoUsuario extends JPanel{
 		add(fotoMonoPortatil);
 		
 		textInfoUsuario= new JTextPane();
+		textInfoUsuario.setBackground(new Color(153, 204, 204));
+		textInfoUsuario.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
 		JScrollPane usr = new JScrollPane(textInfoUsuario);
 		usr.setBounds(214, 252, 372, 133);

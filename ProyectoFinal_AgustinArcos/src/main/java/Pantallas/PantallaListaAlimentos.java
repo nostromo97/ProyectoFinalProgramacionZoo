@@ -1,6 +1,7 @@
 package Pantallas;
 
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JTextPane;
@@ -62,8 +63,10 @@ public class PantallaListaAlimentos extends JPanel{
 		textListaAlimentos = new JTextPane();
 		textListaAlimentos.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textListaAlimentos.setBackground(Color.LIGHT_GRAY);
-		textListaAlimentos.setBounds(101, 99, 622, 331);
-		add(textListaAlimentos);
+		
+		JScrollPane scrBaja = new JScrollPane(textListaAlimentos);
+		scrBaja.setBounds(101, 99, 622, 331);
+		add(scrBaja);
 		
 		
 		JLabel lblFondo = new JLabel("");
