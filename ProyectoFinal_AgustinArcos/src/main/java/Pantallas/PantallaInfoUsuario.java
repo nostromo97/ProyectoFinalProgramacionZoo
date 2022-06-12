@@ -90,7 +90,7 @@ public class PantallaInfoUsuario extends JPanel{
 				String id = String.valueOf(usuarios.get(i).getId());
 				String nombre = usuarios.get(i).getNombre();
 				String apellidos = usuarios.get(i).getApellidos();
-				infoUsuario +="●ID: "+ id +"||\n     ●NOMBRE: "+ nombre + "||\n     ●APELLIDOS: "+apellidos+"\n";
+				infoUsuario +="●ID: "+ id +"||\n     ●NOMBRE: "+ nombre + "||\n     ●APELLIDOS: "+apellidos+"||\n";
 			}
 			textInfoUsuario.setText(infoUsuario);
 			

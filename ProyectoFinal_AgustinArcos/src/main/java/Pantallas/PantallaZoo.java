@@ -76,9 +76,9 @@ public class PantallaZoo extends JPanel {
 		add(usr);
 
 		JLabel lblNewLabel = new JLabel("Lista de animales:");
-		lblNewLabel.setFont(new Font("Microsoft JhengHei Light", Font.BOLD, 18));
+		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 18));
 		lblNewLabel.setForeground(Color.WHITE);
-		lblNewLabel.setBounds(338, 225, 122, 25);
+		lblNewLabel.setBounds(307, 225, 203, 25);
 		add(lblNewLabel);
 
 		JLabel background = new JLabel("");
